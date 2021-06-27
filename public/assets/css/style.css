@@ -1,0 +1,37 @@
+body {
+    overflow-x: hidden;
+    font-family:'Segoe UI';
+}
+nav {
+    background-color: rgb(150, 146, 136);
+}
+.navbar-brand {
+    font-weight: 900; 
+    color: rgb(80, 61, 14)
+}
+a {
+    color: #fff;
+    font-weight: bold;
+}
+a:hover {
+    color: burlywood
+}
+nav ul li {
+    list-style-type: none;
+    display: inline;
+    margin-right: 10px;
+}
+.dot {
+    height: 40px;
+    width: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+form .container {
+    position: relative;
+    bottom: 30px;
+}
+.container {
+    float: left;
+}
