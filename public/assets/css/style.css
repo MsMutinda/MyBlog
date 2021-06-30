@@ -21,6 +21,9 @@ nav ul li {
     display: inline;
     margin-right: 10px;
 }
+.nav-right {
+    padding-top: 10px;
+}
 .dot {
     height: 40px;
     width: 40px;
