@@ -1,36 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    <style>
-        .button {
-            background-color: #4B6F44;
-            border-radius: 5px;
-
-        }
-        .button:hover {
-            background-color: #ACE1AF;
-
-        }
-        .posts, .profile, .bio {
-            font-weight: 800;
-        }
-        .avatar-details {
-            list-style-type: none;
-            position: relative;
-            right: 23px;
-        }
-        img {
-            position: relative;
-            left: 35px;
-        }
-        a:hover {
-            color: #000;
-            text-decoration: none;
-        }
-    </style>
-
-    <section>
-        <div class='container card shadow-md p-3'>
+    <section class='mt-5'>
+        <div class='card shadow-md p-3'>
             <div class='row'>
                 <div class='col-12 pl-3 ml-2 mb-4'>
                     <h3 class='profile mb-2 ml-2'>Profile</h3>

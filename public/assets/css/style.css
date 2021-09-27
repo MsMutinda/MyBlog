@@ -3,7 +3,7 @@ body {
     font-family:'Segoe UI';
 }
 nav {
-    background-color: rgb(150, 146, 136);
+    background-color: #A9BA9D;
 }
 .navbar-brand {
     font-weight: 900; 
@@ -34,4 +34,29 @@ nav ul li {
 form .container {
     position: relative;
     bottom: 30px;
+}
+.button {
+    background-color: #4B6F44;
+    border-radius: 5px;
+
+}
+.button:hover {
+    background-color: #ACE1AF;
+
+}
+.posts, .profile, .bio {
+    font-weight: 800;
+}
+.avatar-details {
+    list-style-type: none;
+    position: relative;
+    right: 23px;
+}
+img {
+    position: relative;
+    left: 35px;
+}
+a:hover {
+    color: #000;
+    text-decoration: none;
 }

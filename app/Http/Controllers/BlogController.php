@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PostCategoryController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class PostCategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.blogs.index');
     }
 
     /**
@@ -70,11 +70,7 @@ class PostCategoryController extends Controller
     {
         //
     }
-
-    public function posts() {
-        return $this->hasMany('App\Models\Post');
-    }
-    
+        
     /**
      * Remove the specified resource from storage.
      *

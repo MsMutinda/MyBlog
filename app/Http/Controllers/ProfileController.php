@@ -44,6 +44,6 @@ class ProfileController extends Controller
             'gender'            => $request->gender
         ]);
 
-        return redirect()->route('profile.index');
+        return redirect()->route('profile');
     }
 }
