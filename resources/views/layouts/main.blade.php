@@ -4,7 +4,7 @@
 @include('includes.header')
 
 
-<body style="padding-top: 5rem;">
+<body style="padding-top: 2rem;">
     <div class="container">
     @yield('content')
     </div>
