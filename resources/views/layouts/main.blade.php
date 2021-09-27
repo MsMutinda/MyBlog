@@ -15,7 +15,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="profile">Profile</a></li>
             <!-- Maybe add featured posts later -->
-            <li><a href="blogs">Blogs</a></li>
+            <li><a href="blog">Blogs</a></li>
             <li>
                 <div class='dropdown-menu'>
                     <button class='dot'></button>
@@ -30,7 +30,7 @@
         </ul>
     </nav><br><br>
 
-    <div class="container">
+    <div class="container-fluid">
     @yield('content')
     </div>
     <!--scripts here-->

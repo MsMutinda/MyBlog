@@ -28,4 +28,4 @@ Route::get('/editProfile', [App\Http\Controllers\ProfileController::class, 'edit
 Route::put('/updateProfile', [App\Http\Controllers\ProfileController::class, 'updateProfile'])->name('profile-update');
 
 // Blog routes
-Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blogs');
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
