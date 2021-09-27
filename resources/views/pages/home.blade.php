@@ -10,8 +10,7 @@
 
         <ul class='nav-right'>
             <li><a href="/">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">My Posts</a></li>
+            <li><a href="profile">Profile</a></li>
             <li><a href="#">Featured Posts</a></li>
             <li>
                 <div class='dropdown-menu'>

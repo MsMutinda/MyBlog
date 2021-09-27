@@ -18,3 +18,5 @@ use App\Http\Controllers\IndexController;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile']);
