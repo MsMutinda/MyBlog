@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Blog;
 
 class BlogController extends Controller
 {
@@ -13,7 +16,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('pages.blogs.index');
+        $blogs = Blog::all();
+        return view('pages.blogs.index')->with('blogs', $blogs);
     }
 
     /**
@@ -21,9 +25,9 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() 
     {
-        
+        return view('pages.blogs.create');
     }
 
     /**
@@ -34,7 +38,14 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateddata = $this->validate($request, [
+            'title' => ['required'],
+            'author' => ['required'],
+            'content' => ['required']
+        ]);
+
+        Blog::create($validateddata); //storing the data
+        return redirect()->back()->with('success', 'Blog saved successfully');
     }
 
     /**

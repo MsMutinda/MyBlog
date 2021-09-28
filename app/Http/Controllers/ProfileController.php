@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
 
 class ProfileController extends Controller
 {
@@ -18,7 +19,8 @@ class ProfileController extends Controller
      */
     public function profile()
     {
-        return view('pages.profile.index');
+        $blogs = Blog::all();
+        return view('pages.profile.index')->with('blogs', $blogs);
     }
 
     public function editProfile() {
@@ -32,16 +34,18 @@ class ProfileController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
             'phone'  => 'required|string|max:255',
             'gender'  => 'required|string|max:255',
+            'hobbies'  => 'required|string|max:255',
         ]);
 
         $user = auth()->user();
 
         $user->update([
-            'fname'             => $request->fname,
-            'lname'             => $request->lname,
-            'email'             => $request->email,
-            'phone'             => $request->phone,
-            'gender'            => $request->gender
+            'fname'   => $request->fname,
+            'lname'   => $request->lname,
+            'email'   => $request->email,
+            'phone'   => $request->phone,
+            'gender'  => $request->gender,
+            'hobbies' => $request->hobbies
         ]);
 
         return redirect()->route('profile');

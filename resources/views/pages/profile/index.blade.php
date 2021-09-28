@@ -19,12 +19,11 @@
                 </div>
                 <div class='col-lg-6 col-sm-6 ml-3'>
                     <h4 class='posts'>My Posts</h4>
-                    <ul>
-                        <li> Blog #1 </li>
-                        <li> Blog #2 </li>
-                        <li> Blog #3 </li>
-                        <li> etc etc.. </li>
-                    </ul>
+                    @foreach ($blogs as $blog)
+                        <ul>
+                            <li> {{ $blog->title }} </li>
+                        </ul>
+                    @endforeach
                 </div>
             </div><br>
 
@@ -34,8 +33,8 @@
                     <ul>
                         <li> <strong> Email address: </strong> {{ Auth::user()->email }} </li>
                         <li> <strong> Phone Number: </strong> {{ Auth::user()->phone }} </li>
-                        <li> <strong> Hobbies: </strong> </li>
-                        <li> <strong> Number of blogs authored so far: </strong> </li>
+                        <li> <strong> Hobbies: </strong> {{  Auth::user()->hobbies }} </li>
+                        <li> <strong> Number of blogs authored so far: </strong> {{ count($blogs) }} </li>
                         <li> <strong> Topics i'm interested in: </strong></li>
                     </ul>
                     <!-- loads a modal form when clicked -->

@@ -6,7 +6,7 @@
 
 <body>
     <nav class='navbar navbar-light fixed-top'>    
-        <a href="#" class='navbar-brand'>
+        <a href="/" class='navbar-brand'>
             <!-- <img src="" style="max-height: 50px"> -->
             My Blog
         </a>

@@ -12,7 +12,7 @@
         <main role="main" class="container-fluid mx-3">
             <div class='row'>
                 <div class='col-lg-3 col-sm-3 mr-5' style="padding: 2rem 0rem;">
-                    <h3><strong> **blog 1 name here** </strong></h3>
+                    <h3><strong>   Blog 1 </strong></h3>
                     <span class="header-sub">Created by <b> **author 1 name here**</b></span>
                     <div class='content'>
                         <p class='py-2'>
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class='col-lg-3 col-sm-3 mr-5' style="padding: 2rem 0rem;">
-                    <h3><strong> **blog 2 name here** </strong></h3>
+                    <h3><strong> Blog 2 </strong></h3>
                     <!-- <h1 class="header-title">Laravel Blog</h1> -->
                     <span class="header-sub">Created by <b> **author 2 name here**</b></span>
                     <div class='content'>
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class='col-lg-3 col-sm-3 mr-5' style="padding: 2rem 0rem;">
-                    <h3><strong> **blog 3 name here** </strong></h3>
+                    <h3><strong> Blog 3 </strong></h3>
                     <!-- <h1 class="header-title">Laravel Blog</h1> -->
                     <span class="header-sub">Created by <b> **author 3 name here**</b></span>
                     <div class='content'>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class='col-lg-3 col-sm-3 mr-5' style="padding: 2rem 0rem;">
-                    <h3><strong> **blog 4 name here** </strong></h3>
+                    <h3><strong> Blog 4 </strong></h3>
                     <!-- <h1 class="header-title">Laravel Blog</h1> -->
                     <span class="header-sub">Created by <b> **author 4 name here**</b></span>
                     <div class='content'>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class='col-lg-3 col-sm-3 mr-5' style="padding: 2rem 0rem;">
-                    <h3><strong> **blog 5 name here** </strong></h3>
+                    <h3><strong> Blog 5 </strong></h3>
                     <!-- <h1 class="header-title">Laravel Blog</h1> -->
                     <span class="header-sub">Created by <b> **author 5 name here**</b></span>
                     <div class='content'>
