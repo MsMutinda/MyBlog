@@ -17,7 +17,7 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all();
-        return view('pages.blogs.index')->with('blogs', $blogs);
+        return view('pages.home')->with('blogs', $blogs);
     }
 
     /**
@@ -56,7 +56,8 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        $blogs = Blog::where('id', $id)->get();
+        return view('pages.blogs.show')->with('blogs', $blogs);
     }
 
     /**

@@ -29,9 +29,15 @@ Route::put('/profile-update', [App\Http\Controllers\ProfileController::class, 'u
 
 
 // Blog routes
-Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
+// Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog');
 
-Route::get('/create-blog', [App\Http\Controllers\BlogController::class, 'create'])->name('create-blog');
+Route::get('/blog/create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
 
-Route::post('/save-blog', [App\Http\Controllers\BlogController::class, 'store'])->name('save-blog');
+Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
+
+Route::get('/blog/{id}/edit', [App\Http\Controllers\BlogController::class, 'edit'])->name('blog.edit');
+
+Route::patch('/blog/{id}/update', [App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
+
+Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('blog.save');
 
