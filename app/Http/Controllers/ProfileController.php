@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Blog;
 
 class ProfileController extends Controller
@@ -23,7 +24,8 @@ class ProfileController extends Controller
         return view('pages.profile.index')->with('blogs', $blogs);
     }
 
-    public function editProfile() {
+    public function editProfile() 
+    {
         return view('pages.profile.edit');
     }
 
@@ -49,5 +51,16 @@ class ProfileController extends Controller
         ]);
 
         return redirect()->route('profile');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

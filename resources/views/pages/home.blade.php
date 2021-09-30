@@ -3,7 +3,7 @@
 @section('content')
 
     <div style='margin-top: 50px'>
-        <div class='btn shadow-lg' style="background-color: #d4af37;"> <a href="{{ route('blog.create') }}" style='color: #000;'> Add a new blog </a></button>
+        <div class='btn shadow-lg ml-5' style="background-color: #d4af37;"> <a href="{{ route('blog.create') }}" style='color: #000;'> Add a new blog </a></button>
         <!-- <p class='mt-2'> Individual blog view more will display here from home page </p> -->
     </div>
         <!-- <form class="form-inline my-1 pt-5 mx-2">
@@ -12,15 +12,15 @@
         </form> -->
 
 
-        <main role="main" class="container-fluid mx-3">
+        <main role="main" class="container-fluid mx-3" style=" margin: 0 auto;">
             <div class='row'>
 
                 @if(\App\Models\Blog::count() > 0)
                     @foreach($blogs as $blog)
 
-                    <div class='col-lg-3 col-sm-3 mr-5' style="padding: 2rem 0rem;">
+                    <div class='col-lg-3 col-sm-3' style="padding: 2rem 1.8rem;">
                         <h3><strong>   {{ $blog->title }} </strong></h3>
-                        <span class="header-sub">Created by <b> {{ $blog->author }} </b></span>
+                        <span class="header-sub">Written by <b> {{ $blog->author }} </b></span>
                         <div class='content'>
                             <p class='py-2'> {{ substr($blog->content, 0, 150).'...' }} </p>
                         </div>

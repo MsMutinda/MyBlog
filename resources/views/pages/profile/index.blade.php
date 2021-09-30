@@ -17,11 +17,16 @@
                         <li> <strong> Gender: </strong> {{ Auth::user()->gender }} </li>
                     </ul>
                 </div>
+
+                <?php 
+                    $myblogs = \App\Models\Blog::where('author' , '=', Auth::user()->fname)->get();
+                    $total = count($myblogs);
+                ?> 
                 <div class='col-lg-6 col-sm-6 ml-3'>
                     <h4 class='posts'>My Posts</h4>
-                    @foreach ($blogs as $blog)
+                    @foreach ($myblogs as $myblog)
                         <ul>
-                            <li> {{ $blog->title }} </li>
+                            <li> {{ $myblog->title }} </li>
                         </ul>
                     @endforeach
                 </div>
@@ -34,11 +39,13 @@
                         <li> <strong> Email address: </strong> {{ Auth::user()->email }} </li>
                         <li> <strong> Phone Number: </strong> {{ Auth::user()->phone }} </li>
                         <li> <strong> Hobbies: </strong> {{  Auth::user()->hobbies }} </li>
-                        <li> <strong> Number of blogs authored so far: </strong> {{ count($blogs) }} </li>
+                        <li> <strong> Number of blogs authored so far: </strong> 
+                            {{$total}}
+                        </li>
                         <li> <strong> Topics i'm interested in: </strong></li>
                     </ul>
                     <!-- loads a modal form when clicked -->
-                    <button class='button p-1 mt-3'><a href="{{ route('profile-edit') }}"> Edit profile </a></button>
+                    <button class='button p-1 mt-3'><a href="{{ route('profile.edit') }}"> Edit profile </a></button>
                 </div>
             </div>
         </div>

@@ -2,13 +2,13 @@
 
 @section('content')
 
-<div class='content-wrapper mt-5'>
+<div class='mt-5 p-2 mb-4'>
     <h3 class='ml-4 pl-4 mt-1 pb-2'> <strong> Edit profile</strong></h3>
 
-    <section class='content card px-3 py-3 pl-4 ml-5 mr-5'  style="width: 22rem;">
+    <section class='card px-3 py-3 mx-5 pl-4' style="width: 22rem;">
         <div class='container-fluid'>
             <div class="mt-8 bg-white rounded  md:w-2/3">
-                <form action="{{ route('profile-update') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="w-full sm:w-auto order-last sm:order-first">
@@ -101,9 +101,9 @@
                             </div>
                         </div>
                         
-                        <div class="md:flex md:items-center">
+                        <div class="md:flex md:items-center"><br>
                             <div class="md:w-1/3">
-                                <button class="w-full shadow bg-warning hover:bg-blue-400 focus:shadow-outline focus:outline-none text-dark font-bold py-2 px-2 rounded" type="submit">
+                                <button class="w-full shadow bg-warning hover:bg-blue-400 focus:shadow-outline focus:outline-none text-dark font-bold py-1 px-2 rounded" type="submit">
                                     Update Profile
                                 </button>
                             </div>

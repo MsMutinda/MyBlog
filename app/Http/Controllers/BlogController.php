@@ -10,17 +10,6 @@ use App\Models\Blog;
 class BlogController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $blogs = Blog::all();
-        return view('pages.home')->with('blogs', $blogs);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -68,7 +57,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('pages.blogs.edit');
     }
 
     /**
@@ -80,7 +69,19 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title'  => 'required|string|max:255',
+            'author'  => 'required|string|max:255',
+            'content' => 'required|string|max:255'
+        ]);
+
+       Blog::whereId($id)->update([
+            'title'          => $request->title,
+            'author'   => $request->author,
+            'content'      => $request->content
+        ]);
+
+        return redirect()->back();
     }
         
     /**
@@ -91,6 +92,27 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Blog::whereId($id)->delete();
+        return redirect()->back();
+    }
+
+    //show archived blogs
+    public function showArchived() 
+    {
+        $archived = Blog::onlyTrashed()->get();
+        return view('pages.blogs.archived')->with('archived', $archived);
+    }
+
+
+    /**
+     * Restore the deleted resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $archive = Blog::onlyTrashed()->find($id)->restore();
+        return redirect()->back();
     }
 }

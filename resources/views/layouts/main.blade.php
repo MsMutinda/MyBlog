@@ -13,20 +13,10 @@
 
         <ul class='nav-right'>
             <li><a href="/">Home</a></li>
-            <li><a href="profile">Profile</a></li>
+            <li><a href="{{ route('profile') }}">Profile</a></li>
             <!-- Maybe add featured posts later -->
-            <li><a href="blog">Blogs</a></li>
-            <li>
-                <div class='dropdown-menu'>
-                    <button class='dot'></button>
-                    <div class='dropdown-content'>
-                        <a href='#'><---></a>
-                        <a href='#'>View profile</a>
-                        <a href='#'>Account settings</a>
-                        <a href='#'>Logout</a>
-                    </div>
-                </div>
-            </li>
+            <li> <a href="{{ route('blog.archives') }}"> Archives </a> </li>
+            <li><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
         </ul>
     </nav><br><br>
 
