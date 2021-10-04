@@ -41,8 +41,8 @@ Route::get('/blog/{id}/edit', [App\Http\Controllers\BlogController::class, 'edit
 
 Route::patch('/blog/{id}/update', [App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
 
-Route::delete('/blog/{id}/archive', [App\Http\Controllers\BlogController::class, 'destroy'])->name('blog.archive');
+Route::get('/blog/{id}/archive', [App\Http\Controllers\BlogController::class, 'destroy'])->name('blog.archive');
 
-Route::get('/archives', [App\Http\Controllers\BlogController::class, 'showArchived'])->name('blog.archives');
+Route::get('/archives', [App\Http\Controllers\BlogController::class, 'showArchived'])->name('blog.showArchives');
 
-Route::patch('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('blog.restore');
+Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('blog.restore');

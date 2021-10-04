@@ -92,15 +92,16 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        Blog::whereId($id)->delete();
-        return redirect()->back();
+        $blog = Blog::whereId($id)->delete();
+        return redirect()->route('home')->with('success', 'Blog deleted successfully!');
     }
 
     //show archived blogs
     public function showArchived() 
     {
         $archived = Blog::onlyTrashed()->get();
-        return view('pages.blogs.archived')->with('archived', $archived);
+        $numArchived = $archived->count();
+        return view('pages.blogs.archived')->with(['archived' => $archived, 'numArchived' => $numArchived]);
     }
 
 

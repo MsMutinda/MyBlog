@@ -18,6 +18,7 @@ class CreateBlogsTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('content');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

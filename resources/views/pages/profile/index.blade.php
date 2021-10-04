@@ -42,7 +42,7 @@
                         <li> <strong> Number of blogs authored so far: </strong> 
                             {{$total}}
                         </li>
-                        <li> <strong> Topics i'm interested in: </strong></li>
+                        <li> <strong> Topics i'm interested in: </strong> Reading, Travelling, and Anything involving fun and games </li>
                     </ul>
                     <!-- loads a modal form when clicked -->
                     <button class='button p-1 mt-3'><a href="{{ route('profile.edit') }}"> Edit profile </a></button>
