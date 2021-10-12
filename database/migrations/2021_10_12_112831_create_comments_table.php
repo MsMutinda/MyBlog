@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHomepagesTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateHomepagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('homepages', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->string('website-title');
-            $table->string('logo'); 
-            $table->string('site-description');
+            $table->integer('user_id')->unsigned();
+            $table->integer('parent_id')->unsigned();
+            $table->text('comment');
+            $table->integer('commentable_id')->unsigned();
+            $table->string('commentable_type');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateHomepagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('homepages');
+        Schema::dropIfExists('comments');
     }
 }

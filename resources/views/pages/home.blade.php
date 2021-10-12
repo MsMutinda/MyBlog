@@ -20,7 +20,7 @@
 
                     <div class='col-lg-3 col-sm-3' style="padding: 2rem 1.8rem;">
                         <h3><strong>   {{ $blog->title }} </strong></h3>
-                        <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ substr($blog->created_at, 0, 10) }} </b> </span>
+                        <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ substr($blog->created_at, 0, 10) }} {{ date('h:i a', strtotime($blog->created_at)) }} </b> </span>
                         <div class='content'>
                             <p class='py-2'> {{ substr($blog->content, 0, 150).'...' }} </p>
                         </div>

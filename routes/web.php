@@ -46,3 +46,11 @@ Route::get('/blog/{id}/archive', [App\Http\Controllers\BlogController::class, 'd
 Route::get('/archives', [App\Http\Controllers\BlogController::class, 'showArchived'])->name('blog.showArchives');
 
 Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('blog.restore');
+
+// Route::get('/article/{blog:slug}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
+
+
+// Comments
+Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
+
+Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');

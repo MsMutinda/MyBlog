@@ -4,6 +4,7 @@
 
         <br><br>
         <main role="main" class="container-fluid" style="margin: 0 auto;">
+        @if(count($archived) > 0)
             @foreach($archived as $archive)
             <h3 class='card-header'><strong> {{ $archive->title }} </strong>
                 <div class="" style="float: right;">
@@ -18,7 +19,9 @@
                 </div>
             </div>
             @endforeach
-
+        @else
+            <?php echo '<h4 class="text-danger"> There are no archived blogs yet </h4>' ?>
+        @endif
             
         </main>
     

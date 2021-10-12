@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Blog extends Model
 {
     use HasFactory, SoftDeletes;
-    public $timestamps = false;
+    protected $guarded = [];
     protected $fillable = [
         'category_id',
         'user_id',
@@ -20,12 +20,18 @@ class Blog extends Model
     ];
 
     //get user who owns the post
-    public function user() {
-        return $this->belongsTo('App\Models\User');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function category() {
         return $this->belongsTo('App\Models\Category');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
     
 }

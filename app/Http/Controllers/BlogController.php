@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
+use App\Models\User;
+
 
 class BlogController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +36,8 @@ class BlogController extends Controller
         $validateddata = $this->validate($request, [
             'title' => ['required'],
             'author' => ['required'],
-            'content' => ['required']
+            'content' => ['required'],
+            'slug' => \Str::slug($request->title)
         ]);
 
         Blog::create($validateddata); //storing the data
