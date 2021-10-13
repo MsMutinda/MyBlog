@@ -1,9 +1,5 @@
 @extends('layouts.main')
-<style>
-    .display-comment .display-comment {
-        margin-left: 40px
-    }
-</style>
+
 @section('content')
 
     
@@ -16,7 +12,7 @@
         @foreach($blogs as $blog)
             <h3 class='card-header'><strong>   {{ $blog->title }} </strong></h3>
 
-            <div class='float-right'>
+            <div class='float-right mt-2'>
                 <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default">
                 <i class="fa fa-pencil text-primary"></i> Edit </a>
                 
@@ -31,18 +27,18 @@
                 </div>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" style="margin-left: 10px;">
                 <h4>Comments</h4>
                 @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
                 <hr />
             </div>
 
             <div class="card-body mb-4">
-                <h6>Leave a comment</h6>
+                <h4>Leave a comment</h4>
                 <form method="post" action="{{ route('comment.add') }}">
                     @csrf
                     <div class="form-group">
-                        <input type="text" name="comment" class="form-control" />
+                        <input type="text" placeholder='Comment...' name="comment" class="form-control" />
                         <input type="hidden" name="blog_id" value="{{ $blog->id }}" />
                     </div>
                     <div class="form-group">
