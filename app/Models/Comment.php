@@ -15,8 +15,15 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
+    //a comment can have multiple replies
     public function replies() 
     {
         return $this->hasMany(Comment::class, 'parent_id');
+    }
+
+    // a comment can have many likes
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
 }

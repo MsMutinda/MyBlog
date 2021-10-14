@@ -29,9 +29,19 @@ class Blog extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
+    // Comments
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
+
+    // Likes
+    public function likes(){
+        return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('like');
+    }
+    // Dislikes
+    public function dislikes(){
+        return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('dislike');
     }
     
 }

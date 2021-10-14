@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->integer('user_id')->unsigned();
             $table->integer('parent_id')->nullable(); //if the parent id is null then it is the root comment. Else, it is nested
-            $table->text('comment');
+            $table->longText('comment');
             $table->integer('commentable_id')->unsigned();
             $table->string('commentable_type');
             $table->timestamps();

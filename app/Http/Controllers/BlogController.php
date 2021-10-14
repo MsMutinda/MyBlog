@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\LikeDisLike;
 
 
 class BlogController extends Controller
@@ -122,5 +123,20 @@ class BlogController extends Controller
     {
         $archive = Blog::onlyTrashed()->find($id)->restore();
         return redirect()->back();
+    }
+
+    // Save Like Or dislike
+    public function save_likedislike(Request $request){
+        $data=new \App\Models\LikeDislike;
+        $data->blog_id=$request->post;
+        if($request->type=='like'){
+            $data->like=1;
+        }else{
+            $data->dislike=1;
+        }
+        $data->save();
+        return response()->json([
+            'bool'=>true
+        ]);
     }
 }

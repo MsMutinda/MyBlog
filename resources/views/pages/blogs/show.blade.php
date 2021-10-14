@@ -2,8 +2,6 @@
 
 @section('content')
 
-    
-
     <br><br>
     <main role="main" class="container-fluid" style="margin: 0 auto;">
     @if(count($blogs)==0)
@@ -27,9 +25,27 @@
                 </div>
             </div>
 
-            <div class="card-body" style="margin-left: 10px;">
-                <h4>Comments</h4>
-                @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
+            <div class="card-body">
+                @if(count($blog->comments)>0)
+                    <h5 class="mb-3">Comments
+                        <span class="comment-count btn btn-sm btn-outline-info">{{ count($blog->comments) }}</span>
+                        <small class="float-right">
+                            <span title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">
+                                Likes
+                                <span class="like-count">{{ $blog->likes() }}</span>
+                            </span>
+                            <span title="Dislikes" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="mr-2 btn btn-sm btn-outline-danger d-inline font-weight-bold">
+                                Dislikes
+                                <span class="dislike-count">{{ $blog->dislikes() }}</span>
+                            </span>
+                        </small>
+                    </h5>
+                    @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
+
+                @else
+                    <h5 class="mb-3">Comments</h5>
+                    <?php echo '<p> No comments yet. </p>' ?>
+                @endif
                 <hr />
             </div>
 
@@ -57,5 +73,41 @@
             &copy; {{ date('Y')}}. All rights reserved.
         </div>
     </footer>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type='text/javascript'>
+        // Save Like Or Dislike
+        $(document).on('click','#saveLikeDislike',function() {
+            // if(jQuery) alert('jQuery is loaded');
+            var _post=$(this).data('post');
+            var _type=$(this).data('type');
+            var vm=$(this);
+            // Run Ajax
+            $.ajax({
+                url:"{{ url('save-likedislike') }}",
+                type:"post",
+                dataType:'json',
+                data:{
+                    post:_post,
+                    type:_type,
+                    _token:"{{ csrf_token() }}"
+                },
+                beforeSend:function(){
+                    vm.addClass('disabled');
+                },
+                success:function(res){
+                    if(res.bool==true){
+                        vm.removeClass('disabled').addClass('active');
+                        vm.removeAttr('id');
+                        var _prevCount=$("."+_type+"-count").text();
+                        _prevCount++;
+                        $("."+_type+"-count").text(_prevCount);
+                    }
+                }   
+            });
+        });
+    </script>
 
 @endsection

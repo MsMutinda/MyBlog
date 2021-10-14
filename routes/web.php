@@ -54,3 +54,6 @@ Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'r
 Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
 
 Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');
+
+// Like Or Dislike
+Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
