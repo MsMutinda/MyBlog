@@ -51,4 +51,15 @@ class User extends Authenticatable
         return $this->hasMany(Blog::class);
     }
 
+    //a user can only like the same post once
+    // public function likes() 
+    // {
+    //     return $this->hasOne('App\Models\LikeDislike','user_id');
+    // }
+
+    //a user can only dislike the same post once
+    // public function dislikes(){
+    //     return $this->hasOne('App\Models\LikeDislike','user_id');
+    // }
+
 }

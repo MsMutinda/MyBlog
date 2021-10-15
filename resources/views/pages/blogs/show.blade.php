@@ -29,43 +29,33 @@
                 @if(count($blog->comments)>0)
                     <h5 class="mb-3">Comments
                         <span class="comment-count btn btn-sm btn-outline-info">{{ count($blog->comments) }}</span>
-                        <small class="float-right">
-                            <span title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">
-                                Likes
-                                <span class="like-count">{{ $blog->likes() }}</span>
-                            </span>
-                            <span title="Dislikes" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="mr-2 btn btn-sm btn-outline-danger d-inline font-weight-bold">
-                                Dislikes
-                                <span class="dislike-count">{{ $blog->dislikes() }}</span>
-                            </span>
-                        </small>
                     </h5>
                     @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
 
                 @else
-                    <h5 class="mb-3">Comments
-                    <small class="float-right">
-                            <span title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">
-                                Likes
-                                <span class="like-count">{{ $blog->likes() }}</span>
-                            </span>
-                            <span title="Dislikes" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="mr-2 btn btn-sm btn-outline-danger d-inline font-weight-bold">
-                                Dislikes
-                                <span class="dislike-count">{{ $blog->dislikes() }}</span>
-                            </span>
-                        </small>
-                    </h5>
+                    <h5 class="mb-3">Comments </h5>
                     <?php echo '<p> No comments yet. </p>' ?>
                 @endif
                 <hr />
             </div>
 
             <div class="card-body mb-4">
-                <h4>Leave a comment</h4>
+                <h4>Leave a comment
+                    <small class="float-right">
+                        <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
+                            <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 1.4em; position: relative; bottom: 10px;" id="thumbs-up"></i>
+                            <span class="like-count">{{ $blog->likes() }}</span>
+                        </span>
+                        <span title="Dislike" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="ml-2 d-inline font-weight-bold">
+                            <i class="fa fa-thumbs-down text-danger" style="cursor: pointer; font-size: 1.4em; position: relative; bottom: 10px; transform: scaleX(-1);" id="thumbs-down"></i>
+                            <span class="dislike-count">{{ $blog->dislikes() }}</span>
+                        </span>
+                    </small>
+                </h4>
                 <form method="post" action="{{ route('comment.add') }}">
                     @csrf
                     <div class="form-group">
-                        <input type="text" placeholder='Comment...' name="comment" class="form-control" />
+                        <input type="text" placeholder='Comment...' name="comment" class="form-control mt-3" />
                         <input type="hidden" name="blog_id" value="{{ $blog->id }}" />
                     </div>
                     <div class="form-group">
@@ -88,9 +78,11 @@
     <script type='text/javascript'>
         // Save Like Or Dislike
         $(document).on('click','#saveLikeDislike',function() {
-            // if(jQuery) alert('jQuery is loaded');
+            // var btn = document.getElementById('saveLikeDislike');
+            // btn.style='color: green';
             var _post=$(this).data('post');
             var _type=$(this).data('type');
+            var _user="{{ Auth::user()->id }}";                     
             var vm=$(this);
             // Run Ajax
             $.ajax({
@@ -100,6 +92,7 @@
                 data:{
                     post:_post,
                     type:_type,
+                    user:_user,
                     _token:"{{ csrf_token() }}"
                 },
                 beforeSend:function(){

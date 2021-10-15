@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
 use App\Models\User;
-use App\Models\LikeDisLike;
 
 
 class BlogController extends Controller
@@ -128,15 +128,40 @@ class BlogController extends Controller
     // Save Like Or dislike
     public function save_likedislike(Request $request){
         $data=new \App\Models\LikeDislike;
+        $data->user_id=$request->user;
         $data->blog_id=$request->post;
-        if($request->type=='like'){
-            $data->like=1;
-        }else{
-            $data->dislike=1;
+    
+        if($request->type=='like') 
+        {
+            $likeexists = \App\Models\LikeDislike::where('user_id', '=', $data->user_id)
+                    ->where('blog_id', '=', $data->blog_id)
+                    ->where('like', '=', 1)
+                    ->first();
+
+            if($likeexists) {
+                $likeexists->delete();
+                $data->dislike=1;
+            } else { $data->like=1; }
         }
+
+        else
+        {
+            $dislikeexists = \App\Models\LikeDislike::where('user_id', '=', $data->user_id)
+                    ->where('blog_id', '=', $data->blog_id)
+                    ->where('dislike', '=', 1)
+                    ->first();
+
+            if($dislikeexists) {
+                $dislikeexists->delete();
+                $data->like=1;
+            } else{ $data->dislike=1; }
+        }
+
         $data->save();
+
         return response()->json([
             'bool'=>true
         ]);
     }
+
 }
