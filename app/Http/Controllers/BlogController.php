@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\Category;
 
 
 class BlogController extends Controller
@@ -23,7 +25,8 @@ class BlogController extends Controller
      */
     public function create() 
     {
-        return view('pages.blogs.create');
+        $categories = Category::all();
+        return view('pages.blogs.create')->with( 'categories', $categories);
     }
 
     /**
@@ -34,14 +37,27 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $validateddata = $this->validate($request, [
-            'title' => ['required'],
-            'author' => ['required'],
-            'content' => ['required'],
-            'slug' => \Str::slug($request->title)
+        $request->validate([
+            'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
         ]);
 
-        Blog::create($validateddata); //storing the data
+        // Save the file locally in the storage/public/ folder under a new folder named /blog_images
+        $request->file->store('blog_images', 'public');
+        $user = Auth::user()->id;
+
+        // Store the record, using the new file hashname which will be it's new filename identity.
+        $save_blog = new Blog();
+
+        $save_blog->user_id = Auth::user()->id;
+            
+            $save_blog->category = $request->category;
+            $save_blog->image_path = $request->file->hashName();
+            $save_blog->title = $request->title;
+            $save_blog->author = $request->author;
+            $save_blog->content = $request->content;
+    
+            $save_blog->save();
+        // Blog::create($validateddata); //storing the data
         return redirect()->back()->with('success', 'Blog saved successfully');
     }
 
@@ -158,4 +174,7 @@ class BlogController extends Controller
         ]);
     }
 
+
+    // NEXT: prevent user from liking and disliking same blog post
+    
 }

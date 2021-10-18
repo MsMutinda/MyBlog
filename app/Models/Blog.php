@@ -12,8 +12,8 @@ class Blog extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
     protected $fillable = [
-        'category_id',
-        'user_id',
+        'category',
+        'image_path',
         'title',
         'author',
         'content'

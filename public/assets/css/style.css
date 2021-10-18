@@ -3,7 +3,7 @@ body {
     font-family:'Segoe UI';
 }
 nav {
-    background-color: #A9BA9D;
+    background-color: #1590a4;
 }
 .navbar-brand {
     font-weight: 900; 
@@ -20,6 +20,16 @@ nav ul li {
 }
 .nav-right {
     padding-top: 10px;
+}
+.nav-select {
+    -webkit-appearance: none; 
+    appearance: none;
+    border: 0px;
+    outline: 0px;
+    background-color: inherit;
+}
+.nav-select select option a {
+    font-weight: bolder;
 }
 .dot {
     height: 40px;
@@ -43,9 +53,6 @@ button {
     background-color: #ACE1AF;
 
 }
-.posts, .profile, .bio {
-    font-weight: 800;
-}
 .avatar-details {
     list-style-type: none;
     position: relative;
@@ -59,6 +66,56 @@ a:hover {
     color: #000;
     text-decoration: none;
 }
+
+main .row {
+    justify-content: space-between;
+}
+
+
+/* Blog category select */
+.select-category select {
+/* background-color: #1590a4; */
+color: black;
+font-weight: bolder;
+padding: 5px;
+width: 140px;
+font-size: 20px;
+border: 0px;
+-webkit-appearance: none;
+appearance: none;
+outline: none;
+border-radius: 3px;
+cursor: pointer;
+}
+
+.select-category::before {
+content: "\f13a";
+font-family: FontAwesome;
+position: relative;
+top: 0;
+right: 0;
+width: 20%;
+height: 100%;
+font-size: 28px;
+line-height: 45px;
+color: rgba(255, 255, 255, 0.5);
+background-color: rgba(255, 255, 255, 0.1);
+pointer-events: none;
+}
+
+.select-category:hover::before {
+color: rgba(255, 255, 255, 0.6);
+background-color: rgba(255, 255, 255, 0.2);
+}
+
+.select-category select option {
+padding: 30px;
+text-align: justify;
+}
+
+
+/* Footer */
 footer {
     background-color: #A9BA9D;
+    position: fixed;
 }

@@ -30,7 +30,7 @@ Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])
 
 
 // Blog routes
-Route::get('/blog/create', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
+Route::get('/blog/new', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
 
 Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('blog.save');
 
