@@ -37,11 +37,11 @@ class Blog extends Model
 
     // Likes
     public function likes(){
-        return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('like');
+        return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('likes');
     }
     // Dislikes
     public function dislikes(){
-        return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('dislike');
+        return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('dislikes');
     }
     
 }

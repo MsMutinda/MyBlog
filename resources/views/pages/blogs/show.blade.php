@@ -78,8 +78,7 @@
     <script type='text/javascript'>
         // Save Like Or Dislike
         $(document).on('click','#saveLikeDislike',function() {
-            // var btn = document.getElementById('saveLikeDislike');
-            // btn.style='color: green';
+            // ('#saveLikeDislike').style='color: green';
             var _post=$(this).data('post');
             var _type=$(this).data('type');
             var _user="{{ Auth::user()->id }}";                     

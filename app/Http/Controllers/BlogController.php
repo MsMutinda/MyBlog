@@ -131,34 +131,28 @@ class BlogController extends Controller
         $data->user_id=$request->user;
         $data->blog_id=$request->post;
     
-        if($request->type=='like') 
-        {
-            $likeexists = \App\Models\LikeDislike::where('user_id', '=', $data->user_id)
-                    ->where('blog_id', '=', $data->blog_id)
-                    ->where('like', '=', 1)
-                    ->first();
-
-            if($likeexists) {
-                $likeexists->delete();
-                $data->dislike=1;
-            } else { $data->like=1; }
+        if($request->type=='like') {
+            $likeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+            
+            // if same user has liked same blog before
+            if($likeexists) { 
+                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+                $data->likes=1;
+            } 
+            else { $data->likes=1; }
         }
 
-        else
-        {
-            $dislikeexists = \App\Models\LikeDislike::where('user_id', '=', $data->user_id)
-                    ->where('blog_id', '=', $data->blog_id)
-                    ->where('dislike', '=', 1)
-                    ->first();
+        else {
+            $dislikeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
 
             if($dislikeexists) {
-                $dislikeexists->delete();
-                $data->like=1;
-            } else{ $data->dislike=1; }
+                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
+                $data->dislikes=1;
+            } 
+            else{ $data->dislikes=1; }
         }
 
         $data->save();
-
         return response()->json([
             'bool'=>true
         ]);

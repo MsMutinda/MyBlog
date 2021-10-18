@@ -17,8 +17,8 @@ class CreateLikeDislikesTable extends Migration
             $table->id();
             $table->integer('blog_id');
             $table->integer('user_id');
-            $table->smallInteger('like')->default(0);
-            $table->smallInteger('dislike')->default(0);
+            $table->smallInteger('likes')->default(0);
+            $table->smallInteger('dislikes')->default(0);
             $table->timestamps();
         });
     }
