@@ -27,13 +27,6 @@
 
             <div class="card-body">
                 <div class="form-group">
-                    <label> Author<span class="text-danger">*</span></label>
-                    <input type="text" name="author" class="form-control shadow" value="{{ Auth::user()->fname }}" readonly required>
-                </div>
-            </div>
-
-            <div class="card-body">
-                <div class="form-group">
                     <label> Content <span class="text-danger">*</span></label>
                     <input type="text" name="content" class="form-control shadow" placeholder="Write your content here" required>
                 </div>

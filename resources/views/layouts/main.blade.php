@@ -7,13 +7,13 @@
 <body>
     <nav class='navbar navbar-light fixed-top'>    
         <a href="/" class='navbar-brand'>
-            My Blog
+            Blogger
         </a>
 
         <ul class='nav-right'>
             <li><a href="/">Home</a></li>
             <li><a href="{{ route('profile') }}">Profile</a></li>
-            <li> 
+            <li>
                 <select class="nav-select" onchange="location = this.value;">
                     <option value="">Blogs</option>
                     <option value="{{ route('blog.create') }}"> Add New </option>

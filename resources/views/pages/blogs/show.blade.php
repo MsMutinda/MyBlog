@@ -5,10 +5,10 @@
     <br><br>
     <main role="main" class="container-fluid" style="margin: 0 auto;">
     @if(count($blogs)==0)
-    <?php echo '<h4>No blogs here at this time</h4>' ?>
+    <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
     @else
         @foreach($blogs as $blog)
-            <h3 class='card-header'><strong>   {{ $blog->title }} </strong></h3>
+            <h3 class='ml-3'><strong>   {{ $blog->title }} </strong></h3>
 
             <div class='float-right mt-2'>
                 <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default">
@@ -19,7 +19,10 @@
             </div>
 
             <div class='card-body'>
-                <span class="header-sub">By <b> {{ $blog->author }} </b> <br></span>
+                <span class="header-sub">
+                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img"><br>    
+                    By <b> {{ $blog->author }} </b> <br>
+                </span>
                 <div class='card-text'>
                     <p class='py-2'> {{ $blog->content }} </p>
                 </div>

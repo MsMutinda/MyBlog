@@ -42,22 +42,23 @@ class BlogController extends Controller
         ]);
 
         // Save the file locally in the storage/public/ folder under a new folder named /blog_images
-        $request->file->store('blog_images', 'public');
-        $user = Auth::user()->id;
+        $uploaded_file = $request->file;
+        $uploaded_file_ex = $uploaded_file->getClientOriginalExtension();
+        $filename = time().'.'.$uploaded_file_ex;
+        $path = $request->file->storeAs('public', $filename);
 
         // Store the record, using the new file hashname which will be it's new filename identity.
         $save_blog = new Blog();
 
-        $save_blog->user_id = Auth::user()->id;
-            
-            $save_blog->category = $request->category;
-            $save_blog->image_path = $request->file->hashName();
-            $save_blog->title = $request->title;
-            $save_blog->author = $request->author;
-            $save_blog->content = $request->content;
-    
-            $save_blog->save();
-        // Blog::create($validateddata); //storing the data
+        $save_blog->user_id = session()->getId();
+        
+        $save_blog->category = $request->category;
+        $save_blog->image_path = $path;
+        $save_blog->title = $request->title;
+        $save_blog->author = Auth::user()->fname;
+        $save_blog->content = $request->content;
+
+        $save_blog->save();
         return redirect()->back()->with('success', 'Blog saved successfully');
     }
 
@@ -140,6 +141,20 @@ class BlogController extends Controller
         $archive = Blog::onlyTrashed()->find($id)->restore();
         return redirect()->back();
     }
+
+
+    // show blogs for a specific category
+    public function filterByCategory($category) {
+        $filtered = Blog::where($category)->get();
+        
+    }
+
+    //featured posts
+    public function featuredPosts() {
+        // get the latest 3 posts - show in timed auto sliders
+        $latest = Blog::where($created_at)->get();
+    }
+
 
     // Save Like Or dislike
     public function save_likedislike(Request $request){

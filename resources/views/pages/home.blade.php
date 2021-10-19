@@ -4,7 +4,7 @@
 
     <div style='margin-top: 40px' class="select-category">
         <select class='text-center'>
-            <option value="--Select Category" selected disabled>Select category</option>
+            <option value="--Select Category" selected disabled>Filter by category</option>
             @foreach($categories as $category)
                 <option value="{{ $category->name }}">{{ $category->name }}</option>
             @endforeach
@@ -17,11 +17,10 @@
                 @if(\App\Models\Blog::count() > 0)
                     @foreach($blogs as $blog)
 
-                    <div class='col-lg-4 col-sm-4 shadow-sm' style="padding: 1rem 0.8rem; ">
-                        <!-- show author image here -->
-                        <img src="{{ $blog->image }}">
+                    <div class='col-lg-4 col-sm-4 shadow-sm' style="padding: 1rem 0.8rem;"> <br> 
+                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img">
                         <h3><strong>   {{ $blog->title }} </strong></h3>
-                        <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ substr($blog->created_at, 0, 10) }} {{ date('h:i a', strtotime($blog->created_at)) }} </b> </span>
+                        <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ $blog->created_at->format('M d') }} </b> </span>
                         <div class='content'>
                             <p class=''> {{ substr($blog->content, 0, 150).'...' }} </p>
                         </div>
@@ -30,7 +29,7 @@
                     @endforeach
 
                 @else
-                <?php echo "<h3 style='color: red; font-family: cursive; margin-top: 30px;'>"."You have no blogs yet"."</h3>" ?>
+                <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
 
                 @endif
 
