@@ -3,8 +3,8 @@
 @section('content')
 
     <main role="main" class="row container-fluid mr-2" style="margin: 0 auto;">
-        <div class="featured-blogs card mr-1 col-lg-12 col-sm-12">
-            <p class="mt-2"> <strong> Featured blogs </strong> </p>
+        <div class="featured-blogs card ml-3 col-lg-11 col-sm-11">
+            <p> <strong> Featured blogs </strong> </p>
         </div>
 
         <div class="col-lg-2 categories shadow-sm">
