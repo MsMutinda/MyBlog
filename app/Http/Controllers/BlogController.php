@@ -151,7 +151,7 @@ class BlogController extends Controller
 
     //featured posts
     public function featuredPosts() {
-        // get the latest 3 posts - show in timed auto sliders
+        // get 3 random posts - show in timed auto sliders
         $latest = Blog::where($created_at)->get();
     }
 
