@@ -20,7 +20,7 @@
 
             <div class='card-body'>
                 <span class="header-sub">
-                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img"><br>    
+                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img">    
                     By <b> {{ $blog->author }} </b> <br>
                 </span>
                 <div class='card-text'>

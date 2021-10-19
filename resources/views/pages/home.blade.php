@@ -11,21 +11,20 @@
         </select>
     </div>
 
-        <main role="main" class="container-fluid mt-3" style="margin: 0 auto; width: 95vw;">
+        <main role="main" class="container-fluid mt-3" style="margin: 0 auto; width: 96vw;">
             <div class='row'>
 
                 @if(\App\Models\Blog::count() > 0)
                     @foreach($blogs as $blog)
-
-                    <div class='col-lg-4 col-sm-4 shadow-sm' style="padding: 1rem 0.8rem;"> <br> 
-                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img">
-                        <h3><strong>   {{ $blog->title }} </strong></h3>
+                    <div class='col-lg-3 col-sm-3 shadow-sm mb-2' style="padding: 1rem 0.8rem; background: url('../storage/<?php echo substr($blog->image_path, 7) ?>'); background-repeat: no-repeat; background-size: cover;"> 
+                        <h3><strong> {{ $blog->title }} </strong></h3>
                         <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ $blog->created_at->format('M d') }} </b> </span>
                         <div class='content'>
                             <p class=''> {{ substr($blog->content, 0, 150).'...' }} </p>
                         </div>
                         <p class="btn btn-info"> <a href="{{ route('blog.show', $blog->id) }}"> Read blog </a></p>
                     </div>
+                    <!-- <div class="col-lg-1 col"></div> -->
                     @endforeach
 
                 @else
