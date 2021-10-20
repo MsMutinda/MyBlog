@@ -8,10 +8,11 @@
         </div>
 
         <div class="col-lg-2 categories shadow-sm">
-            <h4 style="font-weight: bolder;">Categories</h4>
+            <h4 style="font-weight: bolder;">Read about:</h4>
             <ul>
                 @foreach($categories as $category)
-                    <li value="{{ $category->name }}">{{ $category->name }}</li>
+                    <!-- TO DO:: link to the filtered content specific for each category -->
+                    <li value="{{ $category->name }}"> <a href="">{{ $category->name }} </a></li>
                 @endforeach
             </ul>
         </div>
@@ -20,7 +21,9 @@
             <div class="row" style="margin-left: 25px;">
                 @if(\App\Models\Blog::count() > 0)
                     @foreach($blogs as $blog)
-                    <div class='col-lg-5 col-sm-5 shadow-sm' style="margin: 35px 35px; padding: 1.5rem 1.8rem; background: url('../storage/<?php echo substr($blog->image_path, 7) ?>'); background-repeat: no-repeat; background-size: cover;"> 
+                    <div class='col-lg-5 col-sm-5 shadow-sm' style="margin: 35px 35px; padding: 1.5rem 1.8rem; background: url('../storage/<?php echo substr($blog->image_path, 7) ?>'); background-repeat: no-repeat; background-size: cover;">
+                    <!-- background: url('../storage/<?php echo substr($blog->image_path, 7) ?>'); background-repeat: no-repeat; background-size: cover; -->
+                        <!-- <img src="{{ asset('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->image}} img" width="450px;"> -->
                         <h3><strong> {{ $blog->title }} </strong></h3>
                         <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ $blog->created_at->format('M d') }} </b> </span>
                         <div class='content'>
