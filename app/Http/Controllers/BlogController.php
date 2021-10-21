@@ -143,13 +143,6 @@ class BlogController extends Controller
     }
 
 
-    // show blogs for a specific category
-    public function filterByCategory($category) {
-        $filtered = Blog::where('category', $category)->get();
-        dd($filtered);
-        
-    }
-
     // Save Like Or dislike
     public function save_likedislike(Request $request){
         $data=new \App\Models\LikeDislike;

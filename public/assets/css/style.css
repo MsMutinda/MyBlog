@@ -58,26 +58,26 @@ button {
     position: relative;
     right: 23px;
 }
-img {
-    position: relative;
-    left: 35px;
-}
+
 a:hover {
     color: #000;
     text-decoration: none;
 }
 
 .featured-blogs {
-    padding: 17px; 
     font-size: 22px;
     height: 280px;
 }
 
-.featured-blogs h3 {
+/* .featured-blogs h3 {
     position: relative;
     top: 120px;
     left: 20px;
     text-decoration: underline;
+} */
+
+.card {
+    width: 25%;
 }
 
 .categories ul {
@@ -107,7 +107,11 @@ a:hover {
 .categories div {
     margin-top: 35px;
     font-size: 24px;
-    width: 100vw;
+}
+
+.categories div ul li {
+    display: inline-flex;
+
 }
 
 .nav-right select {
