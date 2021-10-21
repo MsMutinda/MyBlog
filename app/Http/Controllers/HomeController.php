@@ -32,8 +32,9 @@ class HomeController extends Controller
         $categories = Category::all();
 
         // show blogs for a specific category
-        $filtered = Blog::where('category', $request->selected_category)->get();
-        // dd($selected_category);
+        // dd($request->selected);
+        $filtered = Blog::where('category', $request->selected_category)->first();
+        // dd($filtered);
 
         // featured posts
         $featuredBlogs = Blog::all()->random(3);

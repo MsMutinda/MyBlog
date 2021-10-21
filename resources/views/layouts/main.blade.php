@@ -22,7 +22,7 @@
             </li>
             <li><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
         </ul>
-    </nav><br><br>
+    </nav>
 
     <div class="container-fluid">
         <!-- Maybe add featured posts later -->

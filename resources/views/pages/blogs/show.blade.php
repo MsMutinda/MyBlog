@@ -8,20 +8,19 @@
     <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
     @else
         @foreach($blogs as $blog)
-            <h3 class='ml-3'><strong>   {{ $blog->title }} </strong></h3>
-
-            <div class='float-right mt-2'>
-                <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default">
-                <i class="fa fa-pencil text-primary"></i> Edit </a>
-                
-                <a href="{{ route('blog.archive', $blog->id) }}" class="btn btn-default" onclick="return confirm('You are about to archive this blog. Continue?');">
-                <i class="fa fa-minus-circle text-danger"></i> Archive</a>
-            </div>
+            <h3 class='ml-3'><strong>   {{ $blog->title }} </strong>
+                <div class='float-right mt-2'>
+                    <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default">
+                    <i class="fa fa-pencil text-primary"></i> Edit post </a>
+                    
+                    <a href="{{ route('blog.archive', $blog->id) }}" class="btn btn-default" onclick="return confirm('You are about to archive this blog. Continue?');">
+                    <i class="fa fa-minus-circle text-danger"></i> Archive</a>
+                </div>
+            </h3>
 
             <div class='card-body'>
                 <span class="header-sub">
-                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img">    
-                    By <b> {{ $blog->author }} </b> <br>
+                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img" width="100%">  
                 </span>
                 <div class='card-text'>
                     <p class='py-2'> {{ $blog->content }} </p>
@@ -33,10 +32,19 @@
                     <h5 class="mb-3">Comments
                         <span class="comment-count btn btn-sm btn-outline-info">{{ count($blog->comments) }}</span>
                     </h5>
+                    <!-- <div class="float-right">
+                        <a href="" class="btn btn-default">
+                        <i class="fa fa-pencil text-success"></i> Approve comment </a>
+                    </div> -->
                     @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
 
                 @else
-                    <h5 class="mb-3">Comments </h5>
+                    <h5 class="mb-3">Comments 
+                        <div class="float-right">
+                            <a href="" class="btn btn-default">
+                            <i class="fa fa-pencil text-primary"></i> Approve </a>
+                        </div>
+                    </h5>
                     <?php echo '<p> No comments yet. </p>' ?>
                 @endif
                 <hr />

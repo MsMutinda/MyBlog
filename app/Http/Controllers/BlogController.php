@@ -101,9 +101,9 @@ class BlogController extends Controller
         ]);
 
        Blog::whereId($id)->update([
-            'title'          => $request->title,
+            'title'    => $request->title,
             'author'   => $request->author,
-            'content'      => $request->content
+            'content'  => $request->content
         ]);
 
         return redirect()->back();

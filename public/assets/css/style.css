@@ -9,7 +9,8 @@ a {
 }
 
 nav {
-    background-color: #1590a4;
+    /* background-color: #1590a4; */
+    background-color: #568203;
 }
 
 .navbar a {
@@ -67,14 +68,9 @@ a:hover {
 .featured-blogs {
     font-size: 22px;
     height: 280px;
+    margin-top: 124px;
+    width: 100vw;
 }
-
-/* .featured-blogs h3 {
-    position: relative;
-    top: 120px;
-    left: 20px;
-    text-decoration: underline;
-} */
 
 .card {
     width: 25%;
@@ -85,17 +81,19 @@ a:hover {
     list-style-type: none;
 }
 
+.categories > div > ul {
+    padding-left: 0;
+}
+
 .categories ul li {
     display: inline;
-    padding: 10px;
+    padding: 5px;
 }
 
 .categories li a {
     font-family: cursive; 
     font-weight: lighter; 
-    font-size: 14px; 
-    position: relative; 
-    right: 38px;
+    font-size: 14px;
     color: rgb(238, 138, 8);
 }
 
@@ -104,14 +102,13 @@ a:hover {
     text-decoration: underline;
 }
 
-.categories div {
-    margin-top: 35px;
-    font-size: 24px;
+.categories {
+    margin-top: 66px;
+    background:rgb(255, 222, 178);
+    z-index: 1031;
 }
-
-.categories div ul li {
-    display: inline-flex;
-
+.categories ul {
+    font-size: 20px;
 }
 
 .nav-right select {
