@@ -2,25 +2,31 @@ body {
     overflow-x: hidden;
     font-family:'Segoe UI';
 }
+
+a {
+    color: #000;
+    font-weight: bolder;
+}
+
 nav {
     background-color: #1590a4;
 }
-.navbar-brand {
-    font-weight: 900; 
-    color: rgb(80, 61, 14)
-}
-a {
+
+.navbar a {
     color: #000;
     font-weight: bold;
 }
+
 nav ul li {
     list-style-type: none;
     display: inline;
     margin-right: 10px;
 }
+
 .nav-right {
     padding-top: 10px;
 }
+
 .nav-select {
     /* -webkit-appearance: none; 
     appearance: none; */
@@ -31,13 +37,6 @@ nav ul li {
     font-weight: bolder;
 }
 
-.dot {
-    height: 40px;
-    width: 40px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: inline-block;
-}
 form .container {
     position: relative;
     bottom: 30px;
@@ -49,6 +48,7 @@ form .container {
 button {
     border-radius: 5px;
 }
+
 .button:hover {
     background-color: #ACE1AF;
 
@@ -69,17 +69,25 @@ a:hover {
 
 .featured-blogs {
     padding: 17px; 
-    margin-top: 33px;
-    font-size: 28px;
-    height: 245px;
+    font-size: 22px;
+    height: 280px;
+}
+
+.featured-blogs h3 {
+    position: relative;
+    top: 120px;
+    left: 20px;
+    text-decoration: underline;
 }
 
 .categories ul {
-    display: block;
+    display: inline-block;
+    list-style-type: none;
 }
 
 .categories ul li {
-    list-style-type: none;
+    display: inline;
+    padding: 10px;
 }
 
 .categories li a {
@@ -96,8 +104,10 @@ a:hover {
     text-decoration: underline;
 }
 
-.categories h4 {
+.categories div {
     margin-top: 35px;
+    font-size: 24px;
+    width: 100vw;
 }
 
 .nav-right select {
@@ -120,7 +130,7 @@ color: rgba(255, 255, 255, 0.6);
 background-color: rgba(255, 255, 255, 0.2);
 }
 
-.nav-right select option {
+.nav-select option {
     padding: 20px;
     text-align: justify;
 } 

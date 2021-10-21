@@ -145,17 +145,10 @@ class BlogController extends Controller
 
     // show blogs for a specific category
     public function filterByCategory($category) {
-        $filtered = Blog::where($category)->get();
+        $filtered = Blog::where('category', $category)->get();
+        dd($filtered);
         
     }
-
-    //featured posts
-    public function featuredPosts() {
-        // Featured blogs = get 3 random posts - show in timed auto sliders
-        // Latest blogs = get latest 3 posts - show in timed auto sliders
-        $latest = Blog::where($created_at)->get();
-    }
-
 
     // Save Like Or dislike
     public function save_likedislike(Request $request){

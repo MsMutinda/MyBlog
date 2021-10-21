@@ -5,8 +5,8 @@
 
 
 <body>
-    <nav class='navbar navbar-light fixed-top'>    
-        <a href="/" class='navbar-brand'>
+    <nav class='navbar fixed-top'>    
+        <a href="/" class='navbar-brand ml-4' style="font-size: 24px; font-family: cursive;">
             Blogger
         </a>
 

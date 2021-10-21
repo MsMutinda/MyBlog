@@ -26,7 +26,10 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $blogs = Blog::all();
+        // display blog categories
         $categories = Category::all();
-        return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+        // featured posts
+        $featuredBlogs = Blog::all()->random(3);
+        return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories, 'featuredBlogs'=>$featuredBlogs]);
     }
 }
