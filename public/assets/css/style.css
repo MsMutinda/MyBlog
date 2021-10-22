@@ -3,11 +3,6 @@ body {
     font-family:'Segoe UI';
 }
 
-a {
-    color: #000;
-    font-weight: bolder;
-}
-
 nav {
     /* background-color: #1590a4; */
     background-color: #568203;
@@ -60,15 +55,11 @@ button {
     right: 23px;
 }
 
-a:hover {
-    color: #000;
-    text-decoration: none;
-}
-
 .featured-blogs {
     font-size: 22px;
     height: 280px;
     margin-top: 124px;
+    margin-bottom: 5px;
     width: 100vw;
 }
 
@@ -105,6 +96,7 @@ a:hover {
 .categories {
     margin-top: 66px;
     background:rgb(255, 222, 178);
+    /* background: #ffcf79; */
     z-index: 1031;
 }
 .categories ul {
@@ -139,6 +131,98 @@ background-color: rgba(255, 255, 255, 0.2);
 
 /* Footer */
 footer {
-    background-color: #A9BA9D;
+    /* background-color: #A9BA9D; */
+    background-color: inherit;
     position: fixed;
+}
+
+.footer2 {
+    margin-bottom: 50px;
+    margin-top: 5px;
+    background: #ffdeb2;
+}
+
+.logo {
+    padding: 8px;
+}
+.socials {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.socials .social {
+    padding: 5px;
+    color: rgb(66, 57, 57);
+}
+
+.links ul {
+    display: inline-block;
+}
+
+.links ul li {
+    display: inline;
+    list-style: none;
+    padding: 5px;
+    position: relative;
+    right: 24px;
+    font-size: 14px;
+}
+
+.links a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.newsletter {
+    background-color: #fff;
+    padding: 35px 40px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    display: table;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+.newsletter button {
+    width: 29%;
+    background-color: #4CAF50;
+    border: none;
+    padding: 5px;
+    height: 38px;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    float: right;
+}
+.newsletter input[type="email"] {
+    width: 70%;
+    height: 38px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.newsletter h3 {
+    font-size: 30px;
+    color: #17a2b8;
+}
+
+.newsletter p {
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    color: #000;
+}
+
+/*--Small devices CSS--*/
+@media (max-width: 767px){
+.newsletter {
+    width: 95%;
+    padding: 30px 15px;
+}
+.newsletter button{
+  font-size: 12px;
+}
 }

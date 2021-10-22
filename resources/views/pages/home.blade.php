@@ -16,29 +16,7 @@
             </div>
         </div>
 
-        <script type="text/javascript">
-            $(document).on('click', '#category', function() {
-                var selected_category = $(this).data('post');
-                // alert(selected_category);
-                $.ajax({
-                    url:"{{ url('/') }}",
-                    type:"get",
-                    dataType:'json',
-                    data: {
-                        selected: selected_category,
-                        _token:"{{ csrf_token() }}"
-                    },
-                    success: function(data) {
-                        return data.html;
-                    },
-                });
-            });
-        </script>
-
         <div class="featured-blogs row">
-            <!-- <div class="col-lg-3 col-sm-3">
-                <h3> <strong> Featured blogs </strong> </h3>
-            </div> -->
             <!-- Carousel section -->
             <div class="carousel slide" data-ride="carousel">
                 <!-- <div class="col-lg-12 col-sm-12"> -->
@@ -56,11 +34,11 @@
         </div>
 
         
-        <div class="row"> <div class="col-lg-12 col-sm-12"> <h2 style="font-weight: bolder;">Latest posts</h2></div></div>
+        <div class="row latest"> <div class="col-lg-12 col-sm-12"> <h2 style="font-weight: bolder;">Latest posts</h2></div></div>
         <div class="row">
             @if(\App\Models\Blog::count() > 0)
                 @foreach($blogs as $blog)
-                <div class='card col-lg-3 col-sm-3' style="margin: 15px 0; padding: 0rem;">
+                <div class='card col-lg-3 col-sm-3' style="margin: 10px 0; padding: 0rem;">
                     <img
                         src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
                         class="card-img-top"
@@ -73,7 +51,7 @@
                         <div class='card-text mt-2'>
                             <p> {{ substr($blog->content, 0, 120).'...' }} </p>
                         </div>
-                        <p class="btn btn-info"> <a href="{{ route('blog.show', $blog->id) }}"> Read blog </a></p>
+                        <p class="btn btn-info"> <a href="{{ route('blog.show', $blog->id) }}" style="color: #000; font-weight: 700;"> Read blog </a></p>
                     </div>
                 </div>
                 @endforeach
@@ -84,12 +62,43 @@
             @endif
         </div>
 
-    </main>
 
-    <!-- <footer class="navbar fixed-bottom text-dark text-center" style="background-color: inherit;">
-        <div class="container text-center" style="margin-left: 41%;">
-            &copy; {{ date('Y')}}. All rights reserved.
-        </div>
-    </footer> -->
+        <section class="row footer2 py-3 px-3">			
+            <div class="col-lg-4 col-sm-4" style="margin-bottom: 60px;">
+                <img src="https://zalegoacademy.ac.ke/asset/img/zalegocurrentlogo.png" class="logo size-lg" alt="zalegocurrentlogo">
+                <div class="socials">
+                    <a class="social" href=""><i class="fa fa-facebook"></i></a>
+                    <a class="social" href=""><i class="fa fa-twitter"></i></a>
+                    <a class="social" href=""><i class="fa fa-instagram"></i></a>
+                    <a class="social" href=""><i class="fa fa-linkedin"></i></a>		
+                </div>
+                <div class="links">
+                    <ul class="mt-5">
+                        <li><a>Zalego academy</a></li>
+                        <li> <a>Privacy</a></li>
+                        <li><a>Terms & Conditions </a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-8 col-sm-8">
+                <div class="newsletter">
+                    <h3>Get free notifications when a new blog is published</h3>
+                    <p class="ml-2">We will send only the best to your inbox</p>
+                    <form>
+                        <input type="email" name="email" placeholder="Enter your email address">
+                        <button type="submit">Notify Me</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer class="navbar fixed-bottom text-dark text-center">
+            <div class="container text-center" style="margin-left: 41%; color: #ee8a08;">
+            <b> &copy; {{ date('Y')}} Zalego. All rights reserved. </b>
+            </div>
+        </footer>
+
+    </main>
 
 @endsection

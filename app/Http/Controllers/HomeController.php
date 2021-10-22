@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         // fetch all blogs
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('created_at', 'DESC')->take(8)->get();
 
         // fetch blog categories
         $categories = Category::all();

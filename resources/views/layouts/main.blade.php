@@ -6,7 +6,7 @@
 
 <body>
     <nav class='navbar fixed-top'>    
-        <a href="/" class='navbar-brand ml-4' style="font-size: 24px; font-family: cursive;">
+        <a href="/" class='navbar-brand' style="font-size: 24px; font-family: cursive;">
             Blogger
         </a>
 
@@ -16,19 +16,23 @@
             <li>
                 <select class="nav-select" onchange="location = this.value;">
                     <option value="">Blogs</option>
-                    <option value="{{ route('blog.create') }}"> Add New </option>
+                    <option value="{{ route('blog.create') }}" data-toggle="modal" data-target="#myModal-2"> Add New </option>
                     <option value="{{ route('blog.showArchives') }}"> Archived </option>
                 </select>
             </li>
             <li><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
         </ul>
     </nav>
-
+    
     <div class="container-fluid">
-        <!-- Maybe add featured posts later -->
     @yield('content')
     </div>
+
     <!--scripts here-->
     @include('includes.scripts')
+
+    <!-- create new blog modal -->
+    @include('pages.blogs.create')
+    
 </body>
 <html>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <section class='card shadow-sm py-3 px-3 my-5' style='margin: 0 auto; width: 45vw;'>
+    <section class='card shadow-sm py-3 px-3 my-5 modal fade" id="myModal-2' role="dialog" style='margin: 0 auto; width: 45vw;'>
         <h3>Add a new blog</h3> 
         <form method="POST" action="{{ route('blog.save') }}" enctype="multipart/form-data">
         @csrf                 

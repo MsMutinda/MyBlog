@@ -2,8 +2,7 @@
 
 @section('content')
 
-    <br><br>
-    <main role="main" class="container-fluid" style="margin: 0 auto;">
+    <main role="main" style="margin: 0 auto; padding-top: 80px;">
     @if(count($blogs)==0)
     <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
     @else
@@ -19,11 +18,11 @@
             </h3>
 
             <div class='card-body'>
-                <span class="header-sub">
-                    <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img" width="100%">  
-                </span>
+                <!-- <span class="header-sub"> -->
+                    <!-- <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img" style="float: left; padding: 10px;" width="300px">   -->
+                <!-- </span> -->
                 <div class='card-text'>
-                    <p class='py-2'> {{ $blog->content }} </p>
+                    <p class='py-2' style="text-align: justify;"> {{ $blog->content }} </p>
                 </div>
             </div>
 
@@ -34,15 +33,15 @@
                     </h5>
                     <!-- <div class="float-right">
                         <a href="" class="btn btn-default">
-                        <i class="fa fa-pencil text-success"></i> Approve comment </a>
+                        <i class="fa check text-success"></i> Approve comment </a>
                     </div> -->
                     @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
-
+                    
                 @else
                     <h5 class="mb-3">Comments 
                         <div class="float-right">
                             <a href="" class="btn btn-default">
-                            <i class="fa fa-pencil text-primary"></i> Approve </a>
+                            <i class="fa fa-check text-success"></i> Approve comment </a>
                         </div>
                     </h5>
                     <?php echo '<p> No comments yet. </p>' ?>
@@ -79,12 +78,7 @@
         @endforeach
     @endif
     </main>
-
-    <footer class="navbar fixed-bottom text-dark text-center">
-        <div class="container text-center" style="margin-left: 41%;">
-            &copy; {{ date('Y')}}. All rights reserved.
-        </div>
-    </footer>
+    
 
     <script type='text/javascript'>
         // Save Like Or Dislike

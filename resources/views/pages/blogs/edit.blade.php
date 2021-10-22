@@ -8,7 +8,7 @@
             </div>
         
             <div class='modal-body'>
-                <form action="{{ route('blog.update', $blog->id) }}" method="POST" class="ml-4">
+                <form action="{{ route('blog.update', $blog->id) }}" method="POST" class="ml-4" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="w-full sm:w-auto order-last sm:order-first">
@@ -29,11 +29,16 @@
                         <div class="md:flex md:items-center mb-4">
                             <div class="md:w-2/3">
                                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                                    Author 
+                                    Category 
                                 </label>
                             </div>
                             <div class="md:w-3/3">
-                                <input name="author" class="form-control bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" placeholder="{{$blog->author}}" type="text">
+                                <select class='form-control' name="category">
+                                    <option value="--Select Category" selected disabled>Set new category</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
                                 @error('question')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
@@ -41,7 +46,7 @@
                         </div>
 
                         <div class="md:flex md:items-center mb-4">
-                            <div class="md:w-1/3">
+                            <div class="md:w-2/3">
                                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                                     Content 
                                 </label>
@@ -53,6 +58,23 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="md:flex md:items-center mb-4">
+                            <div class="md:w-2/3">
+                                <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                                    New blog image 
+                                </label>
+                            </div>
+                            <div class="md:w-3/3">
+                                <input type="file" name="file" class="form-control bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" required>
+                                @error('content')
+                                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
+
+
+                        
 
                     <br>
 

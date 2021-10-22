@@ -38,7 +38,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
+            'image' => 'mimes:jpeg,jpg,png|dimensions:width=400,height=267' // Only allow .jpg, .bmp and .png file types, and with specified dimensions.
         ]);
 
         // Save the file locally in the storage/public/ folder under a new folder named /blog_images
@@ -71,7 +71,8 @@ class BlogController extends Controller
     public function show($id)
     {
         $blogs = Blog::where('id', $id)->get();
-        return view('pages.blogs.show')->with('blogs', $blogs);
+        $categories = Category::all();
+        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
     }
 
     /**
@@ -94,16 +95,26 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
+        ]);
+        // Save the file locally in the storage/public/ folder under a new folder named /blog_images
+        $uploaded_file = $request->file;
+        $uploaded_file_ex = $uploaded_file->getClientOriginalExtension();
+        $filename = time().'.'.$uploaded_file_ex;
+        $path = $request->file->storeAs('public', $filename);
+
         $validator = Validator::make($request->all(), [
             'title'  => 'required|string|max:255',
-            'author'  => 'required|string|max:255',
-            'content' => 'required|string|max:255'
+            'category' => 'required|string|max:255',
+            'content' => 'required|string|max:255',
         ]);
 
        Blog::whereId($id)->update([
             'title'    => $request->title,
-            'author'   => $request->author,
-            'content'  => $request->content
+            'category'   => $request->category,
+            'content'  => $request->content,
+            'image_path'   => $path
         ]);
 
         return redirect()->back();
