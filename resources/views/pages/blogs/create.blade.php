@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
-    <section class='card shadow-sm py-3 px-3 my-5 modal fade" id="myModal-2' role="dialog" style='margin: 0 auto; width: 45vw;'>
+<br><br><br>
+    <section class='card shadow-sm py-3 px-4 mb-2' style='margin: 0 auto; width: 50vw;'>
         <h3>Add a new blog</h3> 
         <form method="POST" action="{{ route('blog.save') }}" enctype="multipart/form-data">
         @csrf                 
@@ -16,7 +17,7 @@
             <div class="card-body">
                 <div class="form-group">
                     <label> Category <span class="text-danger">*</span></label>
-                    <select class='form-control' name="category">
+                    <select class='form-control shadow' name="category">
                         <option value="--Select Category" selected disabled>Select category</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -39,7 +40,7 @@
                 </div>
             </div>
 
-            <button class="btn bnt-lg btn-success float-left" type="submit" onclick="return confirm('You are about to save this Blog, continue?');"> Save Blog</button>
+            <button class="btn btn-success float-left" style="background-color: #568203;" type="submit" onclick="return confirm('You are about to save this Blog, continue?');"> Save Blog</button>
 
         </form>
     </section>

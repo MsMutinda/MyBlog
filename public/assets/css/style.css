@@ -63,9 +63,9 @@ button {
     width: 100vw;
 }
 
-.card {
+/* .card {
     width: 25%;
-}
+} */
 
 .categories ul {
     display: inline-block;
@@ -132,12 +132,12 @@ background-color: rgba(255, 255, 255, 0.2);
 /* Footer */
 footer {
     /* background-color: #A9BA9D; */
-    background-color: inherit;
+    background-color: #fffdd0;
     position: fixed;
 }
 
 .footer2 {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     margin-top: 5px;
     background: #ffdeb2;
 }
@@ -145,6 +145,7 @@ footer {
 .logo {
     padding: 8px;
 }
+
 .socials {
     margin-left: 20px;
     margin-bottom: 10px;

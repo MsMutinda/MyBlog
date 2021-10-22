@@ -78,7 +78,6 @@
         @endforeach
     @endif
     </main>
-    
 
     <script type='text/javascript'>
         // Save Like Or Dislike

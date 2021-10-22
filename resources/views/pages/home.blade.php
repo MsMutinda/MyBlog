@@ -51,7 +51,7 @@
                         <div class='card-text mt-2'>
                             <p> {{ substr($blog->content, 0, 120).'...' }} </p>
                         </div>
-                        <p class="btn btn-info"> <a href="{{ route('blog.show', $blog->id) }}" style="color: #000; font-weight: 700;"> Read blog </a></p>
+                        <p class="btn btn-info" style="background-color: #4CAF50;"> <a href="{{ route('blog.show', $blog->id) }}" style="color: #000; font-weight: 700;"> Read blog </a></p>
                     </div>
                 </div>
                 @endforeach

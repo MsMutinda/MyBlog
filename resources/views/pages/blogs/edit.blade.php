@@ -66,7 +66,7 @@
                                 </label>
                             </div>
                             <div class="md:w-3/3">
-                                <input type="file" name="file" class="form-control bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" required>
+                                <input type="file" name="file" required>
                                 @error('content')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror

@@ -16,7 +16,7 @@
             <li>
                 <select class="nav-select" onchange="location = this.value;">
                     <option value="">Blogs</option>
-                    <option value="{{ route('blog.create') }}" data-toggle="modal" data-target="#myModal-2"> Add New </option>
+                    <option value="{{ route('blog.create') }}" > Add New </option>
                     <option value="{{ route('blog.showArchives') }}"> Archived </option>
                 </select>
             </li>
@@ -30,9 +30,6 @@
 
     <!--scripts here-->
     @include('includes.scripts')
-
-    <!-- create new blog modal -->
-    @include('pages.blogs.create')
     
 </body>
 <html>

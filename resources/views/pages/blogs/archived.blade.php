@@ -3,7 +3,7 @@
 @section('content')
 
         <br><br>
-        <main role="main" class="container-fluid" style="margin: 0 auto;">
+        <main role="main" style="margin: 0 auto;">
         @if(count($archived) > 0)
             @foreach($archived as $archive)
             <h3 class='card-header'><strong> {{ $archive->title }} </strong>
