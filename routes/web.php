@@ -49,10 +49,13 @@ Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'r
 // Route::get('/article/{blog:slug}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
 
 
-// Comments
+// Comments & Replies
 Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
 
 Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');
 
 // Like Or Dislike
 Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
+
+// User roles
+Route::get('roles', [App\Http\Controllers\PermissionController::class, 'Permission']);
