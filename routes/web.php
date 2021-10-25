@@ -30,6 +30,8 @@ Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])
 
 
 // Blog routes
+Route::get('/all-blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.all');
+
 Route::get('/blog/new', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
 
 Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('blog.save');
@@ -46,8 +48,6 @@ Route::get('/archives', [App\Http\Controllers\BlogController::class, 'showArchiv
 
 Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('blog.restore');
 
-// Route::get('/article/{blog:slug}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
-
 
 // Comments & Replies
 Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
@@ -58,7 +58,7 @@ Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'rep
 Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
 
 // Blog category filter
-Route::post('categories',[App\Http\Controllers\HomeController::class, 'filterByCategory'])->name('post-request');
+Route::get('/categories/{id}',[App\Http\Controllers\HomeController::class, 'filterByCategory'])->name('post-request');
 
 // User roles
 Route::get('roles', [App\Http\Controllers\PermissionController::class, 'Permission']);

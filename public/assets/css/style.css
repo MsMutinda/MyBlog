@@ -82,9 +82,9 @@ button {
 } */
 
 .card {
-    margin: 10px 8px; 
+    margin: 10px 15px; 
     padding: 0rem; 
-    width: 331px;
+    width: 441px;
 }
 
 .nav-right select {
@@ -233,7 +233,7 @@ a {
 .nav__hamburger {
     color: inherit;
     min-width: 32px;
-    min-height: 32px;
+    min-height: 25px;
     transition: opacity 80ms linear;
     /* hiding the hamburger icon on large screen sizes */
     display: none;
@@ -245,7 +245,7 @@ a {
     position: absolute;
     top: 0;
     min-width: 32px;
-    min-height: 32px;
+    min-height: 25px;
     transition: opacity 150ms linear;
     /*   hiding the close icon and... */
     display: none;
@@ -393,8 +393,8 @@ a {
     }
 
     .card {
-        width: 325px;
-        /* width: 50%; */
+        /* width: 43%; */
+        width: 90%;
     }
 
     .newsletter {

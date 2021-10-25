@@ -23,24 +23,24 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request) {
+    public function index(Request $request) 
+    {    
         // fetch all blogs
-        $blogs = Blog::orderBy('created_at', 'DESC')->take(8)->get();
+        $blogs = Blog::orderBy('created_at', 'DESC')->take(6)->get();
 
         // fetch blog categories
-        $categories = Category::all();
+        // $categories = Category::all();
 
         // get featured posts
         $featuredBlogs = Blog::all()->random(3);
-        return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories, 'featuredBlogs'=>$featuredBlogs]);
+
+        return view('pages.home')->with(['blogs'=>$blogs, 'featuredBlogs'=>$featuredBlogs]);
     }
 
-    public function filterByCategory(Request $request) {
+    public function filterByCategory($id) {
         
-        $input = $request->all();
-
         // show blogs for a specific category
-        $filtered = Blog::where('category', $request->category)->first();
-        // dd($filtered);
+        $filtered = Blog::where('category', $id)->get();
+        return view('pages.blogs.category')->with('filtered', $filtered);
     }
 }

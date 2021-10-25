@@ -9,6 +9,12 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" class="p-1" width='185px;' height='180px;' alt="profile-avatar">
                     <ul class='avatar-details'>
                         <li> <strong> Name: </strong> {{ Auth::user()->fname }} {{ Auth::user()->lname }} </li>
+                        <li> <strong> Role: </strong> 
+                            <?php
+                                $userrole = \App\Models\Role::where('id', '=', Auth::user()->role_id)->pluck('name');
+                                echo substr($userrole, 2, -2);                            
+                            ?>
+                        </li>
                         <li> <strong> Gender: </strong> {{ Auth::user()->gender }} </li>
                     </ul>
                 </div>

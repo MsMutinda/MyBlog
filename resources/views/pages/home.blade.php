@@ -3,23 +3,7 @@
 @section('content')
 
     <main role="main" style="margin: 0 auto;">
-        <div class="nav">
-            <div class="nav__menucontainer">
-                <div class="nav__listcontainer" tabindex="0">
-                    <ul class="nav__menu" id="navmenu">
-                        <li class="nav__item" style="font-weight: 700;">Read about:</li>
-                            @foreach($categories as $category)
-                                <!-- TO DO:: link to the filtered content specific for each category -->
-                                <li class="nav__item" id="category" value="{{ $category->id }}"> <a href="" class="nav__link"> {{ $category->name }} </a></li>
-                            @endforeach
-                    </ul>
-                    <a id="hamburger" href="#navmenu" title="menu" class="nav__hamburger">
-                        <i class="fa fa-bars ham ml-2"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; font-weight: 700; "> Blog categories </p>
-                    </a>
-                </div>
-                <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle"></i></a>
-            </div>
-        </div>
+        
 
         <div class="featured-blogs row">
             <!-- Carousel section -->
@@ -48,10 +32,10 @@
 
         <div class="row"> <div class="col-lg-12 col-sm-12 ml-1"> <h2 style="font-weight: bolder;">Latest posts</h2></div></div>
         <div class="latest">
-            <div class="row ml-1">
+            <div class="row">
                 @if(\App\Models\Blog::count() > 0)
                     @foreach($blogs as $blog)
-                    <!-- <div class='card col-lg-3 col-sm-3'> -->
+                    <!-- <div class='card col-lg-4 col-sm-4'> -->
                     <div class='card'>
                         <img
                             src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
@@ -61,7 +45,7 @@
                         />
                         <div class="card-body">
                             <h3 class="card-title"><strong> {{ $blog->title }} </strong></h3>
-                            <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ $blog->created_at->format('M d, Y') }} </b> </span>
+                            <span class="header-sub">Written by <b> {{ $blog->author }} </b> on <b> {{ $blog->created_at->format('M d, Y') }} {{ $blog->created_at->format('h:i A') }} </b> </span>
                             <div class='card-text mt-2'>
                                 <p> {{ substr($blog->content, 0, 110).'...' }} </p>
                             </div>
@@ -71,10 +55,13 @@
                     @endforeach
 
                 @else
+                </div>
                 <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
 
                 @endif
             </div>
+
+            <p class="ml-2 mt-4" style="font-size: 18px;"> <u><b><a style="color: #f27a1f" href="{{ route('blog.all') }}"> View all blogs <i class="fa fa-angle-double-right"></i></a></b></u></p>
         </div>
 
         <section class="row footer2 py-3 px-3">			
@@ -121,19 +108,18 @@
             // Get selected category id
             var category=$(this).val();
             // alert(category);
-            var vm=$(this);
 
-            // Run Ajax
-            $.ajax({
-                url:"{{ url('/') }}",
-                type:"post",
-                dataType:'json',
-                data:{
-                    category: category,
-                    token: "{{ csrf_token() }}"
-                }
-            });
-        });
+           
+            
+        function submitter(value) {
+            console.log(value)
+            $.get("{{ url('categories/') }}/"+value,function(response){
+                return value;
+                // console.log(response)
+            })
+        }
+    });
+
     </script>
 
 @endsection

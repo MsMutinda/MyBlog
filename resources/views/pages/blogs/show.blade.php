@@ -2,18 +2,20 @@
 
 @section('content')
 
-    <main role="main" style="margin: 0 auto; padding-top: 80px;">
+    <main role="main" style="margin: 0 auto; padding-top: 135px;">
         @if(count($blogs)==0)
     <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
     @else
         @foreach($blogs as $blog)
             <h3 class='ml-1'><strong>   {{ $blog->title }} </strong>
                 <div class='float-right mt-2'>
-                    <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default">
-                    <i class="fa fa-pencil text-primary"></i> Edit post </a>
+                    <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default text-white" style="font-weight: 700;">
+                    <!-- <i class="fa fa-pencil text-primary"></i>  -->
+                    Edit post </a>
                     
-                    <a href="{{ route('blog.archive', $blog->id) }}" class="btn btn-default" onclick="return confirm('You are about to archive this blog. Continue?');">
-                    <i class="fa fa-minus-circle text-danger"></i> Archive</a>
+                    <a href="{{ route('blog.archive', $blog->id) }}" class="btn btn-default text-white" style="font-weight: 700;" onclick="return confirm('You are about to archive this blog. Continue?');">
+                    <!-- <i class="fa fa-minus-circle text-danger"></i>  -->
+                    Archive post</a>
                 </div>
             </h3>
 
@@ -65,7 +67,7 @@
                         <input type="hidden" name="blog_id" value="{{ $blog->id }}" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-sm btn-outline-success py-0" style="font-size: 0.8em;" value="Add Comment" />
+                        <input type="submit" class="btn btn-sm btn-outline-success py-0" style="font-size: 0.9em; color: #fff;" value="Add Comment" />
                     </div>
                 </form>
             </div>

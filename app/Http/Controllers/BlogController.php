@@ -18,6 +18,11 @@ class BlogController extends Controller
     {
         $this->middleware('auth');
     }
+
+    public function index() {
+        $blogs = BlogCategory::all();
+        return view('pages.blogs.all')->with('blogs', $blogs);
+    }
     /**
      * Show the form for creating a new resource.
      *
