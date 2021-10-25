@@ -10,7 +10,7 @@
                         <li class="nav__item" style="font-weight: 700;">Read about:</li>
                             @foreach($categories as $category)
                                 <!-- TO DO:: link to the filtered content specific for each category -->
-                                <li class="nav__item" value="{{ $category->id }}"> <a href="" class="nav__link" id="category" data-post="{{ $category->id}}">{{ $category->name }} </a></li>
+                                <li class="nav__item" id="category" value="{{ $category->id }}"> <a href="" class="nav__link"> {{ $category->name }} </a></li>
                             @endforeach
                     </ul>
                     <a id="hamburger" href="#navmenu" title="menu" class="nav__hamburger">
@@ -23,18 +23,25 @@
 
         <div class="featured-blogs row">
             <!-- Carousel section -->
-            <div class="carousel slide" data-ride="carousel">
-                <!-- <div class="indicators">
-                    
-                </div> -->
-                @foreach($featuredBlogs as $featured)
-                <!-- Single carousel item -->
-                <div class="carousel-item @if($loop->first) active @endif">
-                    <h4><strong> {{ $featured->title }} </strong></h4>
-                    <p> {{ substr($featured->content, 0, 350).'...' }} </p>
-                    <p class="ml-2" style="font-size: 18px; color: #ffa500"> <i class="fa fa-caret-right"></i> <u><a style="color: #ffa500" href="{{ route('blog.show', $featured->id) }}"> Read more... </a></u></p>
+            <div id="carouselControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach($featuredBlogs as $featured)
+                    <!-- Single carousel item -->
+                    <div class="carousel-item @if($loop->first) active @endif">
+                        <h4><strong> {{ $featured->title }} </strong></h4>
+                        <p> {{ substr($featured->content, 0, 350).'...' }} </p>
+                        <p class="ml-2" style="font-size: 18px; color: #f27a1f"> <i class="fa fa-caret-right"></i> <u><b><a style="color: #f27a1f" href="{{ route('blog.show', $featured->id) }}"> Read more... </a></b></u></p>
+                    </div>
+                    @endforeach
                 </div>
-                @endforeach
+                <!-- <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a> -->
             </div>
             <!-- End Carousel -->
         </div>
@@ -58,7 +65,7 @@
                             <div class='card-text mt-2'>
                                 <p> {{ substr($blog->content, 0, 110).'...' }} </p>
                             </div>
-                            <p class="btn btn-info" style="background-color: #4CAF50;"> <a href="{{ route('blog.show', $blog->id) }}" style="color: #000; font-weight: 700;"> Read blog </a></p>
+                            <p class="btn"> <a href="{{ route('blog.show', $blog->id) }}" style="color: #fff;"> Read blog </a></p>
                         </div>
                     </div>
                     @endforeach
@@ -70,7 +77,7 @@
             </div>
         </div>
 
-        <section class="row footer2 px-3">			
+        <section class="row footer2 py-3 px-3">			
             <div class="col-lg-4 col-sm-4">
                 <img src="https://zalegoacademy.ac.ke/asset/img/zalegocurrentlogo.png" class="logo size-lg" alt="zalegocurrentlogo">
                 <div class="socials">
@@ -101,34 +108,32 @@
             </div>
         </section>
 
-        <script type='text/javascript'>
-        // Get selected category id
+    <footer class="navbar fixed-bottom text-dark text-center">
+        <div class="container text-center text-dark" style="margin-left: 41%;">
+        <b> &copy; {{ date('Y')}} Zalego. All rights reserved. </b>
+        </div>
+    </footer>
+
+    </main>
+
+    <script type='text/javascript'>
         $(document).on('click','#category',function() {
-            var _category=$(this).data('post');
-            // alert(_category);
+            // Get selected category id
+            var category=$(this).val();
+            // alert(category);
             var vm=$(this);
+
             // Run Ajax
             $.ajax({
-                url:"{{ url('categories') }}",
-                type:"get",
-                // dataType:'json',
+                url:"{{ url('/') }}",
+                type:"post",
+                dataType:'json',
                 data:{
-                    category:_category,
-                    _token:"{{ csrf_token() }}"
-                },
-                success:function(){
-                    alert('yes!');
-                }   
+                    category: category,
+                    token: "{{ csrf_token() }}"
+                }
             });
         });
     </script>
-
-        <footer class="navbar fixed-bottom text-dark text-center">
-            <div class="container text-center text-dark" style="margin-left: 41%;">
-            <b> &copy; {{ date('Y')}} Zalego. All rights reserved. </b>
-            </div>
-        </footer>
-
-    </main>
 
 @endsection

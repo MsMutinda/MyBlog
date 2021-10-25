@@ -23,8 +23,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         // fetch all blogs
         $blogs = Blog::orderBy('created_at', 'DESC')->take(8)->get();
 
@@ -37,9 +36,11 @@ class HomeController extends Controller
     }
 
     public function filterByCategory(Request $request) {
-        dd($request->category);
+        
+        $input = $request->all();
+
         // show blogs for a specific category
-        $filtered = Blog::where('category', $request->selected_category)->first();
+        $filtered = Blog::where('category', $request->category)->first();
         // dd($filtered);
     }
 }

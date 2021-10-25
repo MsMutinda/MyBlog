@@ -10,8 +10,7 @@ body {
 }
 
 nav {
-    /* background-color: #1590a4; */
-    background-color: #568203;
+    background-color: #7fc242;
 }
 
 .navbar a {
@@ -43,17 +42,20 @@ form .container {
     position: relative;
     bottom: 30px;
 }
-.button {
-    background-color: #4B6F44;
+
+.button, .btn {
+    background-color: #7fc242;
     border-radius: 5px;
 }
+
 button {
     border-radius: 5px;
 }
 
 .button:hover {
-    background-color: #ACE1AF;
-
+    background-color: #4CAF50;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
 }
 .avatar-details {
     list-style-type: none;
@@ -120,7 +122,8 @@ footer {
 
 .footer2 {
     margin-top: 5px;
-    background: #ffdeb2;
+    /* background: #ffdeb2; */
+    background-color: #f27a1f;
     height: 300px;
     /* background-color: #ee8a08; */
 }
@@ -174,8 +177,8 @@ footer {
 }
 .newsletter button {
     width: 29%;
-    background-color: #4CAF50;
     border: none;
+    background-color: #7fc242;
     padding: 5px;
     height: 38px;
     border-radius: 4px;
@@ -369,6 +372,7 @@ a {
     }
     .footer2 {
         height: 500px;
+        padding: 10px;
         margin-bottom: 40px;
     }
 
