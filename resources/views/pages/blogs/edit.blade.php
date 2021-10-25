@@ -1,6 +1,6 @@
 <div class="modal fade" id="myModal-{{$blog->id}}" role="dialog">
     <div class="modal-dialog">
-        <div class='modal-content px-3 py-3 ml-3 mr-3' id='editModal'>
+        <div class='modal-content px-3' id='editModal'>
             <div class='modal-header'>
                 <h4 class='modal-header ml-2 pl-1 pt-3 mt-1'><strong> Edit blog</strong></h4>
                 <!-- dismiss button -->
@@ -8,7 +8,7 @@
             </div>
         
             <div class='modal-body'>
-                <form action="{{ route('blog.update', $blog->id) }}" method="POST" class="ml-4" enctype="multipart/form-data">
+                <form action="{{ route('blog.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="w-full sm:w-auto order-last sm:order-first">

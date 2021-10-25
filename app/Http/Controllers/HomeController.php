@@ -31,13 +31,15 @@ class HomeController extends Controller
         // fetch blog categories
         $categories = Category::all();
 
-        // show blogs for a specific category
-        // dd($request->selected);
-        $filtered = Blog::where('category', $request->selected_category)->first();
-        // dd($filtered);
-
-        // featured posts
+        // get featured posts
         $featuredBlogs = Blog::all()->random(3);
         return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories, 'featuredBlogs'=>$featuredBlogs]);
+    }
+
+    public function filterByCategory(Request $request) {
+        dd($request->category);
+        // show blogs for a specific category
+        $filtered = Blog::where('category', $request->selected_category)->first();
+        // dd($filtered);
     }
 }

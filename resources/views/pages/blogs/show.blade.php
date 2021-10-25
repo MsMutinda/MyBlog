@@ -3,11 +3,11 @@
 @section('content')
 
     <main role="main" style="margin: 0 auto; padding-top: 80px;">
-    @if(count($blogs)==0)
+        @if(count($blogs)==0)
     <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
     @else
         @foreach($blogs as $blog)
-            <h3 class='ml-3'><strong>   {{ $blog->title }} </strong>
+            <h3 class='ml-1'><strong>   {{ $blog->title }} </strong>
                 <div class='float-right mt-2'>
                     <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default">
                     <i class="fa fa-pencil text-primary"></i> Edit post </a>
@@ -22,13 +22,23 @@
                     <!-- <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img" style="float: left; padding: 10px;" width="300px">   -->
                 <!-- </span> -->
                 <div class='card-text'>
-                    <p class='py-2' style="text-align: justify;"> {{ $blog->content }} </p>
+                    <p style="text-align: justify;"> {{ $blog->content }} </p>
+                    <small class="float-right">
+                        <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
+                            <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.4em;" id="thumbs-up"></i>
+                            <span class="like-count">{{ $blog->likes() }}</span>
+                        </span>
+                        <span title="Dislike" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="ml-2 d-inline font-weight-bold">
+                            <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.4em; transform: scaleX(-1);" id="thumbs-down"></i>
+                            <span class="dislike-count">{{ $blog->dislikes() }}</span>
+                        </span>
+                    </small>
                 </div>
             </div>
 
-            <div class="card-body">
+            <div class="card-body" style="margin-top: 30px;">
                 @if(count($blog->comments)>0)
-                    <h5 class="mb-3">Comments
+                    <h5>Comments
                         <span class="comment-count btn btn-sm btn-outline-info">{{ count($blog->comments) }}</span>
                     </h5>
                     <!-- <div class="float-right">
@@ -38,12 +48,7 @@
                     @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
                     
                 @else
-                    <h5 class="mb-3">Comments 
-                        <div class="float-right">
-                            <a href="" class="btn btn-default">
-                            <i class="fa fa-check text-success"></i> Approve comment </a>
-                        </div>
-                    </h5>
+                    <h5 class="mb-3">Comments </h5>
                     <?php echo '<p> No comments yet. </p>' ?>
                 @endif
                 <hr />
@@ -51,16 +56,7 @@
 
             <div class="card-body mb-4">
                 <h4>Leave a comment
-                    <small class="float-right">
-                        <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
-                            <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 1.4em; position: relative; bottom: 10px;" id="thumbs-up"></i>
-                            <span class="like-count">{{ $blog->likes() }}</span>
-                        </span>
-                        <span title="Dislike" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="ml-2 d-inline font-weight-bold">
-                            <i class="fa fa-thumbs-down text-danger" style="cursor: pointer; font-size: 1.4em; position: relative; bottom: 10px; transform: scaleX(-1);" id="thumbs-down"></i>
-                            <span class="dislike-count">{{ $blog->dislikes() }}</span>
-                        </span>
-                    </small>
+                    
                 </h4>
                 <form method="post" action="{{ route('comment.add') }}">
                     @csrf

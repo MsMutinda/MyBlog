@@ -1,17 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
-    <section class='mt-5'>
-        <div class='card shadow-md p-3'>
-            <div class='row'>
-                <div class='col-12 pl-3 ml-2 mb-4'>
-                    <h3 class='profile mb-2 ml-2'>Profile</h3>
-                </div>
-            </div>
-
-            <div class='row ml-1'>
-                <div class='col-lg-5 col-sm-6'>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" width='85px;' height='85px;' alt="profile-avatar">
+    <section style="margin-top: 60px;" class="p-2">
+        <div class='ml-2 py-3'>
+            <div class='row'> <h3 class='profile my-2 mx-2'> Profile</h3> </div>
+            <div class='row py-2'>
+                <div class='col-lg-6 col-sm-6'>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" class="p-1" width='185px;' height='180px;' alt="profile-avatar">
                     <ul class='avatar-details'>
                         <li> <strong> Name: </strong> {{ Auth::user()->fname }} {{ Auth::user()->lname }} </li>
                         <li> <strong> Gender: </strong> {{ Auth::user()->gender }} </li>
@@ -22,18 +17,23 @@
                     $myblogs = \App\Models\Blog::where('author' , '=', Auth::user()->fname)->get();
                     $total = count($myblogs);
                 ?> 
-                <div class='col-lg-6 col-sm-6 ml-3'>
+                <div class='col-lg-6 col-sm-6'>
                     <h4 class='posts'>My Posts</h4>
-                    @foreach ($myblogs as $myblog)
-                        <ul>
-                            <li> {{ $myblog->title }} </li>
-                        </ul>
-                    @endforeach
+                    @if(count($myblogs)>0)
+                        @foreach ($myblogs as $myblog)
+                            <ul>
+                                <li> {{ $myblog->title }} </li>
+                            </ul>
+                        @endforeach
+                    @else
+                    <h6 style="color: #568203;" class="pt-2">You have no existing blogs at this time.</h6>
+                    @endif
                 </div>
-            </div><br>
+            </div>
+            <hr />
 
-            <div class='row ml-2'>
-                <div class='col-lg-5 col-sm-6'>
+            <div class='row'>
+                <div class='mt-3 col-lg-6 col-sm-6'>
                     <h4 class='bio'>Bio Information</h4>
                     <ul>
                         <li> <strong> Email address: </strong> {{ Auth::user()->email }} </li>
@@ -45,7 +45,7 @@
                         <li> <strong> Topics i'm interested in: </strong> Reading, Travelling, and Anything involving fun and games </li>
                     </ul>
                     <!-- loads a modal form when clicked -->
-                    <button class='button p-1 mt-3'><a href="{{ route('profile.edit') }}"> Edit profile </a></button>
+                    <button class='button p-1 mt-3'><a class="text-white" href="{{ route('profile.edit') }}"> Edit profile </a></button>
                 </div>
             </div>
         </div>

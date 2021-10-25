@@ -98,7 +98,6 @@ class BlogController extends Controller
         $request->validate([
             'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
         ]);
-        // Save the file locally in the storage/public/ folder under a new folder named /blog_images
         $uploaded_file = $request->file;
         $uploaded_file_ex = $uploaded_file->getClientOriginalExtension();
         $filename = time().'.'.$uploaded_file_ex;

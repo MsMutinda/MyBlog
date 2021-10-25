@@ -57,5 +57,8 @@ Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'rep
 // Like Or Dislike
 Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
 
+// Blog category filter
+Route::get('categories',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
+
 // User roles
 Route::get('roles', [App\Http\Controllers\PermissionController::class, 'Permission']);
