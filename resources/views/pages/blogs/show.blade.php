@@ -20,9 +20,6 @@
             </h3>
 
             <div class='card-body'>
-                <!-- <span class="header-sub"> -->
-                    <!-- <img src="{{ url('storage/'.substr($blog->image_path, 7)) }}" alt="{{ $blog->title }} img" style="float: left; padding: 10px;" width="300px">   -->
-                <!-- </span> -->
                 <div class='card-text'>
                     <p style="text-align: justify;"> {{ $blog->content }} </p>
                     <small class="float-right">

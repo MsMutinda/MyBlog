@@ -40,6 +40,8 @@ Route::middleware(['web', 'auth'])->group(function()
 
     Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('save-blog');
 
+    Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('view-blog');
+
     Route::get('/blog/{id}/edit', [App\Http\Controllers\BlogController::class, 'edit'])->name('edit-blog');
 
     Route::patch('/blog/{id}/update', [App\Http\Controllers\BlogController::class, 'update'])->name('update-blog');
@@ -50,21 +52,20 @@ Route::middleware(['web', 'auth'])->group(function()
 
     Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('restore-blog');
 
+    // Comments & Replies
+    Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
+
+    Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
+
+    // Like Or Dislike
+    Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
+
+
 });
 
 
 Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])->name('viewAllBlogs');
 
-Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('view-blog');
-
-
-// Comments & Replies
-Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
-
-Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
-
-// Like Or Dislike
-Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
 
 // Blog category filter
 Route::get('/blogs/{id}',[App\Http\Controllers\HomeController::class, 'filterByCategory'])->name('post-request');

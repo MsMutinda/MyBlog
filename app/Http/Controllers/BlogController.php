@@ -14,11 +14,6 @@ use App\Models\Category;
 
 class BlogController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index() {
         $blogs = Blog::all();
         return view('pages.blogs.all')->with('blogs', $blogs);
