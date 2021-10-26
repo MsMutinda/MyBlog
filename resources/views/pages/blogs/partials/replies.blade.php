@@ -15,7 +15,7 @@
     <i id="like-btn1" style="font-size: 1.2em; position: relative; bottom: 5px; " class="fa fa-heart-o p-2"></i>
     <i id="like-btn2" style="font-size: 1.2em; position: relative; bottom: 5px; display: none" class="fa fa-heart p-2"></i>
     
-    <form method="post" action="{{ route('add-reply') }}">
+    <form method="post" action="{{ route('reply.add') }}">
         @csrf
         <div class="form-group">
             <input type="text" placeholder="Your reply here..." name="comment" class="form-control" id='reply-input' style="display: none;"/>

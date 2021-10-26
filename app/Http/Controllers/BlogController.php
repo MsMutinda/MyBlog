@@ -20,7 +20,7 @@ class BlogController extends Controller
     }
 
     public function index() {
-        $blogs = Blog::all();
+        $blogs = BlogCategory::all();
         return view('pages.blogs.all')->with('blogs', $blogs);
     }
     /**

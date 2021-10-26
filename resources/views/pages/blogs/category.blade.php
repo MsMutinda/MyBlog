@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="content-header" style="margin-left: 8px;">
+    <div class="content-header" style="margin-top: 125px; margin-left: 8px;">
         <div class="row mb-2">
             <ul class="breadcrumb float-sm-left ml-1">
                 <li class="breadcrumb-item"><a href="{{url('/')}}" style="color: #000;"><i class="fa fa-home"></i></a></li>
@@ -10,7 +10,7 @@
         </div>
     </div>
 
-    <main role="main" class="main" style="margin: 0 auto;">
+    <main role="main" style="margin: 0 auto;">
 
     </main>
 

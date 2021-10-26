@@ -18,7 +18,7 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function profile()
     {
         $blogs = Blog::all();
         return view('pages.profile.index')->with('blogs', $blogs);
@@ -50,7 +50,7 @@ class ProfileController extends Controller
             'hobbies' => $request->hobbies
         ]);
 
-        return redirect()->route('view-profile');
+        return redirect()->route('profile');
     }
 
     public function logout(Request $request)

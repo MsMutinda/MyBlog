@@ -1,14 +1,14 @@
-<div class="modal fade" id="profileEdit" role="dialog">
-    <div class="modal-dialog">
-        <div class='modal-content px-3' id="editModal">
-            <div class='modal-header'>
-                <h4 class='ml-2 pl-1 pt-3 mt-1'><strong> Edit profile</strong></h4>
-                <!-- dismiss button -->
-                <button type="button" class="close bg-danger p-2 pt-2 mt-2" data-dismiss="modal">&times;</button>
-            </div>
-        
-            <div class='modal-body'>
-                <form action="{{ route('update-profile') }}" method="POST" enctype="multipart/form-data">
+@extends('layouts.main')
+
+@section('content')
+
+<div class='mt-5 p-2 mb-4'>
+    <h3 class='ml-4 pl-4 mt-1 pb-2'> <strong> Edit profile</strong></h3>
+
+    <section class='card px-3 py-3 mx-5 pl-4' style="width: 22rem;">
+        <div class='container-fluid'>
+            <div class="mt-8 bg-white rounded  md:w-2/3">
+                <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="w-full sm:w-auto order-last sm:order-first">
@@ -66,6 +66,7 @@
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
                             </div>
+                        </div>
 
                         <div class="mb-4">
                             <div class="">
@@ -99,16 +100,22 @@
                                 @enderror
                             </div>
                         </div>
-                        <br>
-
-                        <div class='modal-footer'>
-                            <button class="w-full shadow bg-warning hover:bg-blue-400 focus:shadow-outline focus:outline-none text-dark font-bold py-2 px-4 rounded" type="submit">
-                                Update Profile
-                            </button>
+                        
+                        <div class="md:flex md:items-center"><br>
+                            <div class="md:w-1/3">
+                                <button class="w-full shadow bg-warning hover:bg-blue-400 focus:shadow-outline focus:outline-none text-dark font-bold py-1 px-2 rounded" type="submit">
+                                    Update Profile
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </div>        
+                    <br>
                 </form>        
             </div>
+
         </div>
-    </div>
-</div>    
+    </section>
+    
+</div>
+
+@endsection

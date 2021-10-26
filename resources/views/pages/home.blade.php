@@ -2,26 +2,22 @@
 
 @section('content')
 
-    <main role="main" class="main">
-        <div class="row topheader">
-            <div class="col-lg-12 col-sm-12">
-                <h3>Blog</h3>
-                <p>Get more insights about your technology journey</p>
-            </div>
-        </div>
-        <!-- <div class="featured-blogs row"> -->
+    <main role="main" style="margin: 0 auto;">
+        
+
+        <div class="featured-blogs row">
             <!-- Carousel section -->
-            <!-- <div id="carouselControls" class="carousel slide" data-ride="carousel"> 
+            <div id="carouselControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    @foreach($featuredBlogs as $featured) -->
+                    @foreach($featuredBlogs as $featured)
                     <!-- Single carousel item -->
-                    <!-- <div class="carousel-item @if($loop->first) active @endif"> 
+                    <div class="carousel-item @if($loop->first) active @endif">
                         <h4><strong> {{ $featured->title }} </strong></h4>
                         <p> {{ substr($featured->content, 0, 350).'...' }} </p>
-                        <p class="ml-2" style="font-size: 18px; color: #f27a1f"> <i class="fa fa-caret-right"></i> <u><b><a style="color: #f27a1f" href="{{ route('view-blog', $featured->id) }}"> Read more... </a></b></u></p>
+                        <p class="ml-2" style="font-size: 18px; color: #f27a1f"> <i class="fa fa-caret-right"></i> <u><b><a style="color: #f27a1f" href="{{ route('blog.show', $featured->id) }}"> Read more... </a></b></u></p>
                     </div>
                     @endforeach
-                </div> -->
+                </div>
                 <!-- <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -30,9 +26,9 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a> -->
-            <!-- </div> -->
+            </div>
             <!-- End Carousel -->
-        <!-- </div> -->
+        </div>
 
         <div class="row"> <div class="col-lg-12 col-sm-12 ml-1"> <h2 style="font-weight: bolder;">Latest posts</h2></div></div>
         <div class="latest">
@@ -53,7 +49,7 @@
                             <div class='card-text mt-2'>
                                 <p> {{ substr($blog->content, 0, 110).'...' }} </p>
                             </div>
-                            <p class="btn"> <a href="{{ route('view-blog', $blog->id) }}" style="color: #fff;"> Read blog </a></p>
+                            <p class="btn"> <a href="{{ route('blog.show', $blog->id) }}" style="color: #fff;"> Read blog </a></p>
                         </div>
                     </div>
                     @endforeach
@@ -65,7 +61,7 @@
                 @endif
             </div>
 
-            <p class="ml-2 mt-4" style="font-size: 18px;"> <u><b><a style="color: #f27a1f" href="{{ route('viewAllBlogs') }}"> View all blogs <i class="fa fa-angle-double-right"></i></a></b></u></p>
+            <p class="ml-2 mt-4" style="font-size: 18px;"> <u><b><a style="color: #f27a1f" href="{{ route('blog.all') }}"> View all blogs <i class="fa fa-angle-double-right"></i></a></b></u></p>
         </div>
 
         <section class="row footer2 py-3 px-3">			
@@ -117,7 +113,7 @@
             
         function submitter(value) {
             console.log(value)
-            $.get("{{ url('blogs/') }}/"+value,function(response){
+            $.get("{{ url('categories/') }}/"+value,function(response){
                 return value;
                 // console.log(response)
             })

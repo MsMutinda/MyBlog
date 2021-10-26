@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-    <main class="main p-2">
-        <div class='ml-2'>
-            <div class='row'> <h3 class='profile mx-2'> Profile</h3> </div>
+    <section style="margin-top: 60px;" class="p-2">
+        <div class='ml-2 py-3'>
+            <div class='row'> <h3 class='profile my-2 mx-2'> Profile</h3> </div>
             <div class='row py-2'>
                 <div class='col-lg-6 col-sm-6'>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" class="p-1" width='185px;' height='180px;' alt="profile-avatar">
@@ -51,7 +51,7 @@
                         <li> <strong> Topics i'm interested in: </strong> Reading, Travelling, and Anything involving fun and games </li>
                     </ul>
                     <!-- loads a modal form when clicked -->
-                    <button class='button p-1 my-3'><a class="text-white" href="{{ route('edit-profile') }}" data-toggle="modal" data-target="#profileEdit"> Edit profile </a></button>
+                    <button class='button p-1 mt-3'><a class="text-white" href="{{ route('profile.edit') }}"> Edit profile </a></button>
                 </div>
             </div>
         </div>
