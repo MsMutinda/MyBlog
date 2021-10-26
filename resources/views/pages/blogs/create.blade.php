@@ -4,7 +4,7 @@
 <br><br><br>
     <section class='card shadow-sm py-3 px-4 mb-2' style='margin: 0 auto; width: 50vw;'>
         <h3>Add a new blog</h3> 
-        <form method="POST" action="{{ route('blog.save') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('save-blog') }}" enctype="multipart/form-data">
         @csrf                 
 
             <div class="card-body">

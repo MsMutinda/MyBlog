@@ -17,48 +17,57 @@ use App\Http\Controllers\IndexController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-// Profile routes
-Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
-
-Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'editProfile'])->name('profile.edit');
-
-Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'updateProfile'])->name('profile.update');
-
-Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])->name('logout');
+// Route::group(['middleware' => 'web'], function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// });
 
 
 // Blog routes
-Route::get('/all-blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.all');
+// Authenticated users only
+Route::middleware(['web', 'auth'])->group(function()
+{
+    // Profile routes
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('view-profile');
 
-Route::get('/blog/new', [App\Http\Controllers\BlogController::class, 'create'])->name('blog.create');
+    Route::get('/profile/edit', [App\Http\Controllers\ProfileController::class, 'editProfile'])->name('edit-profile');
 
-Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('blog.save');
+    Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'updateProfile'])->name('update-profile');
 
-Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
+    Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])->name('logout');
 
-Route::get('/blog/{id}/edit', [App\Http\Controllers\BlogController::class, 'edit'])->name('blog.edit');
+    // Blog routes
+    Route::get('/blog/new', [App\Http\Controllers\BlogController::class, 'create'])->name('create-blog');
 
-Route::patch('/blog/{id}/update', [App\Http\Controllers\BlogController::class, 'update'])->name('blog.update');
+    Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('save-blog');
 
-Route::get('/blog/{id}/archive', [App\Http\Controllers\BlogController::class, 'destroy'])->name('blog.archive');
+    Route::get('/blog/{id}/edit', [App\Http\Controllers\BlogController::class, 'edit'])->name('edit-blog');
 
-Route::get('/archives', [App\Http\Controllers\BlogController::class, 'showArchived'])->name('blog.showArchives');
+    Route::patch('/blog/{id}/update', [App\Http\Controllers\BlogController::class, 'update'])->name('update-blog');
 
-Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('blog.restore');
+    Route::get('/blog/{id}/archive', [App\Http\Controllers\BlogController::class, 'destroy'])->name('archive-blog');
+
+    Route::get('/archives', [App\Http\Controllers\BlogController::class, 'showArchived'])->name('viewBlogArchives');
+
+    Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('restore-blog');
+
+});
+
+
+Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])->name('viewAllBlogs');
+
+Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('view-blog');
 
 
 // Comments & Replies
-Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comment.add');
+Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
 
-Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('reply.add');
+Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
 
 // Like Or Dislike
 Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
 
 // Blog category filter
-Route::get('/categories/{id}',[App\Http\Controllers\HomeController::class, 'filterByCategory'])->name('post-request');
+Route::get('/blogs/{id}',[App\Http\Controllers\HomeController::class, 'filterByCategory'])->name('post-request');
 
 // User roles
-Route::get('roles', [App\Http\Controllers\PermissionController::class, 'Permission']);
+// Route::get('roles', [App\Http\Controllers\PermissionController::class, 'Permission']);

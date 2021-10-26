@@ -15,8 +15,6 @@ class CreatePermissionsTable extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug');
             $table->string('key')->nullable();
             // Store a list of all methods and their controller’s name
             $table->string('controller');

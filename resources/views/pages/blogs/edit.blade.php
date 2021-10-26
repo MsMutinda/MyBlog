@@ -2,13 +2,13 @@
     <div class="modal-dialog">
         <div class='modal-content px-3' id='editModal'>
             <div class='modal-header'>
-                <h4 class='modal-header ml-2 pl-1 pt-3 mt-1'><strong> Edit blog</strong></h4>
+                <h4 class='ml-2 pl-1 pt-3 mt-1'><strong> Edit blog</strong></h4>
                 <!-- dismiss button -->
                 <button type="button" class="close bg-danger p-2 pt-2 mt-2" data-dismiss="modal">&times;</button>
             </div>
         
             <div class='modal-body'>
-                <form action="{{ route('blog.update', $blog->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('update-blog', $blog->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="w-full sm:w-auto order-last sm:order-first">
@@ -72,24 +72,16 @@
                                 @enderror
                             </div>
                         </div>
+                        <br>
 
-
-                        
-
-                    <br>
-
-                    <!-- set value for the time when a feedback form got edited -->
-                    <!-- <input type="hidden" value="date('H-m-s')->now()"> -->
-
-                    <div class='modal-footer'>
-                        <button class="w-full shadow bg-warning hover:bg-blue-400 focus:shadow-outline focus:outline-none text-dark font-bold py-2 px-4 rounded" type="submit">
-                            Update Blog
-                        </button>
+                        <div class='modal-footer'>
+                            <button class="w-full shadow bg-warning hover:bg-blue-400 focus:shadow-outline focus:outline-none text-dark font-bold py-2 px-4 rounded" type="submit">
+                                Update Blog
+                            </button>
+                        </div>
                     </div>
-
                 </form>  
             </div>
-
         </div>
     </div>
 </div>

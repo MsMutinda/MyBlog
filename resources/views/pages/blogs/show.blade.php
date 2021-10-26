@@ -2,18 +2,18 @@
 
 @section('content')
 
-    <main role="main" style="margin: 0 auto; padding-top: 135px;">
+    <main role="main" class="main">
         @if(count($blogs)==0)
     <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
     @else
         @foreach($blogs as $blog)
             <h3 class='ml-1'><strong>   {{ $blog->title }} </strong>
                 <div class='float-right mt-2'>
-                    <a href="{{ route('blog.edit', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default text-white" style="font-weight: 700;">
+                    <a href="{{ route('edit-blog', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default text-white" style="font-weight: 700;">
                     <!-- <i class="fa fa-pencil text-primary"></i>  -->
                     Edit post </a>
                     
-                    <a href="{{ route('blog.archive', $blog->id) }}" class="btn btn-default text-white" style="font-weight: 700;" onclick="return confirm('You are about to archive this blog. Continue?');">
+                    <a href="{{ route('archive-blog', $blog->id) }}" class="btn btn-default text-white" style="font-weight: 700;" onclick="return confirm('You are about to archive this blog. Continue?');">
                     <!-- <i class="fa fa-minus-circle text-danger"></i>  -->
                     Archive post</a>
                 </div>
@@ -60,7 +60,7 @@
                 <h4>Leave a comment
                     
                 </h4>
-                <form method="post" action="{{ route('comment.add') }}">
+                <form method="post" action="{{ route('add-comment') }}">
                     @csrf
                     <div class="form-group">
                         <input type="text" placeholder='Comment...' name="comment" class="form-control mt-3" />

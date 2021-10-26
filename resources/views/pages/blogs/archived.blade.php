@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="content-header" style="margin-top: 80px; margin-left: 10px;">
+    <div class="content-header" style="margin-left: 10px;">
         <div class="row mb-2">
             <ul class="breadcrumb float-sm-left ml-1">
                 <li class="breadcrumb-item"><a href="{{url('/')}}" style="color: #000;"><i class="fa fa-home"></i></a></li>
@@ -43,7 +43,7 @@
                             <center>
                                 <div class="dropdown dropleft theme-green mt-2" style="width: 30px; cursor: pointer; height: 30px; border-radius: 50%; color: #000; left: -70px !important"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown"></i>
                                     <ul class="dropdown-menu">
-                                        <li class='dropdown-item'> <a href="{{ route('blog.restore', $archive->id) }}" class="text-success btn btn-default" onclick="return confirm('Continue to restore this blog?')"> <i class="fa fa-undo"></i> Restore blog </a> </li>
+                                        <li class='dropdown-item'> <a href="{{ route('restore-blog', $archive->id) }}" class="text-success btn btn-default" onclick="return confirm('Continue to restore this blog?')"> <i class="fa fa-undo"></i> Restore blog </a> </li>
                                     </ul>
                                 </div>
                             </center>
