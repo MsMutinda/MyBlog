@@ -84,15 +84,28 @@
                                 alt="{{ $blog->title }} img"
                             />
                             <div class="card-body">
-                                <p class="btn btn2 px-4">
+                                <p class="btn btn2 mt-1 px-4">
                                     <?php 
                                         $blogCategory = \App\Models\Category::where('id' , '=', $blog->category)->pluck('name');
                                         echo substr($blogCategory, 2, -2);
                                     ?> 
                                 </p>
+                                
                                 <h5 class="card-title"><strong> {{ $blog->title }} </strong></h5>
-                                <span class="header-sub">Written by <b> {{ $blog->author }} </b> on {{ $blog->created_at->format('M d, Y') }} {{ $blog->created_at->format('h:i A') }} </b> </span>
-                                <div class='card-text mt-2'>
+
+                                <small class="mt-1">
+                                    <span class="float-left">
+                                        <img src="" alt=""> By {{ $blog->author }}
+                                    </span>
+                                </small>
+                                <small class="mt-1">
+                                    <span class="float-right"> {{ $blog->created_at->format('d M, Y') }} {{ $blog->created_at->format('h:i A') }} </p>
+                                    </span>
+                                </small>
+                            </div>
+
+                            <div class="card-body">
+                                <div class='card-text'>
                                     <p> {{ substr($blog->content, 0, 110).'...' }} </p>
                                 </div>
                                 

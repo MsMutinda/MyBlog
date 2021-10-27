@@ -223,7 +223,7 @@ div.row > div.col-lg-4 > div {
 }
 
 .latest {
-    padding: 0px 90px;
+    padding: 0px 90px 40px 90px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -252,10 +252,6 @@ button {
     right: 25px;
 }
 
-.header-sub {
-    font-size: 12px;
-}
-
 .card {
     margin: 10px 15px; 
     padding: 0rem; 
@@ -263,7 +259,7 @@ button {
 }
 
 .card-body {
-    padding: 15px 0;
+    padding: 8px 0px 0px 0px;
 }
 
 .card-body .btn2 {
@@ -350,6 +346,22 @@ footer {
     padding: 0;
     margin: 0;
 }
+
+.show-blog {
+    padding: 3% 20%;
+}
+
+div.author-details > div.float-left > img {
+    border-radius: 50%;
+}
+
+.related-blogs {
+    margin-top: 50px;
+}
+
+
+
+
 
 /* Responsiveness */
 /* ----- smaller screen sizes ----- */

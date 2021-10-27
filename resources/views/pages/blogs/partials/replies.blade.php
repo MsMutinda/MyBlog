@@ -11,7 +11,7 @@
     <strong>{{ $comment->user->fname }}</strong>
     <p>{{ $comment->comment }}</p>
     <a href="" id="reply"></a>
-    <p class="btn btn-sm btn-outline-info" style="font-size: 0.8em;" id="reply-btn">Reply</p>
+    <p class="btn btn-sm" style="font-size: 0.8em; color: #fff;" id="reply-btn">Reply</p>
     <i id="like-btn1" style="font-size: 1.2em; position: relative; bottom: 5px; " class="fa fa-heart-o p-2"></i>
     <i id="like-btn2" style="font-size: 1.2em; position: relative; bottom: 5px; display: none" class="fa fa-heart p-2"></i>
     
