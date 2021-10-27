@@ -10,33 +10,55 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-5 col-sm-5">
-                <?php $latestblog = \App\Models\Blog::orderBy('created_at', 'DESC')->first();?>
-                <div class='latestblog'>
+        <div class="row first">
+            <div class="col-lg-8 col-sm-8">
+                <?php $firstblog = \App\Models\Blog::orderBy('created_at', 'DESC')->first();?>
+                <div class='firstblog row'>
+                    <div class="col-lg-7 col-sm-7">
                         <img
-                            src="{{ asset('storage/'.substr($latestblog->image_path, 7)) }}"
-                            class="card-img-top"
-                            title="{{ $latestblog->title }} image"
-                            alt="{{ $latestblog->title }} img"
+                            src="{{ asset('storage/'.substr($firstblog->image_path, 7)) }}"
+                            class="card-img"
+                            title="{{ $firstblog->title }} image"
+                            alt="{{ $firstblog->title }} img"
+                            height="495px"
                         />
-                        <div class="card-body">
-                            <h3 class="card-title"><strong> {{ $latestblog->title }} </strong></h3>
-                            <span class="header-sub">Written by <b> {{ $latestblog->author }} </b> on <b> {{ $latestblog->created_at->format('M d, Y') }} {{ $latestblog->created_at->format('h:i A') }} </b> </span>
-                            <div class='card-text mt-2'>
-                                <p style="color: #323232; font-size: 12px;"> {{ substr($latestblog->content, 0, 110).'...' }} </p>
-                            </div>
-                            <p class="btn"> <a href="{{ route('view-blog', $latestblog->id) }}" style="color: #fff;"> Read blog </a></p>
-                        </div>
+                    </div>
+                    <div class="col-lg-5 col-sm-5 text-white">
+                        <h5>{{ $firstblog->created_at->format('M d, Y') }}</h5>
+                        <h1><b> {{ $firstblog->title }} </b></h1>
+                        <p class="mt-3"> {{ substr($firstblog->content, 0, 300).'...' }} </p>
+                        <p class="btn btn-lg mt-4" style="background: #fff; width: 35%; bor"> <b><a href="{{ route('view-blog', $firstblog->id) }}" style="color: #f27a1f;"> Read blog </a></b> </p>
                     </div>
                 </div>
-            <div class="col-lg-3 col-sm-3">
+            </div>
 
+            <div class="col-lg-4 col-sm-4">
+                <h2>How to do: </h2>
+                <div>
+                    <h5>LARAVEL</h5>
+                    <h6><b>How to create a Laravel project</b></h6>
+                    <p>In this blog, you will learn how to ...</p>
+                </div>
+                <div>
+                    <h5>REACT</h5>
+                    <h6><b>How to create a React project</b></h6>
+                    <p>In this blog, you will learn how to ...</p>
+                </div>
+                <div>
+                    <h5>UI/UX</h5>
+                    <h6><b>How to create a UI/UX project</b></h6>
+                    <p>In this blog, you will learn how to ...</p>
+                </div>
+                <div>
+                    <h5>QUALITY ASSURANCE</h5>
+                    <h6><b>Tips and best practices</b></h6>
+                    <p>In this blog, you will learn how to ...</p>
+                </div>
             </div>
         </div>
 
         <div class="row"> <div class="col-lg-12 col-sm-12 ml-1"> <h2 style="font-weight: bolder; padding-left: 100px;">Latest posts</h2></div></div>
-        <hr style="width: 86%;" />
+        <hr style="width: 88%;" />
         <div class="latest">
             <div class="row">
                 @if(\App\Models\Blog::count() > 0)
@@ -88,11 +110,12 @@
         <section class="row footer2">			
             <div class="col-lg-4 col-sm-4">
                 <img src="https://zalegoacademy.ac.ke/asset/img/zalegocurrentlogo.png" class="logo size-lg" alt="zalegocurrentlogo">
+                <p>Unlock infinite possibilities</p>
             </div>
             <div class="links col-lg-2 col-sm-2" style="font-size: 20px;"><b>Quick Links</b>
                 <ul class="mt-2">
                     <li><a href="#">Zalego academy</a></li>
-                    <li> <a href="#">Privacy</a></li>
+                    <li> <a href="#">Faqs</a></li>
                     <li><a href="#">Terms & Conditions </a></li>
                 </ul>
             </div>
@@ -103,33 +126,38 @@
                     <li><a href="#">Instagram </a></li>
                 </ul>
             </div>
+            <div class="links col-lg-2 col-sm-2" style="font-size: 20px;"><b>Legal</b>
+                <ul class="mt-2">
+                    <li> <a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions </a></li>
+                    <li><a href="#">SLAs</a></li>
+                </ul>
+            </div>
             <div class="links col-lg-2 col-sm-2" style="font-size: 20px;"><b>Contact</b>
                 <ul class="mt-2">
-                    <li><a href="#">Zalego academy</a></li>
-                    <li> <a href="#">Privacy</a></li>
-                    <li><a href="#">Terms & Conditions </a></li>
+                    <li><a href="#">Nairobi, Kenya</a></li>
+                    <li> <a href="#">info@zalego.com</a></li>
+                    <li><a href="#">+2547 23 274 774 </a></li>
                 </ul>
             </div>
         </section>
-
     </main>
 
     <script type='text/javascript'>
-        $(document).on('click','#category',function() {
+        // $(document).on('click','#category', function() {
             // Get selected category id
             var category=$(this).val();
             // alert(category);
 
-           
-            
+
         function submitter(value) {
             console.log(value)
-            $.get("{{ url('blogs/') }}/"+value,function(response){
+            $.get("{{ url('blogs/') }}/"+value, function(response){
                 return value;
                 // console.log(response)
             })
         }
-    });
+    // });
 
     </script>
 
