@@ -57,8 +57,20 @@
             </div>
         </div>
 
-        <div class="row"> <div class="col-lg-12 col-sm-12 ml-1"> <h2 style="font-weight: bolder; padding-left: 100px;">Latest posts</h2></div></div>
+        <div class="row"> 
+            <div class="col-lg-12 col-sm-12 ml-1"> 
+                <h2 style="font-weight: bolder; padding-left: 100px;">Latest posts</h2>
+                <p>
+                    <ul style="list-style-type: none;">
+                        @foreach($categories as $category)
+                        <li style="">{{$category->title}}</li>
+                        @endforeach
+                    </ul>
+                </p>
+            </div>
+        </div>
         <hr style="width: 88%;" />
+
         <div class="latest">
             <div class="row">
                 @if(\App\Models\Blog::count() > 0)
@@ -141,24 +153,9 @@
                 </ul>
             </div>
         </section>
+
     </main>
 
-    <script type='text/javascript'>
-        // $(document).on('click','#category', function() {
-            // Get selected category id
-            var category=$(this).val();
-            // alert(category);
-
-
-        function submitter(value) {
-            console.log(value)
-            $.get("{{ url('blogs/') }}/"+value, function(response){
-                return value;
-                // console.log(response)
-            })
-        }
-    // });
-
-    </script>
+    
 
 @endsection

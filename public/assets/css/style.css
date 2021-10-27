@@ -13,7 +13,7 @@ body {
 }
 
 .main {
-    margin-top: 113px;
+    margin-top: 133px;
 }
 
 a {
@@ -192,7 +192,7 @@ div.row > div.col-lg-8 > div.firstblog.row > div.col-lg-5 p {
 }
 
 div.row > div.col-lg-4 {
-    padding: 7px 70px;
+    padding: 7px 80px;
 }
 
 div.row > div.col-lg-4 > h2 {
@@ -345,9 +345,18 @@ button {
     text-decoration: underline;
 }
 
+footer {
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
 /* Responsiveness */
 /* ----- smaller screen sizes ----- */
 @media (max-width: 520px) {
+    body {
+        overflow-x: hidden;
+    }
     .nav__hamburger {
       /* making the hamburger menu icon visible on smaller screen sizes */
         display: flex;
@@ -442,11 +451,6 @@ button {
 }
 
 @media (max-width: 767px) {
-    .featured-blogs {
-        margin-top: 115px;
-        margin-bottom: 130px;
-    }
-
     .card {
         /* width: 43%; */
         width: 90%;

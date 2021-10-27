@@ -1,8 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<br><br><br>
-    <section class='card shadow-sm py-3 px-4 mb-2' style='margin: 0 auto; width: 50vw;'>
+    <main role="main" class='main card shadow py-3 px-4 mb-3' style='margin: 0 auto; width: 50vw; margin-top: 130px;'>
         <h3>Add a new blog</h3> 
         <form method="POST" action="{{ route('save-blog') }}" enctype="multipart/form-data">
         @csrf                 
@@ -43,5 +42,5 @@
             <button class="btn btn-success float-left" style="background-color: #568203;" type="submit" onclick="return confirm('You are about to save this Blog, continue?');"> Save Blog</button>
 
         </form>
-    </section>
+</main>
 @endsection

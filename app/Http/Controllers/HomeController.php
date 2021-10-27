@@ -15,22 +15,16 @@ class HomeController extends Controller
      */
     public function index(Request $request) 
     {    
-        // fetch all blogs
+        // fetch latest blogs
         $blogs = Blog::orderBy('created_at', 'DESC')->take(6)->get();
 
         // fetch blog categories
-        // $categories = Category::all();
+        $categories = Category::all();
 
         // get featured posts
         $featuredBlogs = Blog::all()->random(3);
 
-        return view('pages.home')->with(['blogs'=>$blogs, 'featuredBlogs'=>$featuredBlogs]);
+        return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories, 'featuredBlogs'=>$featuredBlogs]);
     }
 
-    public function filterByCategory($id) {
-        
-        // show blogs for a specific category
-        $filtered = Blog::where('category', $id)->get();
-        return view('pages.blogs.category')->with('filtered', $filtered);
-    }
 }

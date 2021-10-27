@@ -5,7 +5,8 @@
 
 <body>
     <?php 
-        $categories = \App\Models\Category::all()
+        $categories = \App\Models\Category::all();
+        // $filtered = Blog::where('category', $id)->get();
     ?>
     <nav class='navbar fixed-top'>    
         <a href="/" class='nav__logo float-left'>
@@ -19,20 +20,20 @@
             <div class="nav__listcontainer" tabindex="0">
                 <ul class="nav__menu auth" id="navmenu">
                     <li class="nav__item"><a href="/">Home</a></li>
-                    <li class="nav__item"><a href="{{ route('view-profile') }}">Profile</a></li>
                     <!-- @role('Manager') -->
                     <li class="nav__item">
-                        <select class="nav-select" onchange="location = this.value;">
+                        <select class="nav-select" style="width: 100px;" onchange="location = this.value;">
                             <option value="">Blogs </option>
                             <option value="{{ route('create-blog') }}" > Create blog </option>
-                            <option value="{{ route('viewBlogArchives') }}"> Archived </option>
+                            <option value="{{ route('viewBlogArchives') }}"> View Archived </option>
                         </select>
                     </li>
                     <!-- @endrole -->
-                    <li class="nav__item"> <a href=""> Courses </a> </li>
-                    <li class="nav__item"><a href=""> Programs </a></li>
+                    <li class="nav__item"> <a href="https://zalegoacademy.ac.ke/courses"> Courses </a> </li>
+                    <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>
                     <li class="nav__item float-right ml-5 pl-5"> 
                         <ul style="padding: 0;">
+                            <li class="nav__item"><a href="{{ route('view-profile') }}">Profile</a></li>
                             <li><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
                         </ul>
                     </li>  
@@ -41,7 +42,7 @@
                     <i class="fa fa-bars ham ml-2"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; font-weight: 700; "> Blog categories </p>
                 </a>
             </div>
-            <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle"></i></a>
+            <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle text-danger"></i></a>
         </div>
         @endauth
         
@@ -51,16 +52,17 @@
             <div class="nav__listcontainer" tabindex="0">
                 <ul class="nav__menu guest" id="navmenu">
                     <li class="nav__item"><a href="/">Home</a></li>
+                    <!-- <li class="nav__item"><a href="https://zalegoacademy.ac.ke/">Home</a></li> -->
                     <li class="nav__item">
                         <select class="nav-select" onchange="location = this.value;"> 
-                            <option value=""> Blog Categories </option>
+                            <option value="Blog Categories"> Blog Categories </option>
                                 @foreach($categories as $category)
-                                    <option class="" id="category" value="{{ $category->id }}"> <a href="{{ url('/blogs/'.Str::slug($category->name)) }}" class="nav__link" onclick="submitter({{ $category->id }})" value="{{ $category->id }}"> {{ $category->name }} </a></li>
+                                    <option id="category" value="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}"> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" class="nav__link" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{ $category->name }} </a></option>
                                 @endforeach
                         </select>
                     </li>
-                    <li class="nav__item"> <a href=""> Courses </a> </li>
-                    <li class="nav__item"><a href=""> Programs </a></li>
+                    <li class="nav__item"> <a href="https://zalegoacademy.ac.ke/courses"> Courses </a> </li>
+                    <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>
                     <li class="nav__item float-right ml-5 pl-5"> 
                         <ul style="padding: 0;">
                             <li style="position: relative; bottom: 10px;"><a href="{{ route('login') }}">Sign in </a></li>
@@ -72,10 +74,22 @@
                     <i class="fa fa-bars ham ml-2"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; font-weight: 700; "> Blog categories </p>
                 </a>
             </div>
-            <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle"></i></a>
+            <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle text-danger"></i></a>
         </div>
         @endguest
     </nav>
+
+    <script type='text/javascript'>
+
+        function submitter(value, name) {
+            console.log(value)
+            $.get("{{ url('blogs/') }}/"+value, function(response){
+                return value;
+                console.log(response)
+            })
+        }
+
+    </script>
     
     <div class="container-fluid">
     @yield('content')
