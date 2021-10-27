@@ -12,56 +12,59 @@
     </div>
 
     <main role="main" style="margin: 0 auto;">
-        @if(count($archived) > 0)
-            <table class="table table-striped " id='archives'>
-                <thead>
-                    <tr class="">
-                        <th>#</th>
-                        <th> Blog Title </th>
-                        <th> Category </th> 
-                        <th> Author </th>
-                        <th> Date Deleted </th>
-                        <th> Actions </th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                @foreach($archived as $archive)
-                    <tr>
-                        <td>{{ $archive->id }} </td>
-                        <td>{{ $archive->title}}</td>
-                        <td> 
-                        <!-- {{ $archive->category }}  -->
-                        <?php 
-                            $archiveCategory = \App\Models\Category::where('id' , '=', $archive->category)->pluck('name');
-                            echo substr($archiveCategory, 2, -2);
-                        ?> 
-                        </td>
-                        <td>{{ $archive->author }}</td>
-                        <td>{{ $archive->deleted_at->format('d-m-Y') }}</td>
-                        <td>
-                            <center>
-                                <div class="dropdown dropleft theme-green mt-2" style="width: 30px; cursor: pointer; height: 30px; border-radius: 50%; color: #000; left: -70px !important"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown"></i>
-                                    <ul class="dropdown-menu">
-                                        <li class='dropdown-item'> <a href="{{ route('restore-blog', $archive->id) }}" class="text-success btn btn-default" onclick="return confirm('Continue to restore this blog?')"> <i class="fa fa-undo"></i> Restore blog </a> </li>
-                                    </ul>
-                                </div>
-                            </center>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            
-        @else
-            <?php echo '<h4 class="text-danger"> There are no archived blogs yet </h4>' ?>
-        @endif
-    </main>
 
-    <footer class="navbar fixed-bottom text-dark text-center">
-        <div class="container text-center" style="margin-left: 41%;">
-            &copy; {{ date('Y')}} Zalego. All rights reserved.
+        <div class="archived-blogs">
+            <div class="row"> 
+                <div class="col-lg-12 col-sm-12"> 
+                    <h2 style="font-weight: bolder;"> Archived blogs </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                @if(count($archived) > 0)
+                    @foreach($archived as $a)
+                    <div class='card col-lg-5 col-sm-5'>
+                        <img
+                            src="{{ asset('storage/'.substr($a->image_path, 7)) }}"
+                            class="card-img-top"
+                            title="{{ $a->title }} image"
+                            alt="{{ $a->title }} img"
+                        />
+                        <div class="card-body">
+                            <p class="btn btn2 px-4">
+                                <?php 
+                                    $blogCategory = \App\Models\Category::where('id' , '=', $a->category)->pluck('name');
+                                    echo substr($blogCategory, 2, -2);
+                                ?> 
+                            </p>
+                            <h5 class="card-title"><strong> {{ $a->title }} </strong></h5>
+                            <div class='card-text mt-2'>
+                                <p> {{ substr($a->content, 0, 330).'...' }} </p>
+                            </div>
+
+                            <small>
+                                <span class="float-left">
+                                    <img src="" alt=""> By {{ $a->author }}
+                                </span>
+                            </small>
+                            <small>
+                                <span class="float-right"> {{ $a->created_at->format('d M, Y') }} </p>
+                                </span>
+                            </small>
+                        </div>
+
+                        <p class="readMore"> <b><a style="color: #f27a1f" href="{{ route('view-blog', $a->id) }}"> Read more </b></a> <i class="fa fa-arrow-right"></i> </p>
+
+                    </div>
+                    
+                    @endforeach
+                @else
+                    <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
+                @endif
+            </div>
+
         </div>
-    </footer>
+    
+    </main>
 
 @endsection

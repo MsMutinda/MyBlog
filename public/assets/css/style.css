@@ -348,15 +348,19 @@ footer {
 }
 
 .show-blog {
-    padding: 3% 20%;
+    padding: 3% 17%;
 }
 
 div.author-details > div.float-left > img {
     border-radius: 50%;
 }
 
-.related-blogs {
-    margin-top: 50px;
+.related-blogs, .archived-blogs {
+    margin-top: 55px;
+}
+
+.archived-blogs {
+    padding: 3% 15%;
 }
 
 

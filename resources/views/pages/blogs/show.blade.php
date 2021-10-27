@@ -9,14 +9,14 @@
             @foreach($blogs as $blog)
                 <h1 class='text-center ml-1' style="color: #F57E20;"><strong>   {{ $blog->title }} </strong>
                     <!-- <div class='float-right mt-2'>
-                        <a href="{{ route('edit-blog', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default text-white" style="font-weight: 700;"> -->
+                        <a href="{{ route('edit-blog', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default text-white" style="font-weight: 700;">  -->
                         <!-- <i class="fa fa-pencil text-primary"></i>  -->
                         <!-- Edit post </a> -->
                         
                         <!-- <a href="{{ route('archive-blog', $blog->id) }}" class="btn btn-default text-white" style="font-weight: 700;" onclick="return confirm('You are about to archive this blog. Continue?');"> -->
                         <!-- <i class="fa fa-minus-circle text-danger"></i>  -->
-                        <!-- Archive post</a>
-                    </div> -->
+                        <!-- Archive post</a> -->
+                    <!-- </div> -->
                 </h1>
                 <img
                     src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
@@ -39,7 +39,7 @@
 
                 <div class="card-body" style="margin-top: 30px;">
                     @if(count($blog->comments)>0)
-                        <h5 class="mt-5">Comments
+                        <h6 class="mt-5">Comments
                             <span class="comment-count btn btn-sm ">{{ count($blog->comments) }}</span>
                             <small class="float-right">
                                 <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
@@ -51,7 +51,7 @@
                                     <span class="dislike-count">{{ $blog->dislikes() }}</span>
                                 </span>
                             </small>
-                        </h5>
+                        </h6>
                         <!-- <div class="float-right">
                             <a href="" class="btn btn-default">
                             <i class="fa check text-success"></i> Approve comment </a>
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="card-body mb-4 mt-3">
-                    <h5 class="mt-2">Leave a comment </h5>
+                    <h5 class="mt-3">Leave a comment </h5>
                     <form method="post" action="{{ route('add-comment') }}">
                         @csrf
                         <div class="form-group">
@@ -119,11 +119,11 @@
 
                             <small>
                                 <span class="float-left">
-                                    <img src="" alt=""> By {{ $blog->author }}
+                                    <img src="" alt=""> By {{ $r->author }}
                                 </span>
                             </small>
                             <small>
-                                <span class="float-right"> {{ $blog->created_at->format('d M, Y') }} </p>
+                                <span class="float-right"> {{ $r->created_at->format('d M, Y') }} </p>
                                 </span>
                             </small>
                         </div>
