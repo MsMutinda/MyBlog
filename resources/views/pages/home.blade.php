@@ -3,8 +3,8 @@
 @section('content')
 
     <main role="main" class="main">
-        <div class="row topheader">
-            <div class="col-lg-12 col-sm-12">
+        <div class="row">
+            <div class="topheader col-lg-12 col-sm-12">
                 <h3>Blog</h3>
                 <p>Get more insights about your technology journey</p>
             </div>
@@ -58,8 +58,8 @@
         </div>
 
         <div class="row"> 
-            <div class="col-lg-12 col-sm-12 ml-1"> 
-                <h2 style="font-weight: bolder; padding-left: 100px;">Latest posts</h2>
+            <div class="latestheader col-lg-12 col-sm-12 ml-1"> 
+                <h2>Latest posts</h2>
                 <p>
                     <ul style="list-style-type: none;">
                         @foreach($categories as $category)

@@ -146,7 +146,6 @@ nav ul li {
     font-size: 14px;
 }
 
-
 li.btn {
     border-radius: 20px;
     background: #f27a1f;
@@ -154,13 +153,12 @@ li.btn {
     margin: 0;
 }
 
-div.row.topheader > div.col-lg-12 {
+div.row > div.topheader {
     background: #f27a1f;
     height: 250px;
-    padding: 0;
 }
 
-.topheader h3, .topheader p {
+div.topheader h3, div.topheader p {
     position: relative;
     top: 25%;
     left: 5%;
@@ -177,49 +175,54 @@ div.row.first {
     height: 590px;
 }
 
-div.row > div.col-lg-8 > div.firstblog.row > div.col-lg-7 {
+div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-7 {
     padding: 0;
 }
 
-div.row > div.col-lg-8 > div.firstblog.row > div.col-lg-5 {
+div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 {
     margin: 0;
     padding: 40px 20px;
     background: #f27a1f;
 }
 
-div.row > div.col-lg-8 > div.firstblog.row > div.col-lg-5 p {
+div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 p {
     font-size: 15px;
 }
 
-div.row > div.col-lg-4 {
+div.row.first > div.col-lg-4 {
     padding: 7px 80px;
 }
 
-div.row > div.col-lg-4 > h2 {
+div.row.first > div.col-lg-4 > h2 {
     margin-bottom: 20px;
     font-size: 30px;
 }
 
-div.row > div.col-lg-4 > div > h5 {
+div.row.first > div.col-lg-4 > div > h5 {
     color:#f27a1f;
     font-size: 16px;
 }
 
-div.row > div.col-lg-4 > div > h6 {
+div.row.first > div.col-lg-4 > div > h6 {
     font-size: 13px;
 }
 
-div.row > div.col-lg-4 > div > p {
+div.row.first > div.col-lg-4 > div > p {
     font-size: 13px;
 }
 
-div.row > div.col-lg-4 > div {
+div.row.first > div.col-lg-4 > div {
     padding: 5px 20px;
 }
 
 .blogs {
     display: grid;
     grid-template-columns: auto auto auto;
+}
+
+div.row > div.latestheader > h2 {
+    font-weight: bolder; 
+    padding-left: 100px;
 }
 
 .latest {
@@ -296,20 +299,16 @@ button {
 /* Footer */
 .footer2 {
     background-color: #fff;
-    height: 300px;
-    padding-top: 40px 30px;
-}
-
-.socials {
-    padding: 60px;
+    height: 270px;
+    padding: 30px 30px;
 }
 
 .links {
-    margin-top: 70px;
+    margin-top: 50px;
 }
 
 .footer2 > div.col-lg-4 img {
-    padding: 55px;
+    padding: 35px 55px;
     position: relative;
     left: 60px;
 }
@@ -317,7 +316,7 @@ button {
 .footer2 > div.col-lg-4 p {
     position: relative;
     left: 115px;
-    bottom: 55px;
+    bottom: 35px;
     font-family: 'Poppins', cursive;
     font-size: 12px;
 }
@@ -370,9 +369,7 @@ div.author-details > div.float-left > img {
 /* Responsiveness */
 /* ----- smaller screen sizes ----- */
 @media (max-width: 520px) {
-    body {
-        overflow-x: hidden;
-    }
+
     .nav__hamburger {
       /* making the hamburger menu icon visible on smaller screen sizes */
         display: flex;
@@ -454,22 +451,101 @@ div.author-details > div.float-left > img {
         text-decoration: underline;
     }
 
+    div.row > div.topheader {
+        background: #f27a1f;
+        height: 250px;
+    }
+    
+    div.topheader h3, div.topheader p {
+        position: relative;
+        top: 15%;
+        left: 5%;
+    }
+    
+    .topheader h3 {
+        font-size: 2rem;
+    }
+    
+    div.row.first {
+        padding: 28px 20px 55px 20px;
+        height: 590px;
+    }
+
+    div.row.first > div.col-lg-4 {
+        padding: 7px 20px;
+    }
+
+    div.row > div.latestheader > h2 {
+        padding-left: 30px;
+        margin-top: 100px;
+    }
+
+    .latest {
+        padding: 0px 25px 20px 25px;
+    }
+
     footer {
         font-size: 12px;
         padding: 0;
         margin: 0;
     }
 
-    .socials {
-        margin-bottom: 0;
+    section.row.footer2 {
+        margin: 0;
+        background-color: #fff;
+        height: 300px;
+        padding: 30px 20px;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+    
+    section.row.footer2 > div.col-lg-4.col-sm-4 img.logo.size-lg {
+        padding: 20px 10px;
+        position: relative;
+        left: 0;
+        right: -6px;
     }
 
+    .footer2 > div.col-lg-4.col-sm-4 {
+        padding: 0;
+    }
+
+    .footer2 > div.col-lg-4 p {
+        margin: 0;
+        position: relative;
+        bottom: 0;
+        top: -20px;
+        left: 10px;
+    }    
+
+    .links {
+        margin-top: 30px;
+    }
+
+    .links.col-lg-2.col-sm-2 {
+        padding: 0 10px;
+    }
+    
 }
 
-@media (max-width: 767px) {
+
+/* Desktop screens */
+@media (max-width: 767px) 
+{
+    /* body {
+        overflow-x: hidden;
+    } */
+
     .card {
         /* width: 43%; */
         width: 90%;
     }
+
+}
+
+
+/* Larger screens */
+@media (min-width: 768px) 
+{
 
 }

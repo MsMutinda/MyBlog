@@ -1,5 +1,5 @@
-<div class="row topheader">
-    <div class="col-lg-12 col-sm-12">
+<div class="row">
+    <div class="topheader col-lg-12 col-sm-12">
         <h3 style="text-transform: capitalize; padding: 10px 30px; width: 80%;"> Building the talent pipeline to power africa's technology industry</h3>
     </div>
 </div>
