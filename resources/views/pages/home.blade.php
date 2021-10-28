@@ -84,7 +84,7 @@
                                 alt="{{ $blog->title }} img"
                             />
                             <div class="card-body">
-                                <p class="btn btn2 mt-1 px-4">
+                                <p class="btn btn2 mt-1">
                                     <?php 
                                         $blogCategory = \App\Models\Category::where('id' , '=', $blog->category)->pluck('name');
                                         echo substr($blogCategory, 2, -2);

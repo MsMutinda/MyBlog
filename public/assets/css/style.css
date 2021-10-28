@@ -1,15 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
 
 body {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     font-family:'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 .main {
@@ -77,6 +73,11 @@ nav {
 
 .nav__item {
     margin-right: 4rem;
+}
+
+li.nav__item.float-right {
+    margin-left: 28px;
+    padding-left: 28px;
 }
 
 .nav__item a:hover {
@@ -171,7 +172,7 @@ div.topheader h3, div.topheader p {
 }
 
 div.row.first {
-    padding: 28px 100px 55px 100px;
+    padding: 28px 110px 55px 110px;
     height: 590px;
 }
 
@@ -295,6 +296,22 @@ button {
     text-decoration: underline;
 }
 
+div.row.bottomheader > div.col-lg-12.col-sm-12 {
+    text-transform: capitalize; 
+    padding: 10px 30px; 
+    width: 100vw;
+    background: #f27a1f;
+    height: 280px;
+}
+
+div.bottomheader div.col-lg-12.col-sm-12 h3 {
+    position: relative;
+    top: 25%;
+    left: 5%;
+    font-weight: bolder;
+    color: #fff;
+    font-size: 3.2rem;
+}
 
 /* Footer */
 .footer2 {
@@ -370,6 +387,15 @@ div.author-details > div.float-left > img {
 /* ----- smaller screen sizes ----- */
 @media (max-width: 520px) {
 
+    body {
+        overflow-x: hidden !important;
+        width: 100vw;
+    }
+
+    nav {
+        color: #000;
+    }
+
     .nav__hamburger {
       /* making the hamburger menu icon visible on smaller screen sizes */
         display: flex;
@@ -384,8 +410,8 @@ div.author-details > div.float-left > img {
         top: -1000px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        /* justify-content: center; */
+        /* align-items: center; */
         color: #25310c;
         box-shadow: 0 0 30px rgba(0, 0, 0, 0.19);
         border: 2px solid rgba(255, 255, 255, 0.2); /* part of glass morphism effect */
@@ -418,7 +444,7 @@ div.author-details > div.float-left > img {
 
     .nav__item {
         margin-right: 0;
-        padding: 0.5rem 1.5rem;
+        padding: 0.5rem 1rem;
     }
 
     .nav__link:hover,
@@ -446,19 +472,36 @@ div.author-details > div.float-left > img {
         z-index: 1;
     }
 
+    li.nav__item.float-right,
+    li.nav__item.float-right ul {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    li.nav__item.float-right,
+    li.nav__item.float-right ul li {
+        margin-top: 20px;
+        margin-left: 1px;
+    }
+
+    li.nav__item.btn.free {
+        padding: 5px 10px;
+        margin-left: 10px;
+        margin-bottom: 8px;
+    }
+
     #hamburger:hover {
         color: #ddd;
         text-decoration: underline;
     }
 
     div.row > div.topheader {
-        background: #f27a1f;
-        height: 250px;
+        height: 180px;
     }
     
     div.topheader h3, div.topheader p {
         position: relative;
-        top: 15%;
+        top: 20%;
         left: 5%;
     }
     
@@ -471,17 +514,50 @@ div.author-details > div.float-left > img {
         height: 590px;
     }
 
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-7.col-sm-7 > img,
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-5.col-sm-5
+    {
+        height: 400px;
+    }
+
     div.row.first > div.col-lg-4 {
         padding: 7px 20px;
+        display: none;
     }
 
     div.row > div.latestheader > h2 {
         padding-left: 30px;
-        margin-top: 100px;
+        margin-top: 300px;
     }
 
     .latest {
         padding: 0px 25px 20px 25px;
+    }
+
+    div.blogs > div.card > div.card-body > h5.card-title {
+        font-size: 17px;
+    }
+
+    .card-body .btn2 {
+        font-size: 11px;
+        padding: 10px 10px;
+    }
+
+    .bottomheader {
+        margin: 0;
+        padding: 0;
+    }
+
+    div.row.bottomheader > div.col-lg-12.col-sm-12 {
+        height: 180px;
+        padding: 10px 20px;
+    }
+
+    div.bottomheader > div.col-lg-12.col-sm-12 > h3 { 
+        font-size: 1.5rem;
+        position: relative;
+        top: 20%;
+        left: 5%;
     }
 
     footer {

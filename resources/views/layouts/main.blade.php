@@ -31,10 +31,10 @@
                     <!-- @endrole -->
                     <li class="nav__item"> <a href="https://zalegoacademy.ac.ke/courses"> Courses </a> </li>
                     <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>
-                    <li class="nav__item float-right ml-5 pl-5"> 
+                    <li class="nav__item float-right"> 
                         <ul style="padding: 0;">
                             <li class="nav__item"><a href="{{ route('view-profile') }}">Profile</a></li>
-                            <li><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
+                            <li class="nav__item"><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
                         </ul>
                     </li>  
                 <ul> 
@@ -63,10 +63,10 @@
                     </li>
                     <li class="nav__item"> <a href="https://zalegoacademy.ac.ke/courses"> Courses </a> </li>
                     <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>
-                    <li class="nav__item float-right ml-5 pl-5"> 
-                        <ul style="padding: 0;">
-                            <li style="position: relative; bottom: 10px;"><a href="{{ route('login') }}">Sign in </a></li>
-                            <li class="btn px-4 py-2" style="position: relative; bottom: 10px;"> <a href="{{ route('register') }}" class="text-white"> Try for free </a> </li>
+                    <li class="nav__item float-right"> 
+                        <ul>
+                            <li class="nav__item" style="position: relative; bottom: 10px;"><a href="{{ route('login') }}">Sign in </a></li>
+                            <li class="nav__item btn free" style="position: relative; bottom: 10px;"> <a href="{{ route('register') }}" class="text-white"> Try for free </a> </li>
                         </ul>
                     </li>
                 </ul>
