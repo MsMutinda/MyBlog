@@ -64,7 +64,7 @@ nav {
 
 .nav__menu {
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
     list-style: none;
     display: flex;
     flex-wrap: wrap;
@@ -76,9 +76,13 @@ nav {
 }
 
 li.nav__item.float-right {
-    margin-left: 28px;
-    padding-left: 28px;
+    margin-left: 4rem;
+    padding-left: 4rem;
 }
+
+/* .nav__item a {
+    padding: 5px;
+} */
 
 .nav__item a:hover {
     color: #F57E20;
@@ -186,6 +190,15 @@ div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 {
     background: #f27a1f;
 }
 
+div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 > p.btn {
+    background: #fff; 
+    width: 36%;
+}
+
+div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 > p.btn a {
+    color: #f27a1f;
+}
+
 div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 p {
     font-size: 15px;
 }
@@ -221,7 +234,32 @@ div.row.first > div.col-lg-4 > div {
     grid-template-columns: auto auto auto;
 }
 
-div.row > div.latestheader > h2 {
+.categories {
+    height: 290px;
+}
+
+div.row > div.categories.col-lg-12.col-sm-12 > ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    margin-left: 55px;
+}
+
+div.row > div.categories.col-lg-12.col-sm-12 > ul > li {
+    display: inline;
+    padding: 40px 10px;
+    /* background:#f27a1f; */
+    /* border-radius: 20px; */
+}
+
+div.row > div.categories > ul > li > a {
+    color: #000;
+    /* color: #f27a1f; */
+}
+
+div.row > div.latestheader > h2,
+div.row > div.categories.col-lg-12.col-sm-12 > h2
+{
     font-weight: bolder; 
     padding-left: 100px;
 }
@@ -494,6 +532,31 @@ div.author-details > div.float-left > img {
         color: #ddd;
         text-decoration: underline;
     }
+
+    .categories {
+        height: 100px;
+        margin-top: 300px;
+        padding: 0px 15px 20px 15px;
+    }
+    
+    div.row > div.categories.col-lg-12.col-sm-12 > ul {
+        grid-template-columns: auto auto auto auto;
+        margin: 0;
+        padding: 0;
+    }
+
+    div.row > div.categories.col-lg-12.col-sm-12 > ul > li {
+        padding: 25px 20px;
+        font-size: 14px;
+    }    
+
+    div.row > div.categories.col-lg-12.col-sm-12 > h2 {
+        padding-left: 15px;
+    }
+
+    /* div.row > div.categories.col-lg-12.col-sm-12 > ul > li {
+        border: 1px solid #ddd;
+    } */
 
     div.row > div.topheader {
         height: 180px;

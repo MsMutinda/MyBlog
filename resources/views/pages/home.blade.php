@@ -27,7 +27,7 @@
                         <h5>{{ $firstblog->created_at->format('M d, Y') }}</h5>
                         <h1><b> {{ $firstblog->title }} </b></h1>
                         <p class="mt-3"> {{ substr($firstblog->content, 0, 300).'...' }} </p>
-                        <p class="btn btn-lg mt-4" style="background: #fff; width: 35%; bor"> <b><a href="{{ route('view-blog', $firstblog->id) }}" style="color: #f27a1f;"> Read blog </a></b> </p>
+                        <p class="btn btn-lg mt-4"> <b><a href="{{ route('view-blog', $firstblog->id) }}"> Read blog </a></b> </p>
                     </div>
                 </div>
             </div>
@@ -58,15 +58,19 @@
         </div>
 
         <div class="row"> 
-            <div class="latestheader col-lg-12 col-sm-12 ml-1"> 
-                <h2>Latest posts</h2>
-                <p>
-                    <ul style="list-style-type: none;">
-                        @foreach($categories as $category)
-                        <li style="">{{$category->title}}</li>
-                        @endforeach
-                    </ul>
-                </p>
+            <div class="categories col-lg-12 col-sm-12"> 
+                <h2>Categories </h2>
+                <ul>
+                    @foreach($categories as $category)
+                    <li> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{$category->name}} </a> </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+        <div class="row"> 
+            <div class="latestheader col-lg-12 col-sm-12"> 
+                <h2>Latest posts </h2>
             </div>
         </div>
         <hr style="width: 88%;" />
@@ -128,6 +132,16 @@
 
     </main>
 
-    
+    <script type='text/javascript'>
+
+        function submitter(value, name) {
+            console.log(value)
+            $.get("{{ url('blogs/') }}/"+value, function(response){
+                return value;
+                console.log(response)
+            })
+        }
+
+    </script>
 
 @endsection

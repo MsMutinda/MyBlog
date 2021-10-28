@@ -53,14 +53,15 @@
                 <ul class="nav__menu guest" id="navmenu">
                     <li class="nav__item"><a href="/">Home</a></li>
                     <!-- <li class="nav__item"><a href="https://zalegoacademy.ac.ke/">Home</a></li> -->
-                    <li class="nav__item">
+                    <li class="nav__item"><a href=""> Tutors </a> </li>
+                    <!-- <li class="nav__item">
                         <select class="nav-select" onchange="location = this.value;"> 
                             <option value="Blog Categories"> Blog Categories </option>
                                 @foreach($categories as $category)
                                     <option id="category" value="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}"> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" class="nav__link" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{ $category->name }} </a></option>
                                 @endforeach
                         </select>
-                    </li>
+                    </li> -->
                     <li class="nav__item"> <a href="https://zalegoacademy.ac.ke/courses"> Courses </a> </li>
                     <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>
                     <li class="nav__item float-right"> 
@@ -71,7 +72,7 @@
                     </li>
                 </ul>
                 <a id="hamburger" href="#navmenu" title="menu" class="nav__hamburger">
-                    <i class="fa fa-bars ham ml-2"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; font-weight: 700; "> Blog categories </p>
+                    <i class="fa fa-bars ham ml-2 mr-3"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; right: 10px; font-weight: 700; "> Menu </p>
                 </a>
             </div>
             <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle text-danger"></i></a>
@@ -79,17 +80,6 @@
         @endguest
     </nav>
 
-    <script type='text/javascript'>
-
-        function submitter(value, name) {
-            console.log(value)
-            $.get("{{ url('blogs/') }}/"+value, function(response){
-                return value;
-                console.log(response)
-            })
-        }
-
-    </script>
     
     <div class="container-fluid">
     @yield('content')

@@ -27,4 +27,15 @@ class HomeController extends Controller
         return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories, 'featuredBlogs'=>$featuredBlogs]);
     }
 
+    public function filterByCategory($id, $name) {
+        // fetch blog categories
+        $categories = Category::all();
+
+        // show blogs for a specific category
+        $filtered = Blog::where('category', $id)->get();
+        $categoryname = Category::where('id', $id)->pluck('name');
+
+        return view('pages.blogs.filtered')->with(['categories'=>$categories, 'filtered'=>$filtered, 'categoryname'=>$categoryname]);
+    }
+
 }
