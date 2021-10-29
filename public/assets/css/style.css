@@ -28,6 +28,10 @@ nav {
     padding-bottom: 40px;
 }
 
+.navbar > a > img {
+    padding-left: 20px;
+}
+
 .nav__logo {
     text-decoration: none;
     color: inherit;
@@ -80,9 +84,10 @@ li.nav__item.float-right {
     padding-left: 4rem;
 }
 
-/* .nav__item a {
-    padding: 5px;
-} */
+li.nav__item.float-right > ul > li {
+    position: relative; 
+    bottom: 10px;
+}
 
 .nav__item a:hover {
     color: #F57E20;
@@ -113,7 +118,7 @@ nav ul {
 
 nav > a > p {
     position: absolute;
-    margin-left: 43px;
+    margin-left: 48px;
     margin-top: -15px !important;
     font-family: "Dancing Script" !important;
     font-style: normal;
@@ -176,7 +181,7 @@ div.topheader h3, div.topheader p {
 }
 
 div.row.first {
-    padding: 28px 110px 55px 110px;
+    padding: 28px 110px 50px 110px;
     height: 590px;
 }
 
@@ -186,7 +191,7 @@ div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-7 {
 
 div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 {
     margin: 0;
-    padding: 40px 20px;
+    padding: 20px 20px;
     background: #f27a1f;
 }
 
@@ -199,8 +204,18 @@ div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 > p.btn a {
     color: #f27a1f;
 }
 
+div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 h1 {
+    margin-top: 20px;
+}
+
 div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 p {
-    font-size: 15px;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+div.row.first > div.col-lg-8 > div.firstblog.row > div.col-lg-5 p.btn {
+    margin-top: 30px;
+    width: 40%;
 }
 
 div.row.first > div.col-lg-4 {
@@ -288,6 +303,7 @@ button {
     text-decoration: underline;
     text-decoration-thickness: 2px;
 }
+
 .avatar-details {
     list-style-type: none;
     position: relative;
@@ -416,7 +432,6 @@ div.author-details > div.float-left > img {
 .archived-blogs {
     padding: 3% 15%;
 }
-
 
 
 
@@ -668,23 +683,106 @@ div.author-details > div.float-left > img {
 }
 
 
-/* Desktop screens */
-@media (max-width: 767px) 
-{
-    /* body {
-        overflow-x: hidden;
-    } */
 
-    .card {
-        /* width: 43%; */
-        width: 90%;
+/* ipads */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .navbar > a > img {
+        width: 150px;
+        height: 80px;
+        padding-left: 0;
+    }
+
+    .nav__menucontainer {
+        position: relative;
+        bottom: -20px;
+    }
+
+    .nav__menu {
+        font-size: 0.75rem;
+    }
+
+    .free a {
+        font-size: 12px;
+        padding: 3px;
+        font-weight: bold;
+    }
+    .nav__item {
+        margin-right: 1.7rem;
+    }
+
+    li.nav__item.float-right {
+        margin-top: 1rem;
+        margin-left: 50px;
+        padding-left: 0;
+    }
+
+    li.nav__item.float-right > ul {
+        padding-left: 0;
+        position: relative;
+        bottom: 15px;
+    }
+
+    li.nav__item.float-right > ul > li {
+        margin-right: 0.7rem;
+    }
+
+    div.row.first {
+        padding: 18px 8px 55px 8px;
+        height: 595px;
+    }
+
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-7.col-sm-7 > img,
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-5.col-sm-5
+    {
+        height: 437px;
+    }
+
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-5.col-sm-5 h1 {
+        font-size: 30px;
+    }
+
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-5.col-sm-5 {
+        padding: 20px;
+    }
+
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-5.col-sm-5 p {
+        font-size: 12.5px;
+        margin-top: 0px;
+    }
+
+    div.row.first > div.col-lg-8.col-sm-8 > div.firstblog.row > div.col-lg-5.col-sm-5 p.btn {
+        margin-top: 10px;
+        width: 100px;
+    }
+
+    div.row.first > div.col-lg-4 {
+        padding: 0 10px;
+        /* display: none; */
+    }
+
+    div.row.first > div.col-lg-4 > h2 {
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+    
+    div.row.first > div.col-lg-4 > div {
+        padding: 0 10px;
+    }
+
+    div.row.first > div.col-lg-4 > div > h5 {
+        font-size: 14px;
     }
 
 }
 
 
+
 /* Larger screens */
-@media (min-width: 768px) 
+@media (max-width: 1024px) 
 {
 
 }

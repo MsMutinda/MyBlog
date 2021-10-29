@@ -10,11 +10,11 @@
     ?>
     <nav class='navbar fixed-top'>    
         <a href="/" class='nav__logo float-left'>
-            <img src="https://zalegoacademy.ac.ke/asset/img/zalegocurrentlogo.png" class="logo size-lg pl-3" title="Zalego Academy Logo" alt="zalegocurrentlogo">
+            <img src="https://zalegoacademy.ac.ke/asset/img/zalegocurrentlogo.png" class="logo size-lg" title="Zalego Academy Logo" alt="zalegocurrentlogo">
             <p>Invest In Thyself!</p>
         </a>
 
-        <!-- Authenticated user -->
+        <!-- Authenticated user menu -->
         @auth
         <div class="nav__menucontainer">
             <div class="nav__listcontainer" tabindex="0">
@@ -46,7 +46,7 @@
         </div>
         @endauth
         
-        <!-- Guest users -->
+        <!-- Guest user menu -->
         @guest
         <div class="nav__menucontainer">
             <div class="nav__listcontainer" tabindex="0">
@@ -66,8 +66,8 @@
                     <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>
                     <li class="nav__item float-right"> 
                         <ul>
-                            <li class="nav__item" style="position: relative; bottom: 10px;"><a href="{{ route('login') }}">Sign in </a></li>
-                            <li class="nav__item btn free" style="position: relative; bottom: 10px;"> <a href="{{ route('register') }}" class="text-white"> Try for free </a> </li>
+                            <li class="nav__item"><a href="{{ route('login') }}">Sign in </a></li>
+                            <li class="nav__item btn free"> <a href="{{ route('register') }}" class="text-white"> Try for free </a> </li>
                         </ul>
                     </li>
                 </ul>

@@ -26,8 +26,8 @@
                     <div class="col-lg-5 col-sm-5 text-white">
                         <h5>{{ $firstblog->created_at->format('M d, Y') }}</h5>
                         <h1><b> {{ $firstblog->title }} </b></h1>
-                        <p class="mt-3"> {{ substr($firstblog->content, 0, 300).'...' }} </p>
-                        <p class="btn btn-lg mt-4"> <b><a href="{{ route('view-blog', $firstblog->id) }}"> Read blog </a></b> </p>
+                        <p> {{ substr($firstblog->content, 0, 300).'...' }} </p>
+                        <p class="btn btn-lg"> <b><a href="{{ route('view-blog', $firstblog->id) }}"> Read blog </a></b> </p>
                     </div>
                 </div>
             </div>
