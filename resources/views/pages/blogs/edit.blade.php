@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal-{{2}}" role="dialog">
+<div class="modal fade" id="myModal-{{$single->id}}" role="dialog">
     <div class="modal-dialog">
         <div class='modal-content px-3' id='editModal'>
             <div class='modal-header'>
@@ -8,7 +8,7 @@
             </div>
         
             <div class='modal-body'>
-                <form action="{{ route('update-blog', 2) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('update-blog', $single->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="w-full sm:w-auto order-last sm:order-first">

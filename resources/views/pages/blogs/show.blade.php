@@ -70,7 +70,6 @@
                     </form>
                 </div>
 
-                <!-- @include('pages.blogs.edit') -->
         @endforeach
         @endif
 

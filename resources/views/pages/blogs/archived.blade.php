@@ -22,7 +22,7 @@
 
             <div class="row">
                 @if(count($archived) > 0)
-                <table class="table" id="archives">
+                <table class="table table-hover" id="archives" style="width: 90vw">
                     <thead>
                         <th>#</td>
                         <th>Blog title</th>
@@ -46,7 +46,7 @@
                             <td>{{ $a->deleted_at }} </td>
                             <td>
                                 <center>
-                                    <div class="dropdown dropright"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown" style="cursor: pointer; position: relative; right: 30px;"></i>
+                                    <div class="dropdown dropright"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown" style="cursor: pointer;"></i>
                                         <ul class="dropdown-menu">
                                             <li class="dropdown-item">
                                                 <a class="btn" href="{{ url('/blog/$a->id/restore') }}">

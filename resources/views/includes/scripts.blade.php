@@ -9,6 +9,7 @@
 $(document).ready(function() {
         $(function () {
                 $("#archives").DataTable();
+                $("#all-blogs").DataTable();
         });
 });
 </script>
