@@ -466,22 +466,21 @@ div.author-details > div.float-left > img {
     border-radius: 50%;
 }
 
-.related-blogs,
-.archived-blogs {
+.related-blogs {
     margin-top: 55px;
 }
 
 .archived-blogs {
-    margin-top: 30px;
+    margin-top: 80px;
 }
 
 .archived-blogs {
-    padding: 40px;
+    padding: 50px;
     margin-left: 20px;
 }
 
 .all-blogs {
-    padding: 40px;
+    padding: 50px;
     margin-top: 90px;
 }
 

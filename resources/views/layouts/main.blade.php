@@ -21,14 +21,14 @@
                 <ul class="nav__menu auth" id="navmenu">
                     <li class="nav__item"><a href="/">Home</a></li>
                     <!-- @role('Manager') -->
-                    <li class="nav__item">
-                        <select class="nav-select" style="width: 100px;" onchange="location = this.value;">
-                            <option value="">Blogs </option>
-                            <option value="{{ route('create-blog') }}" > Create blog </option>
-                            <option value="{{ route('viewAllBlogs') }}"> View All Blogs </option>
-                            <option value="{{ route('viewBlogArchives') }}"> View Archived </option>
-                        </select>
-                    </li>
+                        <li class="nav__item">
+                            <select class="nav-select" style="width: 100px;" onchange="location = this.value;">
+                                <option value="">Blogs </option>
+                                @if(Auth::user()->can('create-blog')) <option value="{{ route('create-blog') }}" > Create blog </option> @endif  
+                                <option value="{{ route('viewAllBlogs') }}"> View All Blogs </option>
+                                @if(Auth::user()->can('view-archivedBlogs')) <option value="{{ route('viewBlogArchives') }}"> View Archived </option> @endif
+                            </select>
+                        </li>
                     <!-- @endrole -->
                     <li class="nav__item"> <a href="https://zalegoacademy.ac.ke/courses"> Courses </a> </li>
                     <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>

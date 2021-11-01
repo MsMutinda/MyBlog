@@ -19,7 +19,7 @@ class CreatePermissionsTable extends Migration
             // Store a list of all methods and their controller’s name
             $table->string('controller');
             $table->string('method');
-            // $table->string('slug');
+            $table->string('slug');
             $table->timestamps();
         });
     }

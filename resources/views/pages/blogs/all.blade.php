@@ -43,18 +43,24 @@
                                                             Read blog
                                                         </a>
                                                     </li>
-                                                    <li class="dropdown-item">
-                                                        <a class="text-dark" href="{{ route('edit-blog', $single->id) }}" data-toggle="modal" data-target="#myModal-{{$single->id}}">
-                                                            <i class="text-primary fa fa-pencil"></i>
-                                                            Edit blog
-                                                        </a>
-                                                    </li>
-                                                    <li class="dropdown-item">
-                                                        <a class="text-dark" href="{{ route('archive-blog', $single->id) }}" onclick="return confirm('You are about to archive this blog. Continue?');">
-                                                            <i class="text-danger fa fa-trash"></i>
-                                                            Archive blog
-                                                        </a>
-                                                    </li>
+                                                    
+                                                    @if(Auth::user()->can('edit-blog'))
+                                                        <li class="dropdown-item">
+                                                            <a class="text-dark" href="{{ route('edit-blog', $single->id) }}" data-toggle="modal" data-target="#myModal-{{$single->id}}">
+                                                                <i class="text-primary fa fa-pencil"></i>
+                                                                Edit blog
+                                                            </a>
+                                                        </li>
+                                                    @endif
+
+                                                    @if(Auth::user()->can('archive-blog'))
+                                                        <li class="dropdown-item">
+                                                            <a class="text-dark" href="{{ route('archive-blog', $single->id) }}" onclick="return confirm('You are about to archive this blog. Continue?');">
+                                                                <i class="text-danger fa fa-trash"></i>
+                                                                Archive blog
+                                                            </a>
+                                                        </li>
+                                                    @endif
                                                 </ul>
                                             </div>
                                         </center>

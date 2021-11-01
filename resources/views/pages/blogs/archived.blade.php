@@ -1,16 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="content-header" style="margin-left: 10px;">
-        <div class="row mb-2">
-            <ul class="breadcrumb float-sm-left ml-1">
-                <li class="breadcrumb-item"><a href="{{url('/')}}" style="color: #000;"><i class="fa fa-home"></i></a></li>
-                <li class="breadcrumb-item active"><a href="{{url('/')}}" style="color: #000;">Home</a></li>
-                <li class="breadcrumb-item" style="color: #000;">Archives</li>
-            </ul>
-        </div>
-    </div>
-
     <main role="main" style="margin: 0 auto;">
 
         <div class="archived-blogs">
@@ -44,20 +34,22 @@
                             </td>
                             <td>{{ $a->author }}</td>
                             <td>{{ $a->deleted_at }} </td>
-                            <td>
-                                <center>
-                                    <div class="dropdown dropright"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown" style="cursor: pointer;"></i>
-                                        <ul class="dropdown-menu">
-                                            <li class="dropdown-item">
-                                                <a class="btn" href="{{ url('/blog/$a->id/restore') }}">
-                                                    <i class="fa fa-undo"></i>
-                                                    Restore
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </center>
-                            </td>
+                            @if(Auth::user()->can('restore-archivedBlogs'))
+                                <td>
+                                    <center>
+                                        <div class="dropdown dropright"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown" style="cursor: pointer;"></i>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-item">
+                                                    <a class="text-success" href="{{ url('/blog/'.$a->id.'/restore') }}" onclick="return confirm('You are about to restore an archived blog, continue?');">
+                                                        <i class="text-success fa fa-undo"></i>
+                                                        Restore
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </center>
+                                </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

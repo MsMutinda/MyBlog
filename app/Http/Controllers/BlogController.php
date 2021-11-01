@@ -40,29 +40,33 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'image' => 'mimes:jpeg,jpg,png|dimensions:width=400,height=267' // Only allow .jpg, .bmp and .png file types, and with specified dimensions.
-        ]);
+        if ($request->user()->can('create-blog', 'store-blog')) {
 
-        // Save the file locally in the storage/public/ folder under a new folder named /blog_images
-        $uploaded_file = $request->file;
-        $uploaded_file_ex = $uploaded_file->getClientOriginalExtension();
-        $filename = time().'.'.$uploaded_file_ex;
-        $path = $request->file->storeAs('public', $filename);
+            $request->validate([
+                'image' => 'mimes:jpeg,jpg,png|dimensions:width=400,height=267' // Only allow .jpg, .bmp and .png file types, and with specified dimensions.
+            ]);
 
-        // Store the record, using the new file hashname which will be it's new filename identity.
-        $save_blog = new Blog();
+            // Save the file locally in the storage/public/ folder under a new folder named /blog_images
+            $uploaded_file = $request->file;
+            $uploaded_file_ex = $uploaded_file->getClientOriginalExtension();
+            $filename = time().'.'.$uploaded_file_ex;
+            $path = $request->file->storeAs('public', $filename);
 
-        $save_blog->user_id = session()->getId();
-        
-        $save_blog->category = $request->category;
-        $save_blog->image_path = $path;
-        $save_blog->title = $request->title;
-        $save_blog->author = Auth::user()->fname;
-        $save_blog->content = $request->content;
+            // Store the record, using the new file hashname which will be it's new filename identity.
+            $save_blog = new Blog();
 
-        $save_blog->save();
-        return redirect()->back()->with('success', 'Blog saved successfully');
+            $save_blog->user_id = session()->getId();
+            
+            $save_blog->category = $request->category;
+            $save_blog->image_path = $path;
+            $save_blog->title = $request->title;
+            $save_blog->author = Auth::user()->fname;
+            $save_blog->content = $request->content;
+
+            $save_blog->save();
+            return redirect()->back()->with('success', 'Blog saved successfully');
+            
+        }
     }
 
     /**
