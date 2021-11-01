@@ -17,14 +17,13 @@ use App\Http\Controllers\IndexController;
 
 Auth::routes();
 
-// Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web'], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// });
+});
 
 
-// Blog routes
 // Authenticated users only
-Route::middleware(['web', 'auth', ])->group(function()
+Route::middleware('auth')->group(function() 
 {
     // Profile routes
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('view-profile');
@@ -34,7 +33,11 @@ Route::middleware(['web', 'auth', ])->group(function()
     Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'updateProfile'])->name('update-profile');
 
     Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])->name('logout');
+});
 
+
+Route::group(['middleware' => 'role'], function()
+{
     // Blog routes
     Route::get('/blog/new', [App\Http\Controllers\BlogController::class, 'create'])->name('create-blog');
 
@@ -59,7 +62,6 @@ Route::middleware(['web', 'auth', ])->group(function()
 
     // Like Or Dislike
     Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
-
 
 });
 

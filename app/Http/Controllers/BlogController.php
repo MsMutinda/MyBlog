@@ -229,14 +229,12 @@ class BlogController extends Controller
             }
 
             $data->save();
+            
             return response()->json([
                 'bool'=>true
             ]);
 
         }
     }
-
-
-    // NEXT: prevent user from liking and disliking same blog post
     
 }
