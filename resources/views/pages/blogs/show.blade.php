@@ -34,11 +34,11 @@
                             <span class="comment-count btn btn-sm">{{ count($blog->comments) }}</span>
                             <small class="float-right">
                                 <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
-                                    <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2em;" id="thumbs-up"></i>
+                                    <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
                                     <span class="like-count">{{ $blog->likes() }}</span>
                                 </span>
                                 <span title="Dislike" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="ml-2 d-inline font-weight-bold">
-                                    <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2em; transform: scaleX(-1);" id="thumbs-down"></i>
+                                    <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
                                     <span class="dislike-count">{{ $blog->dislikes() }}</span>
                                 </span>
                             </small>
