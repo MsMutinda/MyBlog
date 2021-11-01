@@ -7,17 +7,8 @@
             <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
         @else
             @foreach($blogs as $blog)
-                <h1 class='text-center ml-1' style="color: #F57E20;"><strong>   {{ $blog->title }} </strong>
-                    <!-- <div class='float-right mt-2'>
-                        <a href="{{ route('edit-blog', $blog->id) }}" data-toggle="modal" data-target="#myModal-{{$blog->id}}" class="btn btn-default text-white" style="font-weight: 700;">  -->
-                        <!-- <i class="fa fa-pencil text-primary"></i>  -->
-                        <!-- Edit post </a> -->
-                        
-                        <!-- <a href="{{ route('archive-blog', $blog->id) }}" class="btn btn-default text-white" style="font-weight: 700;" onclick="return confirm('You are about to archive this blog. Continue?');"> -->
-                        <!-- <i class="fa fa-minus-circle text-danger"></i>  -->
-                        <!-- Archive post</a> -->
-                    <!-- </div> -->
-                </h1>
+                <h1 class='text-center ml-1' style="color: #F57E20;"><strong>   {{ $blog->title }} </strong> </h1>
+
                 <img
                     src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
                     class="card-img mt-5"
@@ -59,7 +50,7 @@
                         @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
                         
                     @else
-                        <h5 class="mb-3 mt-4">Comments </h5>
+                        <h5 class="mb-3 mt-5">Comments </h5>
                         <?php echo '<p> No comments yet. </p>' ?>
                     @endif
                     <hr />
@@ -79,7 +70,7 @@
                     </form>
                 </div>
 
-                @include('pages.blogs.edit')
+                <!-- @include('pages.blogs.edit') -->
         @endforeach
         @endif
 

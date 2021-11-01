@@ -15,8 +15,11 @@ use App\Models\Category;
 class BlogController extends Controller
 {
     public function index() {
-        $blogs = Blog::all();
-        return view('pages.blogs.all')->with('blogs', $blogs);
+        // fetch all blogs
+        $all = Blog::all();
+        // blog categories
+        $categories = Category::all();
+        return view('pages.blogs.all')->with(['all'=>$all, 'categories'=>$categories]);
     }
     /**
      * Show the form for creating a new resource.

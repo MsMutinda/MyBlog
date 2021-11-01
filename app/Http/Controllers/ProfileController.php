@@ -36,6 +36,7 @@ class ProfileController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
             'phone'  => 'required|string|max:255',
             'gender'  => 'required|string|max:255',
+            'role_id'  => 'required',
             'hobbies'  => 'required|string|max:255',
         ]);
 
@@ -47,6 +48,7 @@ class ProfileController extends Controller
             'email'   => $request->email,
             'phone'   => $request->phone,
             'gender'  => $request->gender,
+            'role_id'  => $request->role_id,
             'hobbies' => $request->hobbies
         ]);
 

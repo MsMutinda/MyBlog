@@ -88,6 +88,28 @@
 
                         <div class="mb-4">
                             <div class="">
+                                <label> Role </label>
+                                <div class="col-md-11">
+                                    <select class="form-control @error('role_id') is-invalid @enderror" name="role_id" id="role_id" value="{{ old('role_id') }}" required autocomplete="role_id" style='position: relative; right: 14px; border: 1px solid #000;'>
+                                        <option value="" selected disabled> Switch role </option>
+                                        <?php 
+                                            $roles = \App\Models\Role::all()
+                                        ?>
+                                        @foreach($roles as $role)
+                                            <option id="role_id" value="{{ $role->id }}"> {{ $role->name }} </option>
+                                        @endforeach
+                                    </select>
+                                    @error('role_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>                         
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="">
                                 <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                                     Hobbies 
                                 </label>
@@ -102,7 +124,7 @@
                         <br>
 
                         <div class='modal-footer'>
-                            <button class="w-full shadow bg-warning hover:bg-blue-400 focus:shadow-outline focus:outline-none text-dark font-bold py-2 px-4 rounded" type="submit">
+                            <button class="w-full focus:outline-none text-dark font-bold py-2 px-4 rounded" type="submit">
                                 Update Profile
                             </button>
                         </div>

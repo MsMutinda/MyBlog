@@ -25,6 +25,7 @@
                         <select class="nav-select" style="width: 100px;" onchange="location = this.value;">
                             <option value="">Blogs </option>
                             <option value="{{ route('create-blog') }}" > Create blog </option>
+                            <option value="{{ route('viewAllBlogs') }}"> View All Blogs </option>
                             <option value="{{ route('viewBlogArchives') }}"> View Archived </option>
                         </select>
                     </li>
@@ -39,7 +40,7 @@
                     </li>  
                 <ul> 
                 <a id="hamburger" href="#navmenu" title="menu" class="nav__hamburger">
-                    <i class="fa fa-bars ham ml-2"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; font-weight: 700; "> Blog categories </p>
+                    <i class="fa fa-bars ham ml-2"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; font-weight: 700; "> Menu </p>
                 </a>
             </div>
             <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle text-danger"></i></a>
@@ -72,7 +73,8 @@
                     </li>
                 </ul>
                 <a id="hamburger" href="#navmenu" title="menu" class="nav__hamburger">
-                    <i class="fa fa-bars ham ml-2 mr-3"></i> <p class="ml-2 mb-1" style="position: relative; bottom: 3px; right: 10px; font-weight: 700; "> Menu </p>
+                    <i class="fa fa-bars ham ml-2 mr-3"></i> 
+                    <p class="ml-2 mb-1" style="position: relative; bottom: 3px; right: 10px; font-weight: 700; "> Menu </p>
                 </a>
             </div>
             <a href="#!" title="close menu" class="nav__hamburgerclose"><i class="fa fa-2x fa-times-circle text-danger"></i></a>

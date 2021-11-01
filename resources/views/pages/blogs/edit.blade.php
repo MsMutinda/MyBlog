@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal-{{$blog->id}}" role="dialog">
+<div class="modal fade" id="myModal-{{2}}" role="dialog">
     <div class="modal-dialog">
         <div class='modal-content px-3' id='editModal'>
             <div class='modal-header'>
@@ -8,7 +8,7 @@
             </div>
         
             <div class='modal-body'>
-                <form action="{{ route('update-blog', $blog->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('update-blog', 2) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="w-full sm:w-auto order-last sm:order-first">
@@ -19,7 +19,7 @@
                                 </label>
                             </div>
                             <div class="md:w-3/3">
-                                <input name="title" class="form-control bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" value="{{$blog->title}}">
+                                <input name="title" class="form-control bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" value="{{$single->title}}">
                                 @error('name')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror
@@ -52,7 +52,7 @@
                                 </label>
                             </div>
                             <div class="md:w-3/3">
-                                <input name="content" class="form-control bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" value="{{$blog->content}}">
+                                <input name="content" class="form-control bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" value="{{$single->content}}">
                                 @error('content')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
                                 @enderror

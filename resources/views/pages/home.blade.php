@@ -20,7 +20,6 @@
                             class="card-img"
                             title="{{ $firstblog->title }} image"
                             alt="{{ $firstblog->title }} img"
-                            height="495px"
                         />
                     </div>
                     <div class="col-lg-5 col-sm-5 text-white">
@@ -62,7 +61,7 @@
                 <h2>Categories </h2>
                 <ul>
                     @foreach($categories as $category)
-                    <li> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{$category->name}} </a> </li>
+                    <li class="btn"> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{$category->name}} </a> </li>
                     @endforeach
                 </ul>
             </div>
@@ -70,10 +69,12 @@
 
         <div class="row"> 
             <div class="latestheader col-lg-12 col-sm-12"> 
-                <h2>Latest posts </h2>
+                <h2>Latest posts <br>
+                    <hr />
+                </h2>
             </div>
         </div>
-        <hr style="width: 88%;" />
+        
 
         <div class="latest">
             <div class="row">
@@ -110,7 +111,7 @@
 
                             <div class="card-body">
                                 <div class='card-text'>
-                                    <p> {{ substr($blog->content, 0, 110).'...' }} </p>
+                                    <p> {{ substr($blog->content, 0, 105).'...' }} </p>
                                 </div>
                                 
                                 <p class="readMore"> <b><a style="color: #f27a1f" href="{{ route('view-blog', $blog->id) }}"> Read more </b></a> <i class="fa fa-arrow-right"></i> </p>

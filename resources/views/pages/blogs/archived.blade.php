@@ -16,48 +16,53 @@
         <div class="archived-blogs">
             <div class="row"> 
                 <div class="col-lg-12 col-sm-12"> 
-                    <h2 style="font-weight: bolder;"> Archived blogs </h2>
+                    <h2 style="font-weight: bolder; margin-bottom: 20px;"> Archived blogs </h2>
                 </div>
             </div>
 
             <div class="row">
                 @if(count($archived) > 0)
-                    @foreach($archived as $a)
-                    <div class='card col-lg-5 col-sm-5'>
-                        <img
-                            src="{{ asset('storage/'.substr($a->image_path, 7)) }}"
-                            class="card-img-top"
-                            title="{{ $a->title }} image"
-                            alt="{{ $a->title }} img"
-                        />
-                        <div class="card-body">
-                            <p class="btn btn2 px-4">
+                <table class="table" id="archives">
+                    <thead>
+                        <th>#</td>
+                        <th>Blog title</th>
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Deleted At</th>
+                        <th>Action</th>
+                    </thead>
+                    <tbody>
+                        @foreach($archived as $a)    
+                        <tr>
+                            <td>{{ $a->id }}</td>
+                            <td>{{ $a->title }}</td>
+                            <td>
                                 <?php 
                                     $blogCategory = \App\Models\Category::where('id' , '=', $a->category)->pluck('name');
                                     echo substr($blogCategory, 2, -2);
-                                ?> 
-                            </p>
-                            <h5 class="card-title"><strong> {{ $a->title }} </strong></h5>
-                            <div class='card-text mt-2'>
-                                <p> {{ substr($a->content, 0, 330).'...' }} </p>
-                            </div>
+                                ?>
+                            </td>
+                            <td>{{ $a->author }}</td>
+                            <td>{{ $a->deleted_at }} </td>
+                            <td>
+                                <center>
+                                    <div class="dropdown dropright"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown" style="cursor: pointer; position: relative; right: 30px;"></i>
+                                        <ul class="dropdown-menu">
+                                            <li class="dropdown-item">
+                                                <a class="btn" href="{{ url('/blog/$a->id/restore') }}">
+                                                    <i class="fa fa-undo"></i>
+                                                    Restore
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </center>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-                            <small>
-                                <span class="float-left">
-                                    <img src="" alt=""> By {{ $a->author }}
-                                </span>
-                            </small>
-                            <small>
-                                <span class="float-right"> {{ $a->created_at->format('d M, Y') }} </p>
-                                </span>
-                            </small>
-                        </div>
-
-                        <p class="readMore"> <b><a style="color: #f27a1f" href="{{ route('view-blog', $a->id) }}"> Read more </b></a> <i class="fa fa-arrow-right"></i> </p>
-
-                    </div>
-                    
-                    @endforeach
                 @else
                     <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
                 @endif

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main class="main p-2">
+    <main class="main profile-page">
         <div class='ml-2'>
             <div class='row'> <h3 class='profile mx-2'> Profile</h3> </div>
             <div class='row py-2'>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <main role="main" class='main card shadow py-3 px-4 mb-3' style='margin: 0 auto; width: 50vw; margin-top: 130px;'>
+    <main role="main" class='main card shadow py-3 px-4 mb-5' style='margin: 0 auto; width: 50vw; margin-top: 130px;'>
         <h3>Add a new blog</h3> 
         <form method="POST" action="{{ route('save-blog') }}" enctype="multipart/form-data">
         @csrf                 
