@@ -11,6 +11,7 @@ class CommentController extends Controller
 {
     public function store(Request $request)
     {
+        
         $comment = new Comment;
 
         $comment->comment = $request->comment;

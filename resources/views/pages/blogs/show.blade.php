@@ -31,7 +31,7 @@
                 <div class="card-body" style="margin-top: 30px;">
                     @if(count($blog->comments)>0)
                         <h6 class="mt-5">Comments
-                            <span class="comment-count btn btn-sm ">{{ count($blog->comments) }}</span>
+                            <span class="comment-count btn btn-sm">{{ count($blog->comments) }}</span>
                             <small class="float-right">
                                 <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
                                     <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2em;" id="thumbs-up"></i>
@@ -75,7 +75,7 @@
 
 
         <?php 
-            $relatedblogs = \App\Models\Blog::where('category', $blog->category)->get();
+            $relatedblogs = \App\Models\Blog::where('category', $blog->category)->where('id', '!=', $blog->id)->get();
         ?>
 
         <div class="related-blogs">
@@ -124,7 +124,7 @@
                     
                     @endforeach
                 @else
-                    <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
+                    <?php echo "<h5 class='ml-3 mt-3' style='color: #f57e20;'>"."No related blogs yet."."</h5>" ?>
                 @endif
             </div>
 

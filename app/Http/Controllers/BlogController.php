@@ -10,6 +10,7 @@ use Auth;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comment;
 
 
 class BlogController extends Controller
@@ -26,10 +27,13 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() 
+    public function create(Request $request) 
     {
-        $categories = Category::all();
-        return view('pages.blogs.create')->with( 'categories', $categories);
+        if ($request->user()->can('create-blog')) {
+
+            $categories = Category::all();
+            return view('pages.blogs.create')->with( 'categories', $categories);
+        }
     }
 
     /**
@@ -40,7 +44,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->user()->can('create-blog', 'store-blog')) {
+        if ($request->user()->can('store-blog')) {
 
             $request->validate([
                 'image' => 'mimes:jpeg,jpg,png|dimensions:width=400,height=267' // Only allow .jpg, .bmp and .png file types, and with specified dimensions.
@@ -77,6 +81,9 @@ class BlogController extends Controller
      */
     public function show($id)
     {
+        // $blogcomments = Comment::where('commentable_id', $id)->get();
+        // dd($blogcomments);
+
         $blogs = Blog::where('id', $id)->get();
         $categories = Category::all();
         return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
@@ -90,7 +97,10 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.blogs.edit');
+        if ($request->user()->can('edit-blog')) {
+
+            return view('pages.blogs.edit');
+        }
     }
 
     /**
@@ -102,28 +112,31 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
-        ]);
-        $uploaded_file = $request->file;
-        $uploaded_file_ex = $uploaded_file->getClientOriginalExtension();
-        $filename = time().'.'.$uploaded_file_ex;
-        $path = $request->file->storeAs('public', $filename);
+        if ($request->user()->can('update-blog')) {
 
-        $validator = Validator::make($request->all(), [
-            'title'  => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'content' => 'required|string|max:255',
-        ]);
+            $request->validate([
+                'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+            $uploaded_file = $request->file;
+            $uploaded_file_ex = $uploaded_file->getClientOriginalExtension();
+            $filename = time().'.'.$uploaded_file_ex;
+            $path = $request->file->storeAs('public', $filename);
 
-       Blog::whereId($id)->update([
-            'title'    => $request->title,
-            'category'   => $request->category,
-            'content'  => $request->content,
-            'image_path'   => $path
-        ]);
+            $validator = Validator::make($request->all(), [
+                'title'  => 'required|string|max:255',
+                'category' => 'required|string|max:255',
+                'content' => 'required|string|max:255',
+            ]);
 
-        return redirect()->back();
+        Blog::whereId($id)->update([
+                'title'    => $request->title,
+                'category'   => $request->category,
+                'content'  => $request->content,
+                'image_path'   => $path
+            ]);
+
+            return redirect()->back();
+        }
     }
         
     /**
@@ -134,16 +147,22 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        $blog = Blog::whereId($id)->delete();
-        return redirect()->route('home')->with('success', 'Blog deleted successfully!');
+        if ($request->user()->can('archive-blog')) 
+        {
+            $blog = Blog::whereId($id)->delete();
+            return redirect()->route('home')->with('success', 'Blog deleted successfully!');
+        }
     }
 
     //show archived blogs
     public function showArchived() 
     {
-        $archived = Blog::onlyTrashed()->get();
-        $numArchived = $archived->count();
-        return view('pages.blogs.archived')->with(['archived' => $archived, 'numArchived' => $numArchived]);
+        if ($request->user()->can('view-archivedBlogs')) 
+        {
+            $archived = Blog::onlyTrashed()->get();
+            $numArchived = $archived->count();
+            return view('pages.blogs.archived')->with(['archived' => $archived, 'numArchived' => $numArchived]);
+        }
     }
 
 
@@ -155,42 +174,49 @@ class BlogController extends Controller
      */
     public function restore($id)
     {
-        $archive = Blog::onlyTrashed()->find($id)->restore();
-        return redirect()->back();
+        if ($request->user()->can('restore-archivedBlogs')) 
+        {
+            $archive = Blog::onlyTrashed()->find($id)->restore();
+            return redirect()->back();
+        }
     }
 
 
     // Save Like Or dislike
-    public function save_likedislike(Request $request){
-        $data=new \App\Models\LikeDislike;
-        $data->user_id=$request->user;
-        $data->blog_id=$request->post;
-    
-        if($request->type=='like') {
-            $likeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
-            
-            // if same user has liked same blog before
-            if($likeexists) { 
-                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
-                $data->likes=1;
-            } 
-            else { $data->likes=1; }
+    public function save_likedislike(Request $request) {
+        if ($request->user()->can('like-blog')) {
+
+            $data=new \App\Models\LikeDislike;
+            $data->user_id=$request->user;
+            $data->blog_id=$request->post;
+        
+            if($request->type=='like') {
+                $likeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+                
+                // if same user has liked same blog before
+                if($likeexists) { 
+                    \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+                    $data->likes=1;
+                } 
+                else { $data->likes=1; }
+            }
+
+            else {
+                $dislikeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
+
+                if($dislikeexists) {
+                    \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
+                    $data->dislikes=1;
+                } 
+                else{ $data->dislikes=1; }
+            }
+
+            $data->save();
+            return response()->json([
+                'bool'=>true
+            ]);
+
         }
-
-        else {
-            $dislikeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
-
-            if($dislikeexists) {
-                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
-                $data->dislikes=1;
-            } 
-            else{ $data->dislikes=1; }
-        }
-
-        $data->save();
-        return response()->json([
-            'bool'=>true
-        ]);
     }
 
 

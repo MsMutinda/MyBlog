@@ -24,7 +24,7 @@ Auth::routes();
 
 // Blog routes
 // Authenticated users only
-Route::middleware(['web', 'auth'])->group(function()
+Route::middleware(['web', 'auth', ])->group(function()
 {
     // Profile routes
     Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('view-profile');
