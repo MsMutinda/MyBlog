@@ -31,7 +31,18 @@
                 <div class="card-body" style="margin-top: 30px;">
                     @if(count($blog->comments)>0)
                         <h6 class="mt-5">Comments
-                            <span class="comment-count btn btn-sm">{{ count($blog->comments) }}</span>
+                            <span class="comment-count btn btn-sm">
+                                <?php 
+                                    $approvedcomments = \App\Models\Comment::where('commentable_id', $blog->id)
+                                                                            ->where(function($query) {
+                                                                                $query->where('approval_status', 'approved')
+                                                                                    ->orWhere('approval_status', 'pending');
+                                                                            })->get();
+                                        
+                                ?>
+                                {{ count($approvedcomments) }}
+                                <!-- {{ count($blog->comments) }} -->
+                            </span>
                             @auth
                                 <small class="float-right">
                                     <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
@@ -46,13 +57,13 @@
                             @endauth
                         </h6>
                         
-                        @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
+                        @include('pages.blogs.partials.replies', ['comments' => $approvedcomments, 'blog_id' => $blog->id])
                         
                     @else
                         <h5 class="mb-3 mt-5">Comments </h5>
                         <?php echo '<p> No comments yet. </p>' ?>
                     @endif
-                    <hr />
+                    <hr style="width: 100%; position: relative; left: 2px;">
                 </div>
 
                 <div class="card-body mb-4 mt-3">

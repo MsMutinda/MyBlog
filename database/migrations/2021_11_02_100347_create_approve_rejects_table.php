@@ -17,6 +17,7 @@ class CreateApproveRejectsTable extends Migration
             $table->id();
             $table->integer('comment_id');
             $table->integer('user_id');
+            $table->string('blog_id');
             $table->smallInteger('approved')->default(0);
             $table->smallInteger('rejected')->default(0);
             $table->timestamps();
