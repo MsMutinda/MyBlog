@@ -44,6 +44,15 @@
                                                         </a>
                                                     </li>
                                                     
+                                                    @if(Auth::user()->can('view-blogComments'))
+                                                        <li class="dropdown-item">
+                                                            <a class="text-dark" href="{{ route('view-comments', $single->id) }}">
+                                                                <i class="text-primary fa fa-pencil"></i>
+                                                                View Comments
+                                                            </a>
+                                                        </li>
+                                                    @endif
+
                                                     @if(Auth::user()->can('edit-blog'))
                                                         <li class="dropdown-item">
                                                             <a class="text-dark" href="{{ route('edit-blog', $single->id) }}" data-toggle="modal" data-target="#myModal-{{$single->id}}">

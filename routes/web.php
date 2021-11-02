@@ -45,6 +45,8 @@ Route::middleware('auth', 'role')->group(function()
 
     Route::get('/blog/{id}', [App\Http\Controllers\BlogController::class, 'show'])->name('view-blog');
 
+    Route::get('/blog/{id}/comments', [App\Http\Controllers\BlogController::class, 'showComments'])->name('view-blogComments');
+
     Route::get('/blog/{id}/edit', [App\Http\Controllers\BlogController::class, 'edit'])->name('edit-blog');
 
     Route::patch('/blog/{id}/update', [App\Http\Controllers\BlogController::class, 'update'])->name('update-blog');
