@@ -33,9 +33,9 @@
                     <li class="nav__item"> <a href="https://zalegoacademy.ac.ke/courses"> Courses </a> </li>
                     <li class="nav__item"><a href="https://zalegoacademy.ac.ke/programs"> Programs </a></li>
                     <li class="nav__item float-right"> 
-                        <ul style="padding: 0;">
-                            <li class="nav__item"><a href="{{ route('view-profile') }}">Profile</a></li>
-                            <li class="nav__item"><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
+                        <ul>
+                            <li class="nav__item profile_link"><a href="{{ route('view-profile') }}">Profile</a></li>
+                            <li class="nav__item logout_link"><a href="{{ route('logout') }}" onclick="return confirm('You are about to log out, continue?');"> Sign out <i class='ml-2 fa fa-sign-out'></i> </a></li>
                         </ul>
                     </li>  
                 <ul> 
