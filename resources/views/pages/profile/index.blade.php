@@ -51,7 +51,7 @@
                         <li> <strong> Topics i'm interested in: </strong> Reading, Travelling, and Anything involving fun and games </li>
                     </ul>
                     <!-- loads a modal form when clicked -->
-                    <button class='button p-1 my-3'><a class="text-white" href="{{ route('edit-profile') }}" data-toggle="modal" data-target="#profileEdit"> Edit profile </a></button>
+                    <button class='button p-1 my-3' style="background: #568203;"><a class="text-white" href="{{ route('edit-profile') }}" data-toggle="modal" data-target="#profileEdit"> Edit profile </a></button>
                 </div>
             </div>
         </div>

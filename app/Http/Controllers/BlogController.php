@@ -79,14 +79,14 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        // $blogcomments = Comment::where('commentable_id', $id)->get();
-        // dd($blogcomments);
+        if ($request->user()->can('view-blogDetails')) {
 
-        $blogs = Blog::where('id', $id)->get();
-        $categories = Category::all();
-        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+            $blogs = Blog::where('id', $id)->get();
+            $categories = Category::all();
+            return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+        }
     }
 
     /**
@@ -98,7 +98,6 @@ class BlogController extends Controller
     public function edit($id)
     {
         if ($request->user()->can('edit-blog')) {
-
             return view('pages.blogs.edit');
         }
     }
@@ -229,7 +228,7 @@ class BlogController extends Controller
             }
 
             $data->save();
-            
+
             return response()->json([
                 'bool'=>true
             ]);

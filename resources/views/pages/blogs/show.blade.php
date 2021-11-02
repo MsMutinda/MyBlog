@@ -45,10 +45,7 @@
                                 </small>
                             @endauth
                         </h6>
-                        <!-- <div class="float-right">
-                            <a href="" class="btn btn-default">
-                            <i class="fa check text-success"></i> Approve comment </a>
-                        </div> -->
+                        
                         @include('pages.blogs.partials.replies', ['comments' => $blog->comments, 'blog_id' => $blog->id])
                         
                     @else
@@ -137,7 +134,6 @@
     <script type='text/javascript'>
         // Save Like Or Dislike
         $(document).on('click','#saveLikeDislike',function() {
-            // ('#saveLikeDislike').style='color: green';
             var _post=$(this).data('post');
             var _type=$(this).data('type');
             var _user="{{ Auth::user()->id }}";                     

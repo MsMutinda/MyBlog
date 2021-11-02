@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function()
 });
 
 
-Route::group(['middleware' => 'role'], function()
+Route::middleware('auth', 'role')->group(function()
 {
     // Blog routes
     Route::get('/blog/new', [App\Http\Controllers\BlogController::class, 'create'])->name('create-blog');
@@ -58,9 +58,11 @@ Route::group(['middleware' => 'role'], function()
     // Comments & Replies
     Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
 
+    Route::post('approve-comment', [App\Http\Controllers\CommentController::class, 'approve_comment'])->name('approve_comment');
+
     Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
 
-    // Like Or Dislike
+    // Like Or Dislike Blog
     Route::post('save-likedislike',[App\Http\Controllers\BlogController::class, 'save_likedislike']);
 
 });
