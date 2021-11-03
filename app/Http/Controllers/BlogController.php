@@ -154,7 +154,7 @@ class BlogController extends Controller
     }
 
     //show archived blogs
-    public function showArchived() 
+    public function showArchived(Request $request) 
     {
         if ($request->user()->can('view-archivedBlogs')) 
         {

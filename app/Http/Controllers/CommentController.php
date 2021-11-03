@@ -6,6 +6,9 @@ use App\Models\Blog;
 use App\Models\Comment;
 use App\Models\ApproveReject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Redirect;
+use DB;
 
 
 class CommentController extends Controller
@@ -52,25 +55,35 @@ class CommentController extends Controller
 
     public function approve_comment(Request $request) {
         if ($request->user()->can('approve-comment')) {
-            
+            global $res1, $res2;
             // approve comment
             if($request->type=='approve') {
-                
-                \DB::statement("UPDATE comments SET approval_status='approved' WHERE id=$request->comment");
-            
-                \Session::flash('message', 'Comment approved successfully!');
-            }
+                $res1 = DB::statement("UPDATE comments SET approval_status='approved' WHERE id=$request->comment");
+                $approve_msg1 = 'Comment approved!';
 
+            }
             else {
-            
-                \DB::statement("UPDATE comments SET approval_status='rejected' WHERE id=$request->comment");
-
-                \Session::flash('message', 'Comment rejected successfully. This comment will no longer be visible to other users');
+                $res2 = DB::statement("UPDATE comments SET approval_status='rejected' WHERE id=$request->comment");
+                $approve_msg2 = 'Comment rejected!';
             }
 
+            // Message to send for approval/rejection
+            if($res1){
+                return response()->json([
+                    'approve'=>true,
+                    'approve_msg'=>$approve_msg1
+                ]);
+            }
+            else if($res2){
+                return response()->json([
+                    'reject'=>true,
+                    'approve_msg'=>$approve_msg2
+                ]);
+            }
             return response()->json([
-                'success'=>true
+                'success'=>false
             ]);
+
         }
     }
 }

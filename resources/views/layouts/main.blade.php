@@ -4,6 +4,7 @@
 @include('includes.header')
 
 <body>
+
     <?php 
         $categories = \App\Models\Category::all();
         // $filtered = Blog::where('category', $id)->get();

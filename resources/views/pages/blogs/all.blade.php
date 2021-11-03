@@ -44,14 +44,12 @@
                                                         </a>
                                                     </li>
                                                     
-                                                    @if(Auth::user()->can('view-blogComments'))
-                                                        <li class="dropdown-item">
-                                                            <a class="text-dark" href="{{ route('view-comments', $single->id) }}">
-                                                                <i class="text-primary fa fa-pencil"></i>
-                                                                View Comments
-                                                            </a>
-                                                        </li>
-                                                    @endif
+                                                    <li class="dropdown-item">
+                                                        <a class="text-dark" href="">
+                                                            <i class="text-primary fa fa-eye"></i>
+                                                            View Comments
+                                                        </a>
+                                                    </li>
 
                                                     @if(Auth::user()->can('edit-blog'))
                                                         <li class="dropdown-item">
