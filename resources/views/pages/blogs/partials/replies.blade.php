@@ -84,7 +84,14 @@
                             });
                     }
                     else{
-                        toastr.error('Error', 'Something went wrong!');
+                        toastr.options = {
+                            "preventDuplicates": true,
+                            "preventOpenDuplicates": true
+                            };
+                            toastr.error('Error', 'Something went wrong!'
+                            {
+                                timeOut: 5000,
+                            });
                     }
 
                     // hide/disable approve/reject button for approved/rejected comments
