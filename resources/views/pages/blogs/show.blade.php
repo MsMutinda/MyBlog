@@ -24,8 +24,7 @@
                     </div>
                 </div>
 
-                <small class="float-left mt-2"> <span><img src="" alt=""> By {{ $blog->author }} </span>
-                </small>
+                <small class="float-left mt-2"> <span><img src="" alt=""> By {{ $blog->author }} </span> </small>
                 <small> <span class="float-right"> {{ $blog->created_at->format('d M, Y') }} </span> </small>
 
                 <div class="card-body" style="margin-top: 30px;">

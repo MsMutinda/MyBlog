@@ -45,7 +45,7 @@
                                                     </li>
                                                     
                                                     <li class="dropdown-item">
-                                                        <a class="text-dark" href="">
+                                                        <a class="text-dark" href="{{ route('view-blogComments', $single->id) }}">
                                                             <i class="text-primary fa fa-eye"></i>
                                                             View Comments
                                                         </a>
@@ -78,9 +78,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-                @else
-                    <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
                 @endif
 
             </div>

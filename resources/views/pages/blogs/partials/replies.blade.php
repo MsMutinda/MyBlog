@@ -15,18 +15,16 @@
         <p>{{ $comment->comment }}</p>
         <a href="" id="reply"></a>
         <p class="btn btn-sm" style="font-size: 0.8em; color: #fff;" id="reply-btn">Reply</p>
-        <i id="like-reply" style="font-size: 1.2em; position: relative; bottom: 5px; " class="fa fa-heart-o p-2"></i>
-        <!-- <i id="like-btn2" style="font-size: 1.2em; position: relative; bottom: 5px; display: none" class="fa fa-heart p-2"></i> -->
-        
-        @if(Auth::user()->can('approve-comment'))
-            <span id="approve-comment" class="approvereject" data-type="approve" data-post="{{ $comment->id }}" style="color: #f57e20;"> 
-                <i class="fa fa-check" style="cursor:pointer; font-size: 1em; position: relative; bottom: 6px; left: 3px;"> Approve </i> 
-            </span>
-    
-            <span id="approve-comment" class="approvereject" data-type="reject" data-post="{{ $comment->id }}"> 
-                <i class="fa fa-close text-danger" style="cursor: pointer; font-size: 1em; position: relative; bottom: 6px; left: 10px;"> Reject </i> 
-            </span>
-        @endif
+        @auth
+            <small>
+                <span id="likeReply" data-type="like" data-post="{{ $comment->parent_id}}" class="mr-2 d-inline font-weight-bold">
+                    <i style="font-size: 1.2em; position: relative; bottom: 5px; " class="fa fa-heart-o p-2"></i>
+                </span>
+                <span id="likeReply" data-type="dislike" data-post="{{ $comment->parent_id}}" class="mr-2 d-inline font-weight-bold">
+                    <i id="like-btn2" style="font-size: 1.2em; position: relative; bottom: 5px; display: none" class="fa fa-heart p-2"></i>
+                </span>
+            </small>
+        @endauth        
         
         <form method="post" action="{{ route('add-reply') }}">
             @csrf
@@ -40,66 +38,44 @@
                 <input type="submit" class="btn btn-sm py-0 text-white" id="submit-btn" style="display: none; font-size: 0.8em;" value="Submit" />
             </div>
         </form>
+
         @include('pages.blogs.partials.replies', ['comments' => $comment->replies])
     </div>
 
 @endforeach
 
-    <script type="text/javascript">
-        $(document).on('click', '#approve-comment', function() {
-            var _type = $(this).data('type');
-            var _comment = $(this).data('post');
-            var _user = "{{ Auth::user()->id }}";
-            var elem = $(this);
-
+<script type='text/javascript'>
+        // Save Like Or Dislike
+        $(document).on('click','#likeReply',function() {
+            var _comment=$(this).data('post');
+            var _type=$(this).data('type');
+            var _user="{{ Auth::user()->id }}";                     
+            var vm=$(this);
+            // Run Ajax
             $.ajax({
-                url:"{{ url('approve-comment') }}",
+                url:"{{ url('like-comment') }}",
                 type:"post",
                 dataType:'json',
                 data:{
-                    type: _type,
-                    comment: _comment,
-                    user: _user,
+                    comment:_comment,
+                    type:_type,
+                    user:_user,
                     _token:"{{ csrf_token() }}"
                 },
-                success:function(response){
-                    if(response.approve === true){
-                        toastr.options = {
-                            "preventDuplicates": true,
-                            "preventOpenDuplicates": true
-                            };
-                            toastr.success(response.approve_msg,
-                            {
-                                timeOut: 5000,
-                            });
+                beforeSend:function(){
+                    vm.addClass('disabled');
+                },
+                success:function(res){
+                    if(res.bool==true){
+                        vm.removeClass('disabled').addClass('active');
+                        vm.removeAttr('id');
+                        var _prevCount=$("."+_type+"-count").text();
+                        _prevCount++;
+                        $("."+_type+"-count").text(_prevCount);
                     }
-                    else if(response.reject === true) {
-                        toastr.options = {
-                            "preventDuplicates": true,
-                            "preventOpenDuplicates": true
-                            };
-                            toastr.success(response.approve_msg,
-                            {
-                                timeOut: 5000,
-                            });
-                    }
-                    else{
-                        toastr.options = {
-                            "preventDuplicates": true,
-                            "preventOpenDuplicates": true
-                            };
-                            toastr.error('Error', 'Something went wrong!'
-                            {
-                                timeOut: 5000,
-                            });
-                    }
-
-                    // hide/disable approve/reject button for approved/rejected comments
-
-                }
+                }   
             });
         });
-            
     </script>
 
     <script type="text/javascript">

@@ -89,6 +89,17 @@ class BlogController extends Controller
         }
     }
 
+    // View blog comments
+    public function showComments(Request $request, $id) 
+    {
+        if ($request->user()->can('view-blogComments')) 
+        {
+            $blog = Blog::where('id', $id)->get();
+            $comments = Comment::where('commentable_id', $id)->get();
+            return view('pages.blogs.comments')->with(['blog'=>$blog, 'comments'=>$comments]);
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

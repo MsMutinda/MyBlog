@@ -54,9 +54,6 @@
                         @endforeach
                     </tbody>
                 </table>
-
-                @else
-                    <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
                 @endif
             </div>
 
