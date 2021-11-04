@@ -27,10 +27,10 @@
                             <td>{{ $a->id }}</td>
                             <td>{{ $a->title }}</td>
                             <td>
-                                <?php 
+                                @php 
                                     $blogCategory = \App\Models\Category::where('id' , '=', $a->category)->pluck('name');
                                     echo substr($blogCategory, 2, -2);
-                                ?>
+                                @endphp
                             </td>
                             <td>{{ $a->author }}</td>
                             <td>{{ $a->deleted_at }} </td>

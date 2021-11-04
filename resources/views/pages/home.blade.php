@@ -12,7 +12,9 @@
 
         <div class="row first">
             <div class="col-lg-8 col-sm-8">
-                <?php $firstblog = \App\Models\Blog::orderBy('created_at', 'DESC')->first();?>
+                @php 
+                    $firstblog = \App\Models\Blog::orderBy('created_at', 'DESC')->first(); 
+                @endphp
                 <div class='firstblog row'>
                     <div class="col-lg-7 col-sm-7">
                         <img
@@ -90,10 +92,10 @@
                             />
                             <div class="card-body">
                                 <p class="btn btn2 mt-1">
-                                    <?php 
+                                    @php 
                                         $blogCategory = \App\Models\Category::where('id' , '=', $blog->category)->pluck('name');
                                         echo substr($blogCategory, 2, -2);
-                                    ?> 
+                                    @endphp 
                                 </p>
                                 
                                 <h5 class="card-title"><strong> {{ $blog->title }} </strong></h5>
@@ -123,7 +125,7 @@
                     </div>
                 @else
             </div>
-                <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
+                @php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" @endphp
 
                 @endif
             </div>

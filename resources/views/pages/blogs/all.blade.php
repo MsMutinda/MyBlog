@@ -26,10 +26,10 @@
                                     <td>{{ $single->id }}</td>
                                     <td>{{ $single->title }}</td>
                                     <td>
-                                        <?php 
+                                        @php
                                             $blogCategory = \App\Models\Category::where('id' , '=', $single->category)->pluck('name');
                                             echo substr($blogCategory, 2, -2);
-                                        ?>
+                                        @endphp
                                     </td>
                                     <td>{{ $single->author }}</td>
                                     <td>{{ $single->created_at }} </td>
@@ -37,12 +37,12 @@
                                         <center>
                                             <div class="dropdown dropleft"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown" style="cursor: pointer;"></i>
                                                 <ul class="dropdown-menu">
-                                                    <li class="dropdown-item">
-                                                        <a class="text-dark" href="{{ route('view-blog', 2) }}">
+                                                    <!-- <li class="dropdown-item">
+                                                        <a class="text-dark" href="{{ route('view-blog', $single->id) }}">
                                                             <i class="text-success fa fa-eye"></i>
                                                             Read blog
                                                         </a>
-                                                    </li>
+                                                    </li> -->
                                                     
                                                     <li class="dropdown-item">
                                                         <a class="text-dark" href="{{ route('view-blogComments', $single->id) }}">

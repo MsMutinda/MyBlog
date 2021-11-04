@@ -1,10 +1,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
+    <meta name="keywords" content="@yield('meta_keywords','some default keywords')">
+    <meta name="description" content="@yield('meta_description','Laravel blog website')">
+    <link rel="canonical" href="{{url()->current()}}"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
-    <title>{{ env('APP_NAME') }}</title>
+    @php  $title = env('APP_NAME') @endphp
+    <title>@yield('title', $title)</title>
 
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

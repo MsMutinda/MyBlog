@@ -10,19 +10,19 @@
                     <ul class='avatar-details'>
                         <li> <strong> Name: </strong> {{ Auth::user()->fname }} {{ Auth::user()->lname }} </li>
                         <li> <strong> Role: </strong> 
-                            <?php
+                            @php
                                 $userrole = \App\Models\Role::where('id', '=', Auth::user()->role_id)->pluck('name');
                                 echo substr($userrole, 2, -2);                            
-                            ?>
+                            @endphp
                         </li>
                         <li> <strong> Gender: </strong> {{ Auth::user()->gender }} </li>
                     </ul>
                 </div>
 
-                <?php 
+                @php 
                     $myblogs = \App\Models\Blog::where('author' , '=', Auth::user()->fname)->get();
                     $total = count($myblogs);
-                ?> 
+                @endphp
                 <div class='col-lg-6 col-sm-6'>
                     <h4 class='posts'>My Posts</h4>
                     @if(count($myblogs)>0)

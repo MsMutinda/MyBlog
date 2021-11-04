@@ -21,9 +21,14 @@ class Comment extends Model
         return $this->hasMany(Comment::class, 'parent_id');
     }
 
-    // a comment can have many likes
-    public function likes()
-    {
-        return $this->morphMany(Like::class, 'likeable');
+    // Likes
+    public function likes(){
+        return $this->hasMany('App\Models\CommentLike', 'parent_comment_id')->sum('likes');
+    }
+
+    // Dislikes
+    public function dislikes(){
+        return $this->hasMany('App\Models\CommentLike','parent_comment_id')->sum('dislikes');
     }
 }
+

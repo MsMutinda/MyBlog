@@ -4,7 +4,9 @@
 
     <main role="main" class="main show-blog">
         @if(count($blogs)==0)
-            <?php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" ?>
+            @php 
+                echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" 
+            @endphp
         @else
             @foreach($blogs as $blog)
                 <h1 class='text-center ml-1' style="color: #F57E20;"><strong>   {{ $blog->title }} </strong> </h1>
@@ -31,14 +33,15 @@
                     @if(count($blog->comments)>0)
                         <h6 class="mt-5">Comments
                             <span class="comment-count btn btn-sm">
-                                <?php 
+                                @php 
                                     $approvedcomments = \App\Models\Comment::where('commentable_id', $blog->id)
                                                                             ->where(function($query) {
                                                                                 $query->where('approval_status', 'approved')
                                                                                     ->orWhere('approval_status', 'pending');
                                                                             })->get();
                                         
-                                ?>
+                                @endphp
+                    
                                 {{ count($approvedcomments) }}
                                 <!-- {{ count($blog->comments) }} -->
                             </span>
@@ -60,7 +63,10 @@
                         
                     @else
                         <h5 class="mb-3 mt-5">Comments </h5>
-                        <?php echo '<p> No comments yet. </p>' ?>
+                        @php
+                            echo '<p> No comments yet. </p>' 
+                        @endphp
+
                     @endif
                     <hr style="width: 100%; position: relative; left: 2px;">
                 </div>
@@ -83,9 +89,9 @@
         @endif
 
 
-        <?php 
+        @php 
             $relatedblogs = \App\Models\Blog::where('category', $blog->category)->where('id', '!=', $blog->id)->get();
-        ?>
+        @endphp
 
         <div class="related-blogs">
             <div class="row"> 
@@ -106,10 +112,10 @@
                         />
                         <div class="card-body">
                             <p class="btn btn2 px-4">
-                                <?php 
+                                @php 
                                     $blogCategory = \App\Models\Category::where('id' , '=', $r->category)->pluck('name');
                                     echo substr($blogCategory, 2, -2);
-                                ?> 
+                                @endphp
                             </p>
                             <h5 class="card-title"><strong> {{ $r->title }} </strong></h5>
                             <div class='card-text mt-2'>
@@ -133,7 +139,7 @@
                     
                     @endforeach
                 @else
-                    <?php echo "<h5 class='ml-3 mt-3' style='color: #f57e20;'>"."No related blogs yet."."</h5>" ?>
+                    @php echo "<h5 class='ml-3 mt-3' style='color: #f57e20;'>"."No related blogs yet."."</h5>" @endphp
                 @endif
             </div>
 

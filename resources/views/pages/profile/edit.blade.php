@@ -92,9 +92,10 @@
                                 <div class="col-md-11">
                                     <select class="form-control @error('role_id') is-invalid @enderror" name="role_id" id="role_id" value="{{ old('role_id') }}" required autocomplete="role_id" style='position: relative; right: 14px; border: 1px solid #000;'>
                                         <option value="" selected disabled> Switch role </option>
-                                        <?php 
+                                        @php 
                                             $roles = \App\Models\Role::all()
-                                        ?>
+                                        @endphp
+                                        
                                         @foreach($roles as $role)
                                             <option id="role_id" value="{{ $role->id }}"> {{ $role->name }} </option>
                                         @endforeach

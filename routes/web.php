@@ -68,7 +68,7 @@ Route::middleware('auth', 'role')->group(function()
     Route::post('save-likedislike', [App\Http\Controllers\BlogController::class, 'save_likedislike']);
 
     // Like Or Dislike Comment/Reply
-    Route::post('like-comment', [App\Http\Controllers\BlogController::class, 'like_comment']);
+    Route::post('like-comment', [App\Http\Controllers\CommentController::class, 'like_comment']);
 });
 
 

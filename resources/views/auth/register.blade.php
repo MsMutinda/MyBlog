@@ -87,9 +87,8 @@
                             <div class="col-md-6">
                                 <select name="role_id"class="form-control @error('role_id') is-invalid @enderror" id="role_id" required>
                                     <option value=""> Set role </option>
-                                    <?php 
-                                        $roles = \App\Models\Role::all()
-                                    ?>
+                                    @php $roles = \App\Models\Role::all()  @endphp
+                                    
                                     @foreach($roles as $role)
                                         <option id="role_id" value="{{ $role->id }}"> {{ $role->name }} </option>
                                     @endforeach

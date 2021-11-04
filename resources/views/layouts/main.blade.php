@@ -5,10 +5,10 @@
 
 <body>
 
-    <?php 
+    @php 
         $categories = \App\Models\Category::all();
         // $filtered = Blog::where('category', $id)->get();
-    ?>
+    @endphp
     <nav class='navbar fixed-top'>    
         <a href="/" class='nav__logo float-left'>
             <img src="https://zalegoacademy.ac.ke/asset/img/zalegocurrentlogo.png" class="logo size-lg" title="Zalego Academy Logo" alt="zalegocurrentlogo">

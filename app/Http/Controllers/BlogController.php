@@ -106,7 +106,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         if ($request->user()->can('edit-blog')) {
             return view('pages.blogs.edit');
@@ -155,9 +155,11 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        if ($request->user()->can('archive-blog')) 
+        // if ($request->user()->can('archive-blog')) 
+        
+        if($request->user()->hasRole('manager'))
         {
             $blog = Blog::whereId($id)->delete();
             return redirect()->route('home')->with('success', 'Blog deleted successfully!');
@@ -182,7 +184,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function restore($id)
+    public function restore(Request $request, $id)
     {
         if ($request->user()->can('restore-archivedBlogs')) 
         {

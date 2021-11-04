@@ -7,9 +7,6 @@ use App\Models\Role;
 
 trait HasPermissionsTrait {
 
-    // $user = $request->user(); //getting the current logged in user
-    // dd($user->hasRole('admin','editor'));
-
     public function givePermissionsTo(... $permissions) 
     {
         $permissions = $this->getAllPermissions($permissions);

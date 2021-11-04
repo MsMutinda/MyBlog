@@ -17,11 +17,11 @@
         <p class="btn btn-sm" style="font-size: 0.8em; color: #fff;" id="reply-btn">Reply</p>
         @auth
             <small>
-                <span id="likeReply" data-type="like" data-post="{{ $comment->parent_id}}" class="mr-2 d-inline font-weight-bold">
-                    <i style="font-size: 1.2em; position: relative; bottom: 5px; " class="fa fa-heart-o p-2"></i>
-                </span>
-                <span id="likeReply" data-type="dislike" data-post="{{ $comment->parent_id}}" class="mr-2 d-inline font-weight-bold">
-                    <i id="like-btn2" style="font-size: 1.2em; position: relative; bottom: 5px; display: none" class="fa fa-heart p-2"></i>
+                <span id="likeReply" data-type="commentLike" data-post="{{ $comment->parent_id}}" data-id="{{ $comment->id }}" data-blog="{{ $blog_id }}" class="mr-2 d-inline font-weight-bold">
+                    <i style="font-size: 1.5em; position: relative; bottom: 5px;" class="fa fa-heart-o pl-3" id="like"></i>
+                    <span class="like-count">
+                        <!-- {{ $comment->likes() }} -->
+                    </span>
                 </span>
             </small>
         @endauth        
@@ -46,36 +46,28 @@
 
 <script type='text/javascript'>
         // Save Like Or Dislike
-        $(document).on('click','#likeReply',function() {
-            var _comment=$(this).data('post');
-            var _type=$(this).data('type');
-            var _user="{{ Auth::user()->id }}";                     
-            var vm=$(this);
-            // Run Ajax
-            $.ajax({
-                url:"{{ url('like-comment') }}",
-                type:"post",
-                dataType:'json',
-                data:{
-                    comment:_comment,
-                    type:_type,
-                    user:_user,
-                    _token:"{{ csrf_token() }}"
-                },
-                beforeSend:function(){
-                    vm.addClass('disabled');
-                },
-                success:function(res){
-                    if(res.bool==true){
-                        vm.removeClass('disabled').addClass('active');
-                        vm.removeAttr('id');
-                        var _prevCount=$("."+_type+"-count").text();
-                        _prevCount++;
-                        $("."+_type+"-count").text(_prevCount);
-                    }
-                }   
-            });
+    $(document).on('click','#likeReply',function() {
+        var _blog=$(this).data('blog');
+        var _comment=$(this).data('post');
+        var _reply=$(this).data('id');
+        var _type=$(this).data('type');
+        var _user="{{ Auth::user()->id }}";                     
+
+        // Run Ajax
+        $.ajax({
+            url:"{{ url('like-comment') }}",
+            type:"post",
+            dataType:'json',
+            data:{
+                blog:_blog,
+                comment:_comment,
+                reply:_reply,
+                type:_type,
+                user:_user,
+                _token:"{{ csrf_token() }}"
+            },
         });
+    });
     </script>
 
     <script type="text/javascript">
