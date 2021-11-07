@@ -74,6 +74,8 @@ Route::middleware('auth', 'role')->group(function()
 
 Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])->name('viewAllBlogs');
 
+Route::post('save-subscriber', [App\Http\Controllers\HomeController::class, 'saveSubscriber'])->name('save-subscriber');
+
 
 // Blog category filter
 Route::get('/blogs/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);

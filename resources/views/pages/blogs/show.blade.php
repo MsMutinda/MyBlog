@@ -7,10 +7,19 @@
             @php 
                 echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" 
             @endphp
-        @else
-            @foreach($blogs as $blog)
-                <h1 class='text-center ml-1' style="color: #F57E20;"><strong>   {{ $blog->title }} </strong> </h1>
 
+        @else
+                
+            @if(Session::has('success'))
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <p>{{ Session::get('success') }}</p>
+            </div>
+            @endif
+
+            @foreach($blogs as $blog)
+                
+                <h1 class='text-center ml-1' style="color: #F57E20;"><strong> {{ $blog->title }} </strong> </h1>
                 <img
                     src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
                     class="card-img mt-5"
@@ -34,12 +43,7 @@
                         <h6 class="mt-5">Comments
                             <span class="comment-count btn btn-sm">
                                 @php 
-                                    $approvedcomments = \App\Models\Comment::where('commentable_id', $blog->id)
-                                                                            ->where(function($query) {
-                                                                                $query->where('approval_status', 'approved')
-                                                                                    ->orWhere('approval_status', 'pending');
-                                                                            })->get();
-                                        
+                                    $approvedcomments = \App\Models\Comment::where('commentable_id', $blog->id)->where('approval_status', 'approved')->get();                                                 
                                 @endphp
                     
                                 {{ count($approvedcomments) }}
@@ -62,15 +66,26 @@
                         @include('pages.blogs.partials.replies', ['comments' => $approvedcomments, 'blog_id' => $blog->id])
                         
                     @else
-                        <h5 class="mb-3 mt-5">Comments </h5>
-                        @php
-                            echo '<p> No comments yet. </p>' 
-                        @endphp
+                        <h5 class="mb-3 mt-5">Comments 
+                            @auth
+                                <small class="float-right">
+                                    <span id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="mr-2 d-inline font-weight-bold">
+                                        <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
+                                        <span class="like-count">{{ $blog->likes() }}</span>
+                                    </span>
+                                    <span title="Dislike" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="ml-2 d-inline font-weight-bold">
+                                        <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
+                                        <span class="dislike-count">{{ $blog->dislikes() }}</span>
+                                    </span>
+                                </small>
+                            @endauth
+                        </h5>
+                        @php echo '<p> No comments yet. </p>' @endphp
 
                     @endif
                     <hr style="width: 100%; position: relative; left: 2px;">
                 </div>
-
+                
                 <div class="card-body mb-4 mt-3">
                     <h5 class="mt-3">Leave a comment </h5>
                     <form method="post" action="{{ route('add-comment') }}">
@@ -80,7 +95,7 @@
                             <input type="hidden" name="blog_id" value="{{ $blog->id }}" />
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-sm btn-outline-success py-1" style="font-size: 0.9em; color: #fff;" value="Add Comment" />
+                            <input type="submit" id="comment-submit" class="btn btn-sm btn-outline-success py-1" style="font-size: 0.9em; color: #fff;" value="Add Comment" />
                         </div>
                     </form>
                 </div>
@@ -133,7 +148,7 @@
                             </small>
                         </div>
 
-                        <p class="readMore"> <b><a style="color: #f27a1f" href="{{ route('view-blog', $r->id) }}"> Read more </b></a> <i class="fa fa-arrow-right"></i> </p>
+                        <p class="readMore"> <b><a style="color: #f27a1f" href="{{ route('view-blog', $r->id) }}"  data-toggle="modal" data-target="#newsletterModal"> Read more </b> <i class="fa fa-arrow-right"></i> </a> </p>
 
                     </div>
                     
@@ -144,6 +159,39 @@
             </div>
 
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newsletterModalLabel"> Newsletter form </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('save-subscriber') }}" method="post" id="newsletter-form">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" placeholder="Your name here..." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email address" required>
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted">We promise to only send you the best.</small>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" name="submit" form="newsletter-form">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of modal -->
             
     </main>
 
@@ -152,7 +200,6 @@
         $(document).on('click','#saveLikeDislike',function() {
             var _post=$(this).data('post');
             var _type=$(this).data('type');
-            var _user="{{ Auth::user()->id }}";                     
             var vm=$(this);
             // Run Ajax
             $.ajax({
@@ -162,7 +209,6 @@
                 data:{
                     post:_post,
                     type:_type,
-                    user:_user,
                     _token:"{{ csrf_token() }}"
                 },
                 beforeSend:function(){
@@ -180,5 +226,6 @@
             });
         });
     </script>
+
 
 @endsection

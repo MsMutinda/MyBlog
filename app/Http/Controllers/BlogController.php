@@ -11,6 +11,7 @@ use App\Models\Blog;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Comment;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class BlogController extends Controller
@@ -79,14 +80,11 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        if ($request->user()->can('view-blogDetails')) {
-
-            $blogs = Blog::where('id', $id)->get();
-            $categories = Category::all();
-            return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
-        }
+        $blogs = Blog::where('id', $id)->get();
+        $categories = Category::all();
+        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
     }
 
     // View blog comments
@@ -199,7 +197,7 @@ class BlogController extends Controller
         if ($request->user()->can('like-blog')) {
 
             $data=new \App\Models\LikeDislike;
-            $data->user_id=$request->user;
+            $data->user_id=$request->user()->id;
             $data->blog_id=$request->post;
         
             if($request->type=='like') {

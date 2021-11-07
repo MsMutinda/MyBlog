@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <!-- header here-->
 @include('includes.header')
+
+<!-- Sweet alert -->
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
 <body>
 

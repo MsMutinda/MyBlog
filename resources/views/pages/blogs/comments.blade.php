@@ -107,8 +107,6 @@
                                 });
                         }
 
-                        // hide/disable approve/reject button for approved/rejected comments
-
                     }
                 });
             });

@@ -28,7 +28,7 @@
                         <h5>{{ $firstblog->created_at->format('M d, Y') }}</h5>
                         <h1><b> {{ $firstblog->title }} </b></h1>
                         <p> {{ substr($firstblog->content, 0, 300).'...' }} </p>
-                        <p class="btn btn-lg"> <b><a href="{{ route('view-blog', $firstblog->id) }}"> Read blog </a></b> </p>
+                        <p class="btn btn-lg"> <b><a href="{{ route('view-blog', $firstblog->id) }}" data-toggle="modal" data-target="#newsletterModal"> Read blog </a></b> </p>
                     </div>
                 </div>
             </div>
@@ -83,6 +83,7 @@
                 @if(\App\Models\Blog::count() > 0)
                     <div class="blogs">
                         @foreach($blogs as $blog)
+                        @php $blog_id = $blog->id; @endphp 
                         <div class='card'>
                             <img
                                 src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
@@ -116,7 +117,7 @@
                                     <p> {{ substr($blog->content, 0, 105).'...' }} </p>
                                 </div>
                                 
-                                <p class="readMore"> <b><a style="color: #f27a1f" href="{{ route('view-blog', $blog->id) }}"> Read more </b></a> <i class="fa fa-arrow-right"></i> </p>
+                                <p class="btn btn-lg"> <b><a href="{{ route('view-blog', $blog->id) }}" data-toggle="modal" data-target="#newsletterModal"> Read blog </a></b> </p>    
 
                             </div>
                         </div>
@@ -125,15 +126,53 @@
                     </div>
                 @else
             </div>
+
+            <!-- Button trigger modal -->
+                
+
+                
                 @php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" @endphp
 
                 @endif
             </div>
-
-            <!-- <p class="mt-4" style="font-size: 20px;"> <a style="color: #f27a1f; text-decoration: underline; font-weight: 800" href="{{ route('viewAllBlogs') }}"> View all blogs </a> </p> -->
         </div>
 
+
+        <!-- Modal -->
+        <div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="newsletterModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newsletterModalLabel"> Newsletter form </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('save-subscriber') }}" method="post" id="newsletter-form">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" placeholder="Please enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email address" required>
+                        </div>
+                        <small id="emailHelp" class="form-text text-muted">We promise to only send you the best.</small>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" name="submit" form="newsletter-form">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of modal -->
+
     </main>
+
 
     <script type='text/javascript'>
 

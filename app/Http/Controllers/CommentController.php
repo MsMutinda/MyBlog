@@ -26,9 +26,10 @@ class CommentController extends Controller
 
             $blog = Blog::find($request->blog_id);
 
-            $blog->comments()->save($comment);
+            $blog->comments()->save($comment);           
 
-            return back();
+            return back()->with('success', 'Comment saved, pending approval');
+            // return back();
         }
     }
 
@@ -103,15 +104,16 @@ class CommentController extends Controller
                                     ->where('likes', 1)
                                     ->where('dislikes', 0)
                                     ->get();
-
                 if($liked){
                     DB::statement("UPDATE comment_likes SET likes=0, dislikes=1 where user_id=$request->user AND blog_id=$request->blog AND parent_comment_id=$request->comment AND reply_id=$request->reply AND likes=1 AND dislikes=0"); 
                 }
-                // DB::statement("INSERT INTO comment_likes (user_id,blog_id,parent_comment_id, reply_id, likes, dislikes) VALUES ($request->user,$request->blog,$request->comment,$request->reply,1,0)");
-                $comment_like->likes=1;
-                $comment_like->dislikes=0;
+                // dd('record doesn\'t exist');
+                DB::statement("INSERT INTO comment_likes (user_id,blog_id,parent_comment_id, reply_id, likes, dislikes) VALUES ($request->user,$request->blog,$request->comment,$request->reply,1,0)");
+                // $comment_like->likes=1;
+                // $comment_like->dislikes=0;
             }
-            $comment_like->save();
+            // $comment_like->save();
+            return back();
 
         }
     }

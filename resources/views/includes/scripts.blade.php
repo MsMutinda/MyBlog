@@ -6,11 +6,17 @@
         crossorigin="anonymous"></script>
 
 <script>
-$(document).ready(function() {
-        $(function () {
-                $("#archives").DataTable();
-                $("#all-blogs").DataTable();
-                $("#blog-comments").DataTable();
+        $(document).ready(function() {
+                $(function () {
+                        $("#archives").DataTable();
+                        $("#all-blogs").DataTable();
+                        $("#blog-comments").DataTable();
+                });
         });
-});
+</script>
+
+<script type="text/javascript">
+        setTimeout(function() {
+                $('.alert').fadeOut('fast');
+        }, 5000);
 </script>
