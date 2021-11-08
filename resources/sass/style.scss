@@ -182,9 +182,14 @@ main.main.profile-page {
 }
 
 .about > hr {
-    width: 66.5%;
+    width: 89.5%;
     position: relative;
-    right: 182px;
+    right: 8px;
+}
+
+.tags {
+    padding-left: 50px;
+    color: #8a8a8a;
 }
 
 .latestheader > hr {
@@ -224,10 +229,11 @@ main.main.profile-page {
     padding-left: 50px;
 }
 
-.latest > .row > .col-lg-3 > h5{
+.tags h5, .latest > .row > .col-lg-3 > h5{
     margin-left: 5px;
     text-decoration: underline;
     font-weight: 700;
+    color: #8a8a8a;
 }
 
 .latest > .row > .col-lg-3 > ul {
@@ -235,6 +241,7 @@ main.main.profile-page {
     list-style: none;
     display: inline-grid;
     grid-template-columns: auto auto;
+    column-gap: 10px;
 }
 
 .latest > .row > .col-lg-3 > ul > li {

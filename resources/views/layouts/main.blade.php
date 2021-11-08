@@ -26,7 +26,7 @@
                                 @endforeach
                         </select>
                     </li>
-                    <li class="nav__item"><a href="{{ route('register') }}">Register </a> /
+                    <li class="nav__item"><a href="{{ route('register')}}">Register </a> <b style="color: #000; font-weight: 700;"> / </b>
                     <a href="{{ route('login') }}"> Login </a></li>
                     <li class="nav__item"> 
                         <ul class="float-right"> 

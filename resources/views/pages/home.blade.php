@@ -5,8 +5,8 @@
     <main role="main" class="main">
         
         <div class="row"> 
-            <div class="about col-lg-12 col-sm-12"> 
-                <h2> Juliet Mutinda </h2>
+            <div class="about col-lg-9 col-sm-19"> 
+                <h2> Some heading </h2>
                 <!-- <img src="" alt="" class="float-right"> -->
                 <!-- <span class="float-right rounded-circle bg-warning text-center text-white px-4 py-3">
                     <strong>
@@ -16,8 +16,13 @@
                         ?>
                     </strong>
                 </span> -->
-                <p> Intern Laravel Developer | Technical Writer </p>
+                <!-- <p> Intern Laravel Developer | Technical Writer </p> -->
+                <p> To be filled later </p>
                 <hr />
+            </div>
+
+            <div class="tags col-lg-3 col-sm-3">
+                <h5>Tags</h5>
             </div>
         </div>
 
@@ -73,7 +78,7 @@
                     @php $categories = \App\Models\Category::get('name'); @endphp
                         <ul>
                             @foreach($categories as $category)
-                                <li>{{ substr($category, 9, -2) }}</li>
+                                <li> <a href="" style="color: #8a8a8a;"> {{ substr($category, 9, -2) }} </a> </li>
                             @endforeach
                         </ul>
                 </div>
@@ -83,7 +88,7 @@
 
         <!-- Modal -->
         <div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="newsletterModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="newsletterModalLabel"> Newsletter form </h5>
@@ -118,15 +123,12 @@
 
 
     <script type='text/javascript'>
-
         function submitter(value, name) {
             console.log(value)
             $.get("{{ url('blogs/') }}/"+value, function(response){
                 return value;
-                console.log(response)
             })
         }
-
     </script>
 
 @endsection
