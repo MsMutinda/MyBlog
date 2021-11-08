@@ -23,7 +23,7 @@ class HomeController extends Controller
     public function index(Request $request) 
     {    
         // fetch latest blogs
-        $blogs = Blog::where('status', 'pending review')->orderBy('created_at', 'DESC')->take(5)->get();
+        $blogs = Blog::where('status', 'pending review')->take(5)->get();
 
         // fetch blog categories
         $categories = Category::all();
