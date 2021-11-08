@@ -3,61 +3,7 @@
 @section('content')
 
     <main role="main" class="main">
-        <div class="row">
-            <div class="topheader col-lg-12 col-sm-12">
-                <h3>Blog</h3>
-                <p>Get more insights about your technology journey</p>
-            </div>
-        </div>
-
-        <div class="row first">
-            <div class="col-lg-8 col-sm-8">
-                @php 
-                    $firstblog = \App\Models\Blog::orderBy('created_at', 'DESC')->first(); 
-                @endphp
-                <div class='firstblog row'>
-                    <div class="col-lg-7 col-sm-7">
-                        <img
-                            src="{{ asset('storage/'.substr($firstblog->image_path, 7)) }}"
-                            class="card-img"
-                            title="{{ $firstblog->title }} image"
-                            alt="{{ $firstblog->title }} img"
-                        />
-                    </div>
-                    <div class="col-lg-5 col-sm-5 text-white">
-                        <h5>{{ $firstblog->created_at->format('M d, Y') }}</h5>
-                        <h1><b> {{ $firstblog->title }} </b></h1>
-                        <p> {{ substr($firstblog->content, 0, 300).'...' }} </p>
-                        <p class="btn btn-lg"> <b><a href="{{ route('view-blog', $firstblog->id) }}" data-toggle="modal" data-target="#newsletterModal"> Read blog </a></b> </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-sm-4">
-                <h2>How to do: </h2>
-                <div>
-                    <h5>LARAVEL</h5>
-                    <h6><b>How to create a Laravel project</b></h6>
-                    <p>In this blog, you will learn how to ...</p>
-                </div>
-                <div>
-                    <h5>REACT</h5>
-                    <h6><b>How to create a React project</b></h6>
-                    <p>In this blog, you will learn how to ...</p>
-                </div>
-                <div>
-                    <h5>UI/UX</h5>
-                    <h6><b>How to create a UI/UX project</b></h6>
-                    <p>In this blog, you will learn how to ...</p>
-                </div>
-                <div>
-                    <h5>QUALITY ASSURANCE</h5>
-                    <h6><b>Tips and best practices</b></h6>
-                    <p>In this blog, you will learn how to ...</p>
-                </div>
-            </div>
-        </div>
-
+        
         <div class="row"> 
             <div class="categories col-lg-12 col-sm-12"> 
                 <h2>Categories </h2>

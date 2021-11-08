@@ -12,14 +12,14 @@ class Blog extends Model
     use HasFactory, SoftDeletes;
     protected $guarded = [];
     protected $fillable = [
-        'category',
-        'image_path',
-        'title',
-        'author',
-        'content'
+    'category',
+    'image_path',
+    'title',
+    'author',
+    'content'
     ];
 
-    //get user who owns the post
+   //get user who owns the post
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -29,19 +29,19 @@ class Blog extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
-    // Comments
+   // Comments
     public function comments()
     {
         return $this->morphMany(Comment::class, 'commentable')->where('parent_id', 0);
     }
 
-    // Likes
+   // Likes
     public function likes(){
         return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('likes');
     }
-    // Dislikes
+   // Dislikes
     public function dislikes(){
         return $this->hasMany('App\Models\LikeDislike','blog_id')->sum('dislikes');
     }
-    
+
 }

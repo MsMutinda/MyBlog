@@ -23,15 +23,12 @@ class HomeController extends Controller
     public function index(Request $request) 
     {    
         // fetch latest blogs
-        $blogs = Blog::orderBy('created_at', 'DESC')->take(6)->get();
+        $blogs = Blog::where('status', 'pending review')->orderBy('created_at', 'DESC')->take(5)->get();
 
         // fetch blog categories
         $categories = Category::all();
 
-        // get featured posts
-        $featuredBlogs = Blog::all()->random(3);
-
-        return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories, 'featuredBlogs'=>$featuredBlogs]);
+        return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories]);
     }
 
     public function filterByCategory($id, $name) {
