@@ -21,52 +21,62 @@
             </div>
         </div>
 
-        <div class="row"> 
-            <div class="latestheader col-lg-12 col-sm-12"> 
-                <h2>Published blogs </h2>
-                <hr />
-            </div>
-        </div>
+        
         
 
         <div class="latest">
-            <div class="row">
-                @if(\App\Models\Blog::count() > 0)
-                    @foreach($blogs as $blog)
-                        <div class="col-lg-7 col-sm-7">
-                            <div class='card'>
-                                <div class="card-body">
-                                    <h4 class="card-title"><strong> {{ $blog->title }} </strong></h4>
-                                    <small class="mt-1"> <img src="" alt=""> By {{ $blog->author }} </small>
-                                    <small class="mt-1">
-                                        <span class="float-right"> {{ $blog->created_at->format('d M, Y') }} {{ $blog->created_at->format('h:i A') }} </p>
-                                        </span>
-                                    </small>
-                                </div>
+            <div class="row"> 
+                <div class="latestheader col-lg-9 col-sm-9"> 
+                    <h2>Published blogs </h2>
+                    <hr />
 
-                                <div class="card-body">
-                                    <div class='card-text'>
-                                        <p> {{ substr($blog->content, 0, 200).'...' }} </p>
+                    <div class="row">
+                        @if(\App\Models\Blog::count() > 0)
+                            @foreach($blogs as $blog)
+                                <div class="col-lg-7 col-sm-7">
+                                    <div class='card'>
+                                        <div class="card-body">
+                                            <h3 class="card-title mb-2"><strong> {{ $blog->title }} </strong></h3>
+                                            <small> <img src="" alt=""> By {{ $blog->author }} </small>
+                                            <small>
+                                                <span class="float-right"> {{ $blog->created_at->format('d M, Y') }} {{ $blog->created_at->format('h:i A') }} </p>
+                                                </span>
+                                            </small>
+                                        </div>
+
+                                        <div class="card-body">
+                                            <div class='card-text'>
+                                                <p> {{ substr($blog->content, 0, 194).'...' }} </p>
+                                            </div>
+                                            <!-- Newsletter modal button trigger -->
+                                            <p class="btn btn-sm"> <b><a href="{{ route('view-blog', $blog->id) }}" data-toggle="modal" data-target="#newsletterModal" style="color: #fff;"> Read blog </a></b> </p>    
+                                        </div>
                                     </div>
-                                    <!-- Newsletter modal button trigger -->
-                                    <p class="btn btn-sm"> <b><a href="{{ route('view-blog', $blog->id) }}" data-toggle="modal" data-target="#newsletterModal" style="color: #fff;"> Read blog </a></b> </p>    
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="col-lg-5 col-sm-5 float-right">
-                            <img
-                                src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
-                                class="card-img-top"
-                                title="{{ $blog->title }} image"
-                                alt="{{ $blog->title }} img"
-                            />
-                        </div>
+                                <div class="col-lg-5 col-sm-5 float-right">
+                                    <img
+                                        src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
+                                        title="{{ $blog->title }} image"
+                                        alt="{{ $blog->title }} img"
+                                    />
+                                </div>
+                            @endforeach
+                        @else
+                            @php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" @endphp
+                        @endif
+                    </div>
+                </div>
 
-                    @endforeach
-                @else
-                    @php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" @endphp
-                @endif
+                <div class="col-lg-3 col-sm-3">
+                    <h5> Read about: </h5>
+                    @php $categories = \App\Models\Category::get('name'); @endphp
+                        <ul>
+                            @foreach($categories as $category)
+                                <li>{{ substr($category, 9, -2) }}</li>
+                            @endforeach
+                        </ul>
+                </div>
             </div>
         </div>
 

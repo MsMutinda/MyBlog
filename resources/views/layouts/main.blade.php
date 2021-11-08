@@ -15,6 +15,7 @@
 
         <div class="nav__menucontainer">
             <div class="nav__listcontainer" tabindex="0">
+                @guest
                 <ul class="nav__menu" id="navmenu">
                     <li class="nav__item"><a href="/">Home</a></li>
                     <li class="nav__item">
@@ -25,7 +26,30 @@
                                 @endforeach
                         </select>
                     </li>
-                    <li class="nav__item"><a href="">About </a></li>
+                    <li class="nav__item"><a href="{{ route('register') }}">Register </a> /
+                    <a href="{{ route('login') }}"> Login </a></li>
+                    <li class="nav__item"> 
+                        <ul class="float-right"> 
+                            <li> <a href=""> Subscribe to my newsletter </a> </li>
+                            <li title="Toggle dark mode"> Dark mode <i class="fa fa-toggle-off"></i> </li>
+                            <li title="Toggle dark mode" style="display: none;"> Light mode <i class="fa fa-toggle-on"></i> </li>
+                        </ul>
+                    </li>
+                </ul>
+                @endguest
+
+                @auth
+                <ul class="nav__menu" id="navmenu">
+                    <li class="nav__item"><a href="/">Home</a></li>
+                    <li class="nav__item">
+                        <select class="nav-select" onchange="location = this.value;"> 
+                            <option value="">Blogs </option>
+                            @if(Auth::user()->can('create-blog')) <option value="{{ route('create-blog') }}" > Create blog </option> @endif  
+                            <option value="{{ route('viewAllBlogs') }}"> View All Blogs </option>
+                            @if(Auth::user()->can('view-archivedBlogs')) <option value="{{ route('viewBlogArchives') }}"> View Archived </option> @endif
+                        </select>
+                    </li>
+                    <li class="nav__item"><a href="">Sign out </a></li>
                     <li class="nav__item"> 
                         <ul class="float-right"> 
                             <li> <a href=""> Subscribe to my newsletter </a> </li>
@@ -34,6 +58,8 @@
                         </ul>
                     </li>
                 </ul>
+                @endauth
+
                 <a id="hamburger" href="#navmenu" title="menu" class="nav__hamburger">
                     <i class="fa fa-bars ham ml-2 mr-3"></i> 
                     <p class="ml-2 mb-1" style="position: relative; bottom: 3px; right: 10px; font-weight: 700; "> Menu </p>
