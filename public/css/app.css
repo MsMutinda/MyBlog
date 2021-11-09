@@ -10509,6 +10509,20 @@ main.main.profile-page {
   margin: 5px;
 }
 
+.latest > .row > .col-lg-9 > .row > .col-lg-7 > .card > .card-body > small > span > p {
+  background-color: #f0ebeb;
+  border-radius: 20px;
+  position: relative;
+  top: 5px;
+  font-size: 0.65rem;
+  color: #323232;
+}
+
+.latest > .row > .col-lg-9 > .row > .col-lg-7,
+.latest > .row > .col-lg-9 > .row > .col-lg-5 {
+  margin-top: 20px;
+}
+
 .latest > .row > .col-lg-9 > .row > .col-lg-5 > img {
   height: 180px;
   width: 90%;
@@ -10518,11 +10532,12 @@ main.main.profile-page {
 
 .latest > .row > .col-lg-3 {
   position: relative;
-  top: 70px;
+  top: 90px;
   padding-left: 50px;
 }
 
-.tags h5, .latest > .row > .col-lg-3 > h5 {
+.tags h5,
+.latest > .row > .col-lg-3 > h5 {
   margin-left: 5px;
   text-decoration: underline;
   font-weight: 700;
@@ -10536,13 +10551,15 @@ main.main.profile-page {
   grid-template-columns: auto auto;
   -moz-column-gap: 10px;
        column-gap: 10px;
+  line-height: 1.8rem;
 }
 
-.latest > .row > .col-lg-3 > ul > li {
+.latest > .row > .col-lg-3 > ul > li > a {
   list-style: none;
   padding: 6px;
   font-size: 12px;
   text-align: left;
+  color: #8a8a8a;
 }
 
 form .container {
@@ -10600,7 +10617,7 @@ button {
 }
 
 .card-text {
-  color: #8a8a8a;
+  color: #323232;
   font-size: 13px;
 }
 
@@ -10663,6 +10680,11 @@ div.author-details > div.float-left > img {
 .all-blogs {
   padding: 50px;
   margin-top: 90px;
+}
+
+small {
+  color: #8a8a8a;
+  font-size: 11px;
 }
 
 /* Responsiveness */

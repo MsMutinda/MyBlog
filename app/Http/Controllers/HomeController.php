@@ -7,14 +7,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Subscription;
-use App\Traits\showBlogTrait;
 
 
 class HomeController extends Controller
 {
-    
-    use showBlogTrait;
-
     /**
      * Show the application dashboard.
      *
@@ -29,6 +25,13 @@ class HomeController extends Controller
         $categories = Category::all();
 
         return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+    }
+
+    public function show($id)
+    {
+        $blogs = Blog::where('id', $id)->get();
+        $categories = Category::all();
+        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
     }
 
     public function filterByCategory($id, $name) {
@@ -53,10 +56,22 @@ class HomeController extends Controller
         $subscriber->email = $request->email;
         $subscriber->save();
 
+        $id = $request->blog;
+        $blog = Blog::where('id', $id)->get();
+
+        // get estimated reading time for each blog
+        $blog_content = Blog::where('id', $id)->get('content');
+        $wpm = 200;
+        $wordCount = str_word_count(strip_tags($blog_content));
+        $minutes = (int) floor($wordCount / $wpm);
+
+        $categories = Category::all();
+        $blog_category = Blog::where('id', $id)->get('category');
+        $relatedblogs = Blog::where('category', $blog_category)->where('id', '!=', $id)->get();
 
         // call the show() method
-        return $this->show(1);
-        // return \App::call('App\Http\Controllers\HomeController@show');
+        // return redirect()->route('view-blog', [$id])->with(['blog'=>$blog, 'categories'=>$categories]);
+        return view('pages.blogs.show')->with(['blog'=>$blog, 'minutes'=>$minutes, 'categories'=>$categories]);
     }
 
 }
