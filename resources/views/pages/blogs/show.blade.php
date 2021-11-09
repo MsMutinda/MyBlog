@@ -3,28 +3,29 @@
 @section('content')
 
     <main role="main" class="main show-blog">
-            @if(Session::has('success'))
-            <div class="alert alert-info">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <p>{{ Session::get('success') }}</p>
-            </div>
-            @endif
+        @if(Session::has('success'))
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <p>{{ Session::get('success') }}</p>
+        </div>
+        @endif
 
+        <div class="row">
             @foreach($blog as $b)
-                
-                <h1 class='text-center ml-1' style="color: #F57E20;"><strong> {{ $b->title }} </strong> </h1>
-                <img
-                    src="{{ asset('storage/'.substr($b->image_path, 7)) }}"
-                    class="card-img mt-5"
-                    title="{{ $b->title }} image"
-                    alt="{{ $b->title }} img"
-                    height="450px"
-                />
+            <div class="col-lg-10 col-sm-10">
+                <h1 class='text-center'><strong> {{ $b->title }} </strong> </h1>
+
+                <hr>
+                <div class="card-body">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" alt="" align="left" width="90px" height="90px">
+                    <p> By <strong> {{ $b->author }} </strong> </p>
+                    <p> Published on {{ $b->created_at->format('M d, Y') }} </p>
+                </div>
+                <hr>
 
                 <div class='card-body'>
                     <div class='card-text'>
                         <p style="text-align: justify; font-size: 15px;"> {{ $b->content }} </p>
-                        
                     </div>
                 </div>
 
@@ -39,37 +40,12 @@
                                 {{ count($approvedcomments) }}
                                 <!-- {{ count($b->comments) }} -->
                             </span>
-                            @auth
-                                <small class="float-right">
-                                    <span id="saveLikeDislike" data-type="like" data-post="{{ $b->id}}" class="mr-2 d-inline font-weight-bold">
-                                        <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
-                                        <span class="like-count">{{ $b->likes() }}</span>
-                                    </span>
-                                    <span title="Dislike" id="saveLikeDislike" data-type="dislike" data-post="{{ $b->id}}" class="ml-2 d-inline font-weight-bold">
-                                        <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
-                                        <span class="dislike-count">{{ $b->dislikes() }}</span>
-                                    </span>
-                                </small>
-                            @endauth
                         </h6>
                         
                         @include('pages.blogs.partials.replies', ['comments' => $approvedcomments, 'blog_id' => $b->id])
                         
                     @else
-                        <h5 class="mb-3 mt-5">Comments 
-                            @auth
-                                <small class="float-right">
-                                    <span id="saveLikeDislike" data-type="like" data-post="{{ $b->id}}" class="mr-2 d-inline font-weight-bold">
-                                        <i title="Like" class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
-                                        <span class="like-count">{{ $b->likes() }}</span>
-                                    </span>
-                                    <span title="Dislike" id="saveLikeDislike" data-type="dislike" data-post="{{ $b->id}}" class="ml-2 d-inline font-weight-bold">
-                                        <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
-                                        <span class="dislike-count">{{ $b->dislikes() }}</span>
-                                    </span>
-                                </small>
-                            @endauth
-                        </h5>
+                        <h5 class="mb-3 mt-5">Comments </h5>
                         @php echo '<p> No comments yet. </p>' @endphp
 
                     @endif
@@ -88,7 +64,26 @@
                         </div>
                     </form>
                 </div>
-        @endforeach
+
+            </div>
+
+            <div class="col-lg-2 col-sm-2">
+                @auth
+                    <ul>
+                        <li title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $b->id}}" class="mr-2 d-inline font-weight-bold">
+                            <i class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
+                            <span class="like-count">{{ $b->likes() }}</span>
+                        </li>
+                        <li title="Dislikes" id="saveLikeDislike" data-type="dislike" data-post="{{ $b->id}}" class="ml-2 d-inline font-weight-bold">
+                            <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
+                            <span class="dislike-count">{{ $b->dislikes() }}</span>
+                        </li>
+                    </ul>
+                @endauth
+            </div>
+
+            @endforeach
+        </div>
 
 
         @php 
@@ -130,7 +125,7 @@
                     
                     @endforeach
                 @else
-                    @php echo "<h5 class='ml-3 mt-3' style='color: #f57e20;'>"."No related blogs yet."."</h5>" @endphp
+                    @php echo "<h5 class='mt-3' style='color: #f57e20;'>"."No related blogs yet."."</h5>" @endphp
                 @endif
             </div>
 

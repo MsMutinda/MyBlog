@@ -8,9 +8,12 @@ body {
     background: #fff;
 }
 
-.main {
-    margin-top: 133px;
-    padding: 0px 30px 0px 50px;
+main {
+    margin-top: 130px;
+}
+
+.home {
+    padding: 0px 30px 25px 50px;
 }
 
 a {
@@ -149,6 +152,8 @@ nav ul li {
     font-size: 14px;
 }
 
+
+// View profile page
 main.main.profile-page {
     padding: 20px;
     margin: 115px 0px 40px 0px;
@@ -158,6 +163,8 @@ main.main.profile-page {
     background: #f27a1f;
 }
 
+
+// Homepage top section
 .about {
     height: 180px;
     margin: 0 auto;
@@ -181,24 +188,53 @@ main.main.profile-page {
     font-size: 2rem;
 }
 
-.about > hr {
-    width: 89.5%;
+.home > .row > hr {
+    width: 65%;
     position: relative;
-    right: 8px;
+    right: 185px;
+}
+
+main > div.row > div.tags {
+    padding-left: 40px;
 }
 
 .write {
-    margin-left: 40px;
     color: #fff;
-    background: #1d68a7;
-    padding: 15px;
+    background: hsl(207, 70%, 38%);
+    padding: 10px;
     border-radius: 15px;
-    width: 55%;
+    width: 49%;
+    cursor: pointer;
 }
 
-.tags {
-    margin-top: 50px;
-    padding-left: 40px;
+.write:hover {
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.home > .row > .col-lg-3 > h5:nth-child(2) {
+    margin-top: 30px;
+    margin-left: 5px;
+    text-decoration: underline;
+    font-weight: 700;
+    color: #8a8a8a;
+}
+
+.home > .row > .col-lg-3 > ul {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: auto auto;
+    line-height: 1.8rem;
+}
+
+.home > .row > .col-lg-3 > ul > li > a {
+    list-style: none;
+    // display: inline;
+    padding: 6px;
+    font-size: 12px;
+    text-align: left;
+    color: #8a8a8a;
 }
 
 .latestheader > hr {
@@ -248,7 +284,7 @@ main.main.profile-page {
 
 .latest > .row > .col-lg-3 {
     position: relative;
-    top: 90px;
+    top: 95px;
     padding-left: 50px;
 }
 
@@ -379,7 +415,7 @@ footer > div > ul > li > a:hover {
 .footer1 {
     // background: #fdfff5;
     padding: 30px 0px 30px 10px;
-    border-top: 0.5px solid rgb(216, 206, 206);
+    border-top: 0.5px solid rgb(230, 221, 221);
     // border-bottom: 0.2px solid rgb(216, 206, 206);
 }
 
@@ -405,7 +441,6 @@ footer > div > ul > li > a:hover {
 
 .footer1 > div.col-lg-4 > p > a {
     color: #323232;
-    // font-size: 11px;
 }
 
 .links ul {
@@ -438,8 +473,37 @@ footer > div > ul > li > a:hover {
     font-weight: 700;
 }
 
+
+// View blog styles
 .show-blog {
-    padding: 3% 17%;
+    margin-bottom: 20px;
+}
+
+.show-blog > .row > .col-lg-10,
+.show-blog > .related-blogs {
+    padding: 0px 15% 25px 5%;
+}
+
+.show-blog h1 {
+    color: #094270;
+    font-size: 3rem;
+    padding: 0px 0px 5px 0px;
+}
+
+.show-blog > .row > .col-lg-10 > hr {
+    width: 100%;
+}
+
+.show-blog > .row > .col-lg-10 > .card-body > img {
+    padding: 5px;
+    margin-right: 10px;
+    position: relative;
+    bottom: 15px;
+}
+
+.show-blog > .row > .col-lg-10 > .card-body > .card-text {
+    word-spacing: 3px;
+    color: #111111;
 }
 
 div.author-details > div.float-left > img {
@@ -447,24 +511,44 @@ div.author-details > div.float-left > img {
 }
 
 .related-blogs {
-    margin-top: 55px;
+    margin-top: 35px;
 }
 
+.related-blogs > .row > .col-lg-12 {
+    padding: 0;
+}
+
+
+// Archived blogs page
 .archived-blogs {
     margin-top: 80px;
     padding: 50px;
     margin-left: 20px;
 }
 
+
+// All blogs page
 .all-blogs {
     padding: 50px;
     margin-top: 90px;
 }
 
+
+// All <small> tags
 small {
     color: #8a8a8a;
     font-size: 11px;
 }
+
+
+// Create blog page
+.create {
+    width: 50vw;
+    padding: 10px 30px 25px 50px;
+    margin:  130px 35% 50px 25%;
+}
+
+
 
 
 /* Responsiveness */
@@ -685,12 +769,6 @@ small {
     .about > p {
         padding: 3px;
         margin-left: 13px;
-    }
-
-    .about hr {
-        position: relative;
-        top: 10px;
-        left: 0;
     }
 
     .latestheader > h2 {

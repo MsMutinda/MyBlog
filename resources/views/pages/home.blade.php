@@ -2,38 +2,27 @@
 
 @section('content')
 
-    <main role="main" class="main">
+    <main role="main" class="home">
         
         <div class="row"> 
-            <div class="about col-lg-9 col-sm-19"> 
+            <div class="about col-lg-9 col-sm-9"> 
                 <h2> Some heading </h2>
-                <!-- <img src="" alt="" class="float-right"> -->
-                <!-- <span class="float-right rounded-circle bg-warning text-center text-white px-4 py-3">
-                    <strong>
-                        <?php
-                        $str='Juliet';
-                        echo strtoupper($str[0]);
-                        ?>
-                    </strong>
-                </span> -->
-                <!-- <p> Intern Laravel Developer | Technical Writer </p> -->
                 <p> To be filled later </p>
-                <hr />
             </div>
 
-            <div class="col-lg-3 col-sm-3">
-                <h5 class="write mb-3"> <i class="mr-2 fa fa-pencil"></i> Contribute</h5>
+            <div class="tags col-lg-3 col-sm-3">
+                <h5 class="write"> <i class="mr-1 fa fa-pencil"></i> Contribute</h5>
                 <h5 class="tags"> Tags </h5>
             </div>
+            
+        <hr />
         </div>
 
-        
-        
 
         <div class="latest">
             <div class="row"> 
                 <div class="latestheader col-lg-9 col-sm-9"> 
-                    <h2>Published blogs </h2>
+                    <h2>Latest blogs </h2>
                     <hr />
 
                     <div class="row">
@@ -96,17 +85,19 @@
 
                 <div class="col-lg-3 col-sm-3">
                     <h5> Read about: </h5>
-                        <ul>
-                            @foreach($categories as $category)
-                                <li> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{$category->name}} </a> </li>
-                            @endforeach
-                        </ul>
+                    <ul>
+                        @foreach($categories as $category)
+                            <li> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{$category->name}} </a> </li>
+                        @endforeach
+                    </ul>
                 </div>
+
             </div>
         </div>
 
 
-        <!-- Modal -->
+
+        <!-- Newsletter Modal -->
         <div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="newsletterModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -140,7 +131,57 @@
                 </div>
             </div>
         </div>
-        <!-- End of modal -->
+        <!-- End of newsletter modal -->
+
+        <!-- Create blog modal -->
+        <div class='modal fade' id="createBlogModal" tabindex="-1" role="dialog" aria-labelledby="createBlogModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createBlogModalLabel"> Add a new blog </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form method="POST" action="{{ route('save-blog') }}" enctype="multipart/form-data" id="createBlog-form">
+                            @csrf                 
+                            <div class="form-group">
+                                <label for="title"> Blog Title <span class="text-danger">*</span></label>
+                                <input type="text" name="title" class="form-control shadow" placeholder="Blog name goes here" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category"> Category <span class="text-danger">*</span></label>
+                                <select class='form-control shadow' name="category">
+                                    <option value="--Select Category" selected disabled>Select category</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>                    
+                            </div>
+
+                            <div class="form-group">
+                                <label for="content"> Content <span class="text-danger">*</span></label>
+                                <input type="text" name="content" class="form-control shadow" placeholder="Write your content here" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="file"> Upload blog image <span class="text-danger">*</span></label> <br>
+                                <input type="file" name="file" required>
+                            </div>
+                            
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success" style="background-color: #568203;" form="createBlog-form" onclick="return confirm('You are about to save this Blog, continue?');"> Save Blog</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </main>
 

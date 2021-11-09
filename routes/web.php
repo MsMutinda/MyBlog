@@ -39,8 +39,6 @@ Route::middleware('auth')->group(function()
 Route::middleware('auth', 'role')->group(function()
 {
     // Blog routes
-    Route::get('/blog/new', [App\Http\Controllers\BlogController::class, 'create'])->name('create-blog');
-
     Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('save-blog');
 
     // Route::match(['get', 'post'], '/blog/{id}', ['uses' => '\App\Http\Controllers\HomeController@show', 'as' => 'view-blog']);
@@ -80,7 +78,7 @@ Route::post('save-subscriber', [App\Http\Controllers\HomeController::class, 'sav
 
 
 // Blog category filter
-Route::get('/blogs/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
+Route::get('/categories/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
 
 // User roles
 // Route::get('roles', [App\Http\Controllers\PermissionController::class, 'Permission']);

@@ -23,19 +23,6 @@ class BlogController extends Controller
         $categories = Category::all();
         return view('pages.blogs.all')->with(['all'=>$all, 'categories'=>$categories]);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request) 
-    {
-        if ($request->user()->can('create-blog')) {
-
-            $categories = Category::all();
-            return view('pages.blogs.create')->with( 'categories', $categories);
-        }
-    }
 
     /**
      * Store a newly created resource in storage.
