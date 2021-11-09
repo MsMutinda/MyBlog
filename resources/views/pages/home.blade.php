@@ -21,8 +21,9 @@
                 <hr />
             </div>
 
-            <div class="tags col-lg-3 col-sm-3">
-                <h5>Tags</h5>
+            <div class="col-lg-3 col-sm-3">
+                <h5 class="write mb-3"> <i class="mr-2 fa fa-pencil"></i> Contribute</h5>
+                <h5 class="tags"> Tags </h5>
             </div>
         </div>
 

@@ -75,10 +75,51 @@
         @yield('content')
     </div>
 
+
+    <section class="row footer1">
+        <div class="col-lg-4 col-sm-3">
+            <a href="/">
+                Blogger.com
+            </a>
+            <p>A blogging platform where tech professionals share on their tech experiences, how-to's, and everything else tech.</p>
+            <p> <a href=""> &copy; {{ date('Y')}}. &nbsp; All rights reserved.  </a> </p>
+        </div>
+        <div class="links col-lg-2 col-sm-3">
+            <ul> <p> Explore </p>
+                <li><a href=""> Trending blogs</a></li>
+                <li> <a href="#"> Faqs</a></li>
+                <li><a href="#"> About </a></li>
+            </ul>
+        </div>
+        
+        <div class="links col-lg-2 col-sm-3"> 
+            <ul> <p> Social Media  </p>
+                <li><a href="">Github</a></li>
+                <li> <a href="">Linkedin</a></li>
+                <li><a href="">Twitter </a></li>
+            </ul>
+        </div>
+        <div class="links col-lg-2 col-sm-3">
+            <ul> <p> Legal </p>
+                <li> <a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions </a></li>
+                <li><a href="#">SLAs</a></li>
+            </ul>
+        </div>
+        <div class="links col-lg-2 col-sm-3">
+            <ul><p>Contact</p>
+                <li><a href="#">Nairobi, Kenya</a></li>
+                <li> <a href="#">info@myblog.com</a></li>
+                <li><a href="#">(+254) 020 123 4567 </a></li>
+            </ul>
+        </div>
+    </section>
+
+
     <!--scripts here-->
     @include('includes.scripts')
     
     <!-- Footer -->
-    @include('includes.footer')
+    <!-- @include('includes.footer') -->
 </body>
 <html>
