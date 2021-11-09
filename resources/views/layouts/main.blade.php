@@ -46,7 +46,7 @@
                             <option value="">Blogs </option>
                             @if(Auth::user()->can('save-blog')) <option value="{{ route('create-blog') }}" > Create blog </option> @endif  
                             <option value="{{ route('viewAllBlogs') }}"> View All Blogs </option>
-                            @if(Auth::user()->can('view-archivedBlogs')) <option value="{{ route('viewBlogArchives') }}"> View Archived </option> @endif
+                            @if(Auth::user()->can('view-archivedBlogs')) <option value="{{ route('viewBlogArchives') }}"> View Archived Blogs </option> @endif
                         </select>
                     </li>
                     <li class="nav__item"><a href="">Sign out </a></li>

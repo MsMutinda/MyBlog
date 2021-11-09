@@ -13,7 +13,7 @@
         <div class="row">
             @foreach($blog as $b)
             <div class="col-lg-10 col-sm-10">
-                <h1 class='text-center'><strong> {{ $b->title }} </strong> </h1>
+                <h1 class='text-center' ><strong> {{ $b->title }} </strong> </h1>
 
                 <hr>
                 <div class="card-body">
@@ -25,7 +25,7 @@
 
                 <div class='card-body'>
                     <div class='card-text'>
-                        <p style="text-align: justify; font-size: 15px;"> {{ $b->content }} </p>
+                        <p style="text-align: justify; font-size: 15px;"> {!! $b->content !!} </p>
                     </div>
                 </div>
 
@@ -70,13 +70,20 @@
             <div class="col-lg-2 col-sm-2">
                 @auth
                     <ul>
-                        <li title="Likes" id="saveLikeDislike" data-type="like" data-post="{{ $b->id}}" class="mr-2 d-inline font-weight-bold">
+                        <li title="Like blog" id="saveLikeDislike" data-type="like" data-post="{{ $b->id}}" class="d-inline font-weight-bold">
                             <i class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
                             <span class="like-count">{{ $b->likes() }}</span>
                         </li>
-                        <li title="Dislikes" id="saveLikeDislike" data-type="dislike" data-post="{{ $b->id}}" class="ml-2 d-inline font-weight-bold">
+                        <li title="Dislike blog" id="saveLikeDislike" data-type="dislike" data-post="{{ $b->id}}" class="d-inline font-weight-bold">
                             <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
                             <span class="dislike-count">{{ $b->dislikes() }}</span>
+                        </li>
+                        <li title="Add comment" class="d-inline font-weight-bold">
+                            <i class="fa fa-comments text-secondary p-1" style="cursor: pointer; font-size: 2.3em;"></i>
+                            <span>{{ count($b->comments) }}</span>
+                        </li>
+                        <li title="Bookmark blog" class="d-inline font-weight-bold">
+                            <i class="fa fa-bookmark text-dark p-1 ml-1" style="cursor: pointer; font-size: 2.3em;"></i>
                         </li>
                     </ul>
                 @endauth

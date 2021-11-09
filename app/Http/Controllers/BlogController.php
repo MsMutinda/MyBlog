@@ -52,7 +52,7 @@ class BlogController extends Controller
             $save_blog->category = $request->category;
             $save_blog->image_path = $path;
             $save_blog->title = $request->title;
-            $save_blog->author = Auth::user()->fname;
+            $save_blog->author = Auth::user()->fname.' '.Auth::user()->lname;
             $save_blog->content = $request->content;
 
             $save_blog->save();

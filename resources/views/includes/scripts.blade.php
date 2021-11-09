@@ -20,3 +20,9 @@
                 $('.alert').fadeOut('fast');
         }, 5000);
 </script>
+
+<script type="text/javascript">
+        $('#summernote').summernote({
+                height: 330
+        });
+</script>
