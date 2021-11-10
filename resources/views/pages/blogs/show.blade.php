@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <main role="main" class="main show-blog">
+    <main role="main" class="show-blog">
         @if(Session::has('success'))
         <div class="alert alert-info">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -14,7 +14,6 @@
             @foreach($blog as $b)
             <div class="col-lg-10 col-sm-10">
                 <h1 class='text-center' ><strong> {{ $b->title }} </strong> </h1>
-
                 <hr>
                 <div class="card-body">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" alt="" align="left" width="90px" height="90px">
@@ -80,7 +79,7 @@
                         </li>
                         <li title="Add comment" class="d-inline font-weight-bold">
                             <i class="fa fa-comments text-secondary p-1" style="cursor: pointer; font-size: 2.3em;"></i>
-                            <span>{{ count($b->comments) }}</span>
+                            <span class="comment-count">{{ count($b->comments) }}</span>
                         </li>
                         <li title="Bookmark blog" class="d-inline font-weight-bold">
                             <i class="fa fa-bookmark text-dark p-1 ml-1" style="cursor: pointer; font-size: 2.3em;"></i>
@@ -132,7 +131,7 @@
                     
                     @endforeach
                 @else
-                    @php echo "<h5 class='mt-3' style='color: #f57e20;'>"."No related blogs yet."."</h5>" @endphp
+                    @php echo "<h5 class='mt-3' style='color: #8a8a8a;'>"."No related blogs yet."."</h5>" @endphp
                 @endif
             </div>
 

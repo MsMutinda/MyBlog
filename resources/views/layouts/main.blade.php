@@ -9,7 +9,7 @@
 
 <body class="light-theme || dark-theme">
     <nav class='navbar fixed-top'>    
-        <a href="/" class='nav__logo float-left'>
+        <a href="/" class='float-left'>
             Blogger.com
         </a>
 
@@ -52,7 +52,7 @@
                     <li class="nav__item"> 
                         <ul class="float-right"> 
                             <li> <a href=""> Subscribe to my newsletter </a> </li>
-                            <li class="btn-toggle onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> <i class="fa fa-toggle-on || fa fa-toggle-off">  Dark theme </i> </li>
+                            <li class="btn-toggle onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> Dark theme <i class="fa fa-toggle-on || fa fa-toggle-off"> </i> </li>
                         </ul>
                     </li>
                 </ul>
