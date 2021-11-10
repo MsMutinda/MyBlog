@@ -6,6 +6,7 @@ body {
     font-family: "Poppins", sans-serif;
     box-sizing: border-box;
     background: #fff;
+    // transition:filter 300ms ease-in-out;
 }
 
 main {
@@ -30,6 +31,7 @@ nav {
     background: #fdfff5;
     z-index: 5;
     padding-bottom: 40px;
+    border-bottom: 0.1px solid #ddd;
 }
 
 .nav__logo {
@@ -195,7 +197,7 @@ main.main.profile-page {
 }
 
 main > div.row > div.tags {
-    padding-left: 40px;
+    padding-left: 50px;
 }
 
 .write {
@@ -427,7 +429,7 @@ footer > div > ul > li > a:hover {
 .footer1 > div.col-lg-4 > p {
     width: 60%;
     position: relative;
-    left: 60px;
+    left: 70px;
     font-size: 12px;
     color: #323232;
 }
@@ -547,6 +549,57 @@ small {
     padding: 10px 30px 25px 50px;
     margin:  130px 35% 50px 25%;
 }
+
+
+/* Dark Mode styles */
+body.dark-theme {
+    color: #fdfff5;
+    background: #121212;
+}
+
+body.dark-theme hr {
+    color: #ddd;
+    border: 0.1px solid #ddd;
+}
+
+body.dark-theme nav {
+    background: #121212;
+    border-bottom: 0.2px solid #fdfff5;
+}
+
+body.dark-theme nav a, 
+body.dark-theme nav select,
+body.dark-theme nav ul li.btn-toggle {
+    color: #fff;
+}
+
+body.dark-theme .home .row .col-lg-3 h5.write {
+    background: #fff;
+    color: #121212;
+}
+
+body.dark-theme .home .row .col-lg-3 h5:nth-child(2),
+body.dark-theme .latest .row .col-lg-3 h5,
+body.dark-theme .latest .row .col-lg-3 ul li a,
+body.dark-theme .card .card-body .card-title,
+body.dark-theme .footer1 .col-lg-4 a
+{
+    color: #fff;
+}   
+
+body.dark-theme .card {
+    background: #121212;
+}
+
+body.dark-theme .card .card-body .card-text,
+body.dark-theme .card .card-body small span,
+body.dark-theme .footer1 .col-lg-4 p,
+body.dark-theme .footer1 .col-lg-4 p a,
+body.dark-theme .footer1 .links ul li a
+{
+    color: #ddd;
+}
+
 
 
 

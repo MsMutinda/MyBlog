@@ -15,12 +15,27 @@
         });
 </script>
 
+
+<!-- dark mode switch -->
+<script>
+        const btn = document.querySelector('.btn-toggle');
+        const icon = document.querySelector('#toggle-icon');
+        btn.addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+                icon.classList.toggle('fa-toggle-on');
+        })
+</script>
+
+
+<!-- toastr alert timeout -->
 <script type="text/javascript">
         setTimeout(function() {
                 $('.alert').fadeOut('fast');
         }, 5000);
 </script>
 
+
+<!-- summernote -->
 <script type="text/javascript">
         $('#summernote').summernote({
                 height: 330

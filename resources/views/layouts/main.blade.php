@@ -7,7 +7,7 @@
 <!-- Sweet alert -->
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
-<body>
+<body class="light-theme || dark-theme">
     <nav class='navbar fixed-top'>    
         <a href="/" class='nav__logo float-left'>
             Blogger.com
@@ -26,13 +26,12 @@
                                 @endforeach
                         </select>
                     </li>
-                    <li class="nav__item"><a href="{{ route('register')}}">Register </a> <b style="color: #000; font-weight: 700;"> / </b>
+                    <li class="nav__item"><a href="{{ route('register')}}">Register/ </a>
                     <a href="{{ route('login') }}"> Login </a></li>
                     <li class="nav__item"> 
                         <ul class="float-right"> 
                             <li> <a href=""> Subscribe to my newsletter </a> </li>
-                            <li title="Toggle dark mode"> Dark mode <i class="fa fa-toggle-off"></i> </li>
-                            <li title="Toggle dark mode" style="display: none;"> Light mode <i class="fa fa-toggle-on"></i> </li>
+                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-on || fa fa-toggle-off"></i> </li>
                         </ul>
                     </li>
                 </ul>
@@ -53,8 +52,7 @@
                     <li class="nav__item"> 
                         <ul class="float-right"> 
                             <li> <a href=""> Subscribe to my newsletter </a> </li>
-                            <li> Dark mode <i class="fa fa-toggle-off"></i> </li>
-                            <li style="display: none;"> Light mode <i class="fa fa-toggle-on"></i> </li>
+                            <li class="btn-toggle onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> <i class="fa fa-toggle-on || fa fa-toggle-off">  Dark theme </i> </li>
                         </ul>
                     </li>
                 </ul>
