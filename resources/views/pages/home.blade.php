@@ -13,6 +13,13 @@
             <div class="tags col-lg-3 col-sm-3">
                 <h5 class="write" data-toggle="modal" data-target="#createBlogModal"> <i class="mr-1 fa fa-pencil"></i> Contribute</h5>
                 <h5 class="tags"> Tags </h5>
+                <ul>
+                    <li class="btn btn-sm">Design</li>
+                    <li class="btn btn-sm">Tech</li>
+                    <li class="btn btn-sm">Frontend</li>
+                    <li class="btn btn-sm">Backend</li>
+                    <li class="btn btn-sm">DBMS</li>
+                </ul>
             </div>
             
         <hr />

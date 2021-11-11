@@ -10488,8 +10488,24 @@ main.profile-page {
   right: 185px;
 }
 
-main > div.row > div.tags {
+div.row > div.tags {
   padding-left: 50px;
+}
+
+.tags ul {
+  padding: 0;
+  justify-content: space-between;
+}
+
+.tags ul li {
+  background: #e7e6e6;
+  color: #8a8a8a;
+  padding-right: 10px;
+}
+
+.tags ul li.btn {
+  border-radius: 30px;
+  margin-bottom: 10px;
 }
 
 .write {
