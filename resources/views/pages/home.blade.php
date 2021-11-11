@@ -19,6 +19,8 @@
                     <li class="btn btn-sm">Frontend</li>
                     <li class="btn btn-sm">Backend</li>
                     <li class="btn btn-sm">DBMS</li>
+                    <li class="btn btn-sm">Professionalism</li>
+                    <li class="btn btn-sm">Frameworks</li>
                 </ul>
             </div>
             

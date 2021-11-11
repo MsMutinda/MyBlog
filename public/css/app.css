@@ -10714,6 +10714,7 @@ footer > div > ul > li > a:hover {
 }
 
 .footer1 {
+  background: #fdfff5;
   padding: 30px 0px 30px 10px;
   border-top: 0.5px solid #e6dddd;
 }

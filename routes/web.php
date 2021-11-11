@@ -57,10 +57,12 @@ Route::middleware('auth', 'role')->group(function()
 
     Route::get('/blog/{id}/restore', [App\Http\Controllers\BlogController::class, 'restore'])->name('restore-blog');
 
+    Route::post('publish-blog', [App\Http\Controllers\BlogController::class, 'publish_blog'])->name('publish-blog');
+
     // Comments & Replies
     Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
 
-    Route::post('approve-comment', [App\Http\Controllers\CommentController::class, 'approve_comment'])->name('approve_comment');
+    Route::post('approve-comment', [App\Http\Controllers\CommentController::class, 'approve_comment'])->name('approve-comment');
 
     Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
 

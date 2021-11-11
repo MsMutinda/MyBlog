@@ -233,5 +233,35 @@ class BlogController extends Controller
 
         }
     }
+
+    // approving blogs for publishing
+    public function publish_blog(Request $request) {
+        if ($request->user()->can('publish-blog')) {
+
+            // approve comment
+            if($request->type=='publish') {
+                $res1 = DB::statement("UPDATE blogs SET status='published' WHERE id=$request->blog");
+                $msg = 'Blog approved!';
+                return response()->json([
+                    'publish'=>true,
+                    'publishing_msg'=>$msg
+                ]);
+            }
+
+            else {
+                $res2 = DB::statement("UPDATE blogs SET status='suspended' WHERE id=$request->blog");
+                $msg = 'Blog suspended!';
+                return response()->json([
+                    'suspend'=>true,
+                    'suspending_msg'=>$msg
+                ]);            
+            }
+
+            return response()->json([
+                'success'=>false
+            ]);
+
+        }
+    }
     
 }

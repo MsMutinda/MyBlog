@@ -37,33 +37,47 @@
                                         <center>
                                             <div class="dropdown dropleft"><i class="fa fa-ellipsis-v" id="dropdownMenu" data-toggle="dropdown" style="cursor: pointer;"></i>
                                                 <ul class="dropdown-menu">
-                                                    <!-- <li class="dropdown-item">
-                                                        <a class="text-dark" href="{{ route('view-blog', $single->id) }}">
-                                                            <i class="text-success fa fa-eye"></i>
-                                                            Read blog
-                                                        </a>
-                                                    </li> -->
-                                                    
-                                                    <li class="dropdown-item">
-                                                        <a class="text-dark" href="{{ route('view-blogComments', $single->id) }}">
-                                                            <i class="text-primary fa fa-eye"></i>
+
+                                                    @if(Auth::user()->can('publish-blog'))
+                                                        <li class="dropdown-item" style="cursor: pointer;">
+                                                            <a id="publish-blog" class="text-success publishsuspend" data-type="publish" data-post="{{ $single->id }}">
+                                                                <i class="fa fa-check"></i>
+                                                                Publish blog
+                                                            </a>
+                                                        </li>
+                                                    @endif
+
+                                                    @if(Auth::user()->can('publish-blog'))
+                                                        <li class="dropdown-item" style="cursor: pointer;">
+                                                            <a id="publish-blog" class="text-danger publishsuspend" data-type="suspend" data-post="{{ $single->id }}">
+                                                                <i class="fa fa-close"></i>
+                                                                Suspend blog
+                                                            </a>
+                                                        </li>
+                                                    @endif
+
+                                                    @if(Auth::user()->can('view-blogComments'))
+                                                    <li class="dropdown-item" style="cursor: pointer;">
+                                                        <a class="text-info" href="{{ route('view-blogComments', $single->id) }}">
+                                                            <i class="fa fa-eye"></i>
                                                             View Comments
                                                         </a>
                                                     </li>
+                                                    @endif
 
                                                     @if(Auth::user()->can('edit-blog'))
-                                                        <li class="dropdown-item">
-                                                            <a class="text-dark" href="{{ route('edit-blog', $single->id) }}" data-toggle="modal" data-target="#myModal-{{$single->id}}">
-                                                                <i class="text-primary fa fa-pencil"></i>
+                                                        <li class="dropdown-item" style="cursor: pointer;">
+                                                            <a class="text-primary" href="{{ route('edit-blog', $single->id) }}" data-toggle="modal" data-target="#myModal-{{$single->id}}">
+                                                                <i class="fa fa-pencil"></i>
                                                                 Edit blog
                                                             </a>
                                                         </li>
                                                     @endif
 
                                                     @if(Auth::user()->can('archive-blog'))
-                                                        <li class="dropdown-item">
-                                                            <a class="text-dark" href="{{ route('archive-blog', $single->id) }}" onclick="return confirm('You are about to archive this blog. Continue?');">
-                                                                <i class="text-danger fa fa-trash"></i>
+                                                        <li class="dropdown-item" style="cursor: pointer;">
+                                                            <a class="text-danger" href="{{ route('archive-blog', $single->id) }}" onclick="return confirm('You are about to archive this blog. Continue?');">
+                                                                <i class="fa fa-trash"></i>
                                                                 Archive blog
                                                             </a>
                                                         </li>
@@ -79,8 +93,62 @@
                         </tbody>
                     </table>
                 @endif
-
             </div>
-        </main>
+
+            <script type="text/javascript">
+            $(document).on('click', '#publish-blog', function() {
+                var _type = $(this).data('type');
+                var _blog = $(this).data('post');
+                var _user = "{{ Auth::user()->id }}";
+
+                $.ajax({
+                    url:"{{ url('publish-blog') }}",
+                    type:"post",
+                    dataType:'json',
+                    data:{
+                        type: _type,
+                        blog: _blog,
+                        user: _user,
+                        _token:"{{ csrf_token() }}"
+                    },
+                    success:function(response){
+                        if(response.publish === true){
+                            toastr.options = {
+                                "preventDuplicates": true,
+                                "preventOpenDuplicates": true
+                                };
+                                toastr.success(response.msg,
+                                {
+                                    timeOut: 5000,
+                                });
+                        }
+                        else if(response.suspend === true) {
+                            toastr.options = {
+                                "preventDuplicates": true,
+                                "preventOpenDuplicates": true
+                                };
+                                toastr.success(response.msg,
+                                {
+                                    timeOut: 5000,
+                                });
+                        }
+                        else{
+                            toastr.options = {
+                                "preventDuplicates": true,
+                                "preventOpenDuplicates": true
+                                };
+                                toastr.error('Error', 'Something went wrong!',
+                                {
+                                    timeOut: 5000,
+                                });
+                        }
+
+                    }
+                });
+            });
+                
+        </script>
+
+    </main>
 
 @endsection

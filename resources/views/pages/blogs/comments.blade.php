@@ -63,7 +63,6 @@
                 var _type = $(this).data('type');
                 var _comment = $(this).data('post');
                 var _user = "{{ Auth::user()->id }}";
-                var elem = $(this);
 
                 $.ajax({
                     url:"{{ url('approve-comment') }}",
