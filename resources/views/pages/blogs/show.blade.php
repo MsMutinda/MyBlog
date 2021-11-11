@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-lg-10 col-sm-10">
-                <h1 class='text-center' ><strong> {{ $blog->title }} </strong> </h1>
+                <h1><strong> {{ $blog->title }} </strong> </h1>
                 <hr>
                 <div class="card-body">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" alt="" align="left" width="90px" height="90px">

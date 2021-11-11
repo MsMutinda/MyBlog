@@ -4,10 +4,19 @@
 
     <main role="main" class="home">
         
-        <div class="row"> 
+                
+    <div class="notification-top-bar"> <p data-toggle="modal" data-target="#createBlogModal"> Want to contribute an article to our blog? Click <small> <span> here </span></small> </p></div>
+        <div class="row">
             <div class="about col-lg-9 col-sm-9"> 
-                <h2> Some heading </h2>
-                <p> To be filled later </p>
+                <h2> TRENDING BLOGS </h2>
+                <div class="row">
+                    <ul class="repeating-counter-rule">
+                        @foreach($latestblogs as $latestblog)
+                            <li> <a href=""> {{ $latestblog->title }} </a> </li>
+                        @endforeach
+                    </ul>
+                </div>
+                
             </div>
 
             <div class="tags col-lg-3 col-sm-3">
@@ -31,7 +40,7 @@
         <div class="latest">
             <div class="row"> 
                 <div class="latestheader col-lg-9 col-sm-9"> 
-                    <h2>Published blogs </h2>
+                    <h2>Latest blogs </h2>
                     <hr />
                     @if(Session::has('Error'))
                         <div class="alert alert-warning">
@@ -48,7 +57,7 @@
                                 <div class="col-lg-7 col-sm-7">
                                     <div class='card'>
                                         <div class="card-body">
-                                            <h3 class="card-title mb-2"><strong> {{ $blog->title }} </strong></h3>
+                                            <h4 class="card-title mb-2"><strong> {{ $blog->title }} </strong></h4>
                                                 @php 
                                                     $category = \App\Models\Blog::where('id', $blog->id)->pluck('category');
                                                     $categoryname = \App\Models\Category::where('id', $category)->pluck('name');

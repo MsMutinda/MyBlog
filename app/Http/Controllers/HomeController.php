@@ -19,13 +19,20 @@ class HomeController extends Controller
      */
     public function index(Request $request) 
     {    
+        if(count(Blog::all()) == 0) {
+            return 'No blogs have been published yet'.'<br>'.'Click here to contribute';
+        }
+
         // fetch only published blogs
         $blogs = Blog::where('status', 'published')->take(5)->get();
+
+        // 4 random blogs as trending
+        $latestblogs = Blog::inRandomOrder()->limit(4)->get();
 
         // fetch blog categories
         $categories = Category::all();
 
-        return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+        return view('pages.home')->with(['blogs' => $blogs, 'latestblogs' => $latestblogs, 'categories' => $categories]);
     }
 
     /**
