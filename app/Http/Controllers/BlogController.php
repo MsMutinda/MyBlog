@@ -69,9 +69,9 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('id', $id)->get();
+        $blog = Blog::where('id', $id)->get();
         $categories = Category::all();
-        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+        return view('pages.blogs.show')->with(['blog'=>$blog, 'categories'=>$categories]);
     }
 
     // View blog comments
@@ -241,7 +241,7 @@ class BlogController extends Controller
             // approve comment
             if($request->type=='publish') {
                 $res1 = DB::statement("UPDATE blogs SET status='published' WHERE id=$request->blog");
-                $msg = 'Blog approved!';
+                $msg = 'Blog published!';
                 return response()->json([
                     'publish'=>true,
                     'publishing_msg'=>$msg

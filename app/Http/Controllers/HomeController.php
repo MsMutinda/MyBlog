@@ -19,8 +19,8 @@ class HomeController extends Controller
      */
     public function index(Request $request) 
     {    
-        // fetch latest blogs
-        $blogs = Blog::where('status', 'pending review')->take(5)->get();
+        // fetch only published blogs
+        $blogs = Blog::where('status', 'published')->take(5)->get();
 
         // fetch blog categories
         $categories = Category::all();
@@ -36,9 +36,9 @@ class HomeController extends Controller
      */
     public function show($id)
     {
-        $blogs = Blog::where('id', $id)->get();
+        $blog = Blog::where('id', $id)->first();
         $categories = Category::all();
-        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+        return view('pages.blogs.show')->with(['blog'=>$blog, 'categories'=>$categories]);
     }
 
     public function filterByCategory($id, $name) {
@@ -58,7 +58,7 @@ class HomeController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:subscriptions'],
         ]);
-        $checkuser=DB::table('subscriptions')
+        $checkuser = DB::table('subscriptions')
             ->where('email', $request->email)
             ->get();
         if (count($checkuser)<=0){

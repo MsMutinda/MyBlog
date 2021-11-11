@@ -31,7 +31,7 @@
                     @if(count($blog->comments)>0)
                         <h6 class="mt-5" id="comments">Comments
                             <span class="comment-count btn btn-sm">
-                                @php 
+                                @php
                                     $approvedcomments = \App\Models\Comment::where('commentable_id', $blog->id)->where('approval_status', 'approved')->get();                                                 
                                 @endphp
                     
@@ -121,7 +121,7 @@
                             </p>
                             <h5 class="card-title"><strong> {{ $r->title }} </strong></h5>
                             <div class='card-text mt-2'>
-                                <p> {{ $r->content }} </p>
+                                <p> {{ substr(strip_tags($r->content), 0, 190).'...' }} </p>
                             </div>
                         </div>
 
@@ -135,39 +135,6 @@
             </div>
 
         </div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="newsletterModal" tabindex="-1" role="dialog" aria-labelledby="newsletterModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="newsletterModalLabel"> Newsletter form </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('save-subscriber') }}" method="post" id="newsletter-form">
-                        @csrf
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Your name here..." required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter your email address" required>
-                        </div>
-                        <small id="emailHelp" class="form-text text-muted">We promise to only send you the best.</small>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success" name="submit" form="newsletter-form">Save changes</button>
-                </div>
-                </div>
-            </div>
-        </div>
-        <!-- End of modal -->
             
     </main>
 

@@ -63,19 +63,19 @@ class CommentController extends Controller
             // approve comment
             if($request->type=='approve') {
                 $res1 = DB::statement("UPDATE comments SET approval_status='approved' WHERE id=$request->comment");
-                $approve_msg1 = 'Comment approved!';
+                $msg = 'Comment approved!';
                 return response()->json([
                     'approve'=>true,
-                    'approve_msg'=>$approve_msg1
+                    'approve_msg'=>$msg
                 ]);
             }
 
             else {
                 $res2 = DB::statement("UPDATE comments SET approval_status='rejected' WHERE id=$request->comment");
-                $approve_msg2 = 'Comment rejected!';
+                $msg = 'Comment rejected!';
                 return response()->json([
                     'reject'=>true,
-                    'approve_msg'=>$approve_msg2
+                    'approve_msg'=>$msg
                 ]);            
             }
 

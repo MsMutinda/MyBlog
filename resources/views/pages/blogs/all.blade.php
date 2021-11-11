@@ -117,7 +117,7 @@
                                 "preventDuplicates": true,
                                 "preventOpenDuplicates": true
                                 };
-                                toastr.success(response.msg,
+                                toastr.success(response.publishing_msg,
                                 {
                                     timeOut: 5000,
                                 });
@@ -127,7 +127,7 @@
                                 "preventDuplicates": true,
                                 "preventOpenDuplicates": true
                                 };
-                                toastr.success(response.msg,
+                                toastr.success(response.suspending_msg,
                                 {
                                     timeOut: 5000,
                                 });
