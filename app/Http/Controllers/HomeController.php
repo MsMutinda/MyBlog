@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Subscription;
+use DB;
 
 
 class HomeController extends Controller
@@ -27,13 +28,6 @@ class HomeController extends Controller
         return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories]);
     }
 
-    public function show($id)
-    {
-        $blogs = Blog::where('id', $id)->get();
-        $categories = Category::all();
-        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
-    }
-
     public function filterByCategory($id, $name) {
         // fetch blog categories
         $categories = Category::all();
@@ -45,33 +39,41 @@ class HomeController extends Controller
         return view('pages.blogs.filtered')->with(['categories'=>$categories, 'filtered'=>$filtered, 'categoryname'=>$categoryname]);
     }
 
+
     public function saveSubscriber(Request $request) {
         Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:subscriptions'],
         ]);
+        $checkuser=DB::table('subscriptions')
+            ->where('email', $request->email)
+            ->get();
+        if (count($checkuser)<=0){
+            $subscriber = new Subscription();
+            $subscriber->name = $request->name;
+            $subscriber->email = $request->email;
+            $subscriber->save();
     
-        $subscriber = new Subscription();
-        $subscriber->name = $request->name;
-        $subscriber->email = $request->email;
-        $subscriber->save();
+            $id = $request->blog;
+            $blog = Blog::where('id', $id)->first();
+    
+            $categories = Category::all();
+            $blog_category = Blog::where('id', $id)->get('category');
+            $relatedblogs = Blog::where('category', $blog_category)->where('id', '!=', $id)->get();
+    
+            return view('pages.blogs.show')->with(['blog'=>$blog, 'categories'=>$categories]);
+        }
 
         $id = $request->blog;
-        $blog = Blog::where('id', $id)->get();
-
-        // get estimated reading time for each blog
-        $blog_content = Blog::where('id', $id)->get('content');
-        $wpm = 200;
-        $wordCount = str_word_count(strip_tags($blog_content));
-        $minutes = (int) floor($wordCount / $wpm);
+        $blog = Blog::where('id', $id)->first();
 
         $categories = Category::all();
         $blog_category = Blog::where('id', $id)->get('category');
         $relatedblogs = Blog::where('category', $blog_category)->where('id', '!=', $id)->get();
 
         // call the show() method
-        // return redirect()->route('view-blog', [$id])->with(['blog'=>$blog, 'categories'=>$categories]);
-        return view('pages.blogs.show')->with(['blog'=>$blog, 'minutes'=>$minutes, 'categories'=>$categories]);
+        // return redirect()->route('view-blog', ['id'=>$id])->with(['blog'=>$blog, 'categories'=>$categories]);
+        return view('pages.blogs.show')->with(['blog'=>$blog, 'categories'=>$categories])->with('Error', 'The email you added already exists');
     }
 
 }

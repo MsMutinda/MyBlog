@@ -43,7 +43,7 @@ Route::middleware('auth', 'role')->group(function()
 
     // Route::match(['get', 'post'], '/blog/{id}', ['uses' => '\App\Http\Controllers\HomeController@show', 'as' => 'view-blog']);
 
-    Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
+    // Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
 
     Route::get('/blog/{id}/comments', [App\Http\Controllers\BlogController::class, 'showComments'])->name('view-blogComments');
 
@@ -73,6 +73,8 @@ Route::middleware('auth', 'role')->group(function()
 
 
 Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])->name('viewAllBlogs');
+
+// Route::match(['get', 'post'], 'save-subscriber', ['uses' => '\App\Http\Controllers\HomeController@saveSubscriber', 'as' => 'save-subscriber']);
 
 Route::post('save-subscriber', [App\Http\Controllers\HomeController::class, 'saveSubscriber'])->name('save-subscriber');
 

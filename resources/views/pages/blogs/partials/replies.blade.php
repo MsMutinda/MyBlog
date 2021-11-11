@@ -1,5 +1,5 @@
 @foreach($comments as $comment)
-    <style>
+    <style type="text/css">
         .display-comment .display-comment {
             margin-left: 30px;
             font-size: 13px;
@@ -20,7 +20,7 @@
                 <span id="likeReply" data-type="commentLike" data-post="{{ $comment->parent_id}}" data-id="{{ $comment->id }}" data-blog="{{ $blog_id }}" class="mr-2 d-inline font-weight-bold">
                     <i style="font-size: 1.5em; position: relative; bottom: 5px;" class="fa fa-heart-o pl-3" id="like"></i>
                     <span class="like-count">
-                        <!-- {{ $comment->likes() }} -->
+                        {{ $comment->likes() }}
                     </span>
                 </span>
             </small>
@@ -29,7 +29,7 @@
         <form method="post" action="{{ route('add-reply') }}">
             @csrf
             <div class="form-group">
-                <input type="text" placeholder="Your reply here..." name="comment" class="form-control" id='reply-input' style="display: none;"/>
+                <input type="text" placeholder="Your reply here..." name="comment" class="form-control" id='reply-input' hidden />
                 <input type="hidden" name="blog_id" value="{{ $blog_id }}" />
                 <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
             </div>
@@ -73,7 +73,7 @@
     <script type="text/javascript">
         $("#reply-btn").on("click", function() 
         { 
-            $("#reply-input").show();
+            $('#reply-input').prop("hidden", false);
             $("#submit-btn").show();
             $("#reply-btn").hide();
         });

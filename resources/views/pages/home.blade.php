@@ -24,7 +24,12 @@
                 <div class="latestheader col-lg-9 col-sm-9"> 
                     <h2>Published blogs </h2>
                     <hr />
-
+                    @if(Session::has('Error'))
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <p>{{ Session::get('Error') }}</p>
+                        </div>
+                    @endif
                     <div class="row">
                         @if(\App\Models\Blog::count() > 0)
                             @foreach($blogs as $blog)

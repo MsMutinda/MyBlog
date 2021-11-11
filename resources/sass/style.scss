@@ -131,6 +131,10 @@ nav ul li {
     font-weight: 600;
 }
 
+.nav-select.guest {
+    width: 150px;
+}
+
 .nav-select {
     /* -webkit-appearance: none; 
     appearance: none; */
@@ -502,6 +506,7 @@ footer > div > ul > li > a:hover {
 
 .show-blog > .row > .col-lg-2 > ul {
     position: sticky;
+    top: 100px;
     display: grid;
     grid-template-columns: auto auto;
     row-gap: 35px;
@@ -510,10 +515,6 @@ footer > div > ul > li > a:hover {
 
 div.author-details > div.float-left > img {
     border-radius: 50%;
-}
-
-.related-blogs {
-    margin-top: 35px;
 }
 
 .related-blogs > .row > .col-lg-12 {
@@ -578,7 +579,17 @@ body.dark-theme > nav > a {
 
 body.dark-theme nav ul li a, 
 body.dark-theme nav select,
-body.dark-theme nav ul li.btn-toggle {
+body.dark-theme nav ul li.btn-toggle,
+body.dark-theme .about p,
+body.dark-theme .card .card-body .card-text,
+body.dark-theme .card .card-body small span,
+body.dark-theme .footer1 .col-lg-4 p,
+body.dark-theme .footer1 .col-lg-4 p a,
+body.dark-theme .footer1 .links ul li a,
+body.dark-theme .show-blog .col-lg-10 .card-body p,
+body.dark-theme .show-blog .col-lg-10 .card-body h6,
+body.dark-theme .footer1 .col-lg-4 a
+{
     color: #ddd;
 }
 
@@ -604,7 +615,12 @@ body.dark-theme .footer1 .col-lg-4 a,
 body.dark-theme .show-blog .row .col-lg-10 h1,
 body.dark-theme .show-blog .row .col-lg-10 .card-body h5,
 body.dark-theme .footer1 .links ul p,
-body.dark-theme .show-blog .related-blogs .row .col-lg-12 h2
+body.dark-theme .show-blog .related-blogs .row .col-lg-12 h2,
+body.dark-theme .about h2,
+body.dark-theme .latestheader h2,
+body.dark-theme .like-count,
+body.dark-theme .dislike-count, 
+body.dark-theme .comment-count
 {
     color: #fff;
 }
@@ -613,27 +629,21 @@ body.dark-theme .card {
     background: #121212;
 }
 
-body.dark-theme .card .card-body .card-text,
-body.dark-theme .card .card-body small span,
-body.dark-theme .footer1 .col-lg-4 p,
-body.dark-theme .footer1 .col-lg-4 p a,
-body.dark-theme .footer1 .links ul li a,
-body.dark-theme .show-blog .col-lg-10 .card-body p,
-body.dark-theme .footer1 .col-lg-4 a
-{
-    color: #ddd;
-}
-
-body.dark-theme .like-count, 
-body.dark-theme .dislike-count, 
-body.dark-theme .comment-count {
-    color: #fff;
-}
-
 body.dark-theme .show-blog .row .col-lg-10 .card-body:nth-child(2) .card-text p
 {
     color: #fff !important;
 }
+
+body.dark-theme .show-blog .col-lg-10 .card-body .comment-count.btn {
+    background: #f57e20;
+}
+
+body.dark-theme .display-comment {
+    color: #fff;
+}
+
+
+
 
 /* Responsiveness */
 

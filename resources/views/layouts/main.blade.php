@@ -19,7 +19,7 @@
                 <ul class="nav__menu" id="navmenu">
                     <li class="nav__item"><a href="/">Home</a></li>
                     <li class="nav__item">
-                        <select class="nav-select" onchange="location = this.value;"> 
+                        <select class="nav-select guest" onchange="location = this.value;"> 
                             <option value="Blog Categories"> Blog Categories </option>
                                 @foreach($categories as $category)
                                     <option id="category" value="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}"> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" class="nav__link" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{ $category->name }} </a></option>
