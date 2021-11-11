@@ -10787,14 +10787,20 @@ footer > div > ul > li > a:hover {
   color: #111111;
 }
 
+.show-blog > .row > .col-lg-2 {
+  right: 100px;
+  bottom: 300px;
+}
+
 .show-blog > .row > .col-lg-2 > ul {
   position: sticky;
-  top: 100px;
+  top: 330px;
+  left: 1100px;
   display: grid;
   grid-template-columns: auto auto;
   row-gap: 35px;
-  -moz-column-gap: 25px;
-       column-gap: 25px;
+  -moz-column-gap: 15px;
+       column-gap: 15px;
 }
 
 div.author-details > div.float-left > img {
@@ -10811,8 +10817,17 @@ div.author-details > div.float-left > img {
   margin-left: 20px;
 }
 
+.archived-blogs .col-lg-12 {
+  padding: 0;
+}
+
+.archived-blogs h2 {
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+
 .all-blogs {
-  padding: 50px;
+  padding: 0px 50px 30px 50px;
   margin-top: 90px;
 }
 
@@ -10910,6 +10925,29 @@ body.dark-theme .show-blog .col-lg-10 .card-body .comment-count.btn {
 }
 
 body.dark-theme .display-comment {
+  color: #fff;
+}
+
+body.dark-theme .all-blogs,
+body.dark-theme table thead,
+body.dark-theme label,
+body.dark-theme label select,
+body.dark-theme #all-blogs_info,
+body.dark-theme #all-blogs_previous,
+body.dark-theme #all-blogs_next {
+  color: #fff;
+}
+
+body.dark-theme table thead tbody {
+  color: #121212;
+}
+
+body.dark-theme .table-hover > tbody > tr:hover {
+  background-color: #c97739;
+}
+
+body.dark-theme .archived-blogs,
+body.dark-theme #archives_info {
   color: #fff;
 }
 

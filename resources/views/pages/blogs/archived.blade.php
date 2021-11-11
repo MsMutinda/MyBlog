@@ -6,13 +6,13 @@
         <div class="archived-blogs">
             <div class="row"> 
                 <div class="col-lg-12 col-sm-12"> 
-                    <h2 style="font-weight: bolder; margin-bottom: 20px;"> Archived blogs </h2>
+                    <h2> Archived blogs </h2>
                 </div>
             </div>
 
             <div class="row">
                 @if(count($archived) > 0)
-                <table class="table table-hover" id="archives" style="width: 90vw">
+                <table class="table table-hover" id="archives" style="width: 90vw;">
                     <thead>
                         <th>#</td>
                         <th>Blog title</th>

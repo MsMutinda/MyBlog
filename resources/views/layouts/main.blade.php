@@ -1,3 +1,16 @@
+<?php
+    $themeClass = '';
+    if (empty($_COOKIE['theme'])) {
+        $themeClass = 'light-theme';
+    }
+    else if ($_COOKIE['theme'] == 'dark') {
+        $themeClass = 'dark-theme';
+    }
+    else {
+        $themeClass = 'light-theme';
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +20,8 @@
 <!-- Sweet alert -->
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
-<body class="light-theme || dark-theme">
+<!-- <body class="light-theme || dark-theme"> -->
+<body class="<?php echo $themeClass; ?>">
     <nav class='navbar fixed-top'>    
         <a href="/" class='float-left'>
             Blogger.com
@@ -31,7 +45,7 @@
                     <li class="nav__item"> 
                         <ul class="float-right"> 
                             <li> <a href=""> Subscribe to my newsletter </a> </li>
-                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-on || fa fa-toggle-off"></i> </li>
+                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-off || fa fa-toggle-on"></i> </li>
                         </ul>
                     </li>
                 </ul>

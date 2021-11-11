@@ -28,6 +28,19 @@ class HomeController extends Controller
         return view('pages.home')->with(['blogs'=>$blogs, 'categories'=>$categories]);
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $blogs = Blog::where('id', $id)->get();
+        $categories = Category::all();
+        return view('pages.blogs.show')->with(['blogs'=>$blogs, 'categories'=>$categories]);
+    }
+
     public function filterByCategory($id, $name) {
         // fetch blog categories
         $categories = Category::all();

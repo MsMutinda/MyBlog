@@ -16,13 +16,24 @@
 </script>
 
 
-<!-- dark mode switch -->
+<!-- dark mode switch &&  storing user's website theme preference -->
+
 <script>
         const btn = document.querySelector('.btn-toggle');
         const icon = document.querySelector('#toggle-icon');
         btn.addEventListener('click', function() {
                 document.body.classList.toggle('dark-theme');
                 icon.classList.toggle('fa-toggle-on');
+                
+                // Let's say the theme is equal to light
+                let theme = "light";
+                // If the body contains the .dark-theme class...
+                if (document.body.classList.contains("dark-theme")) {
+                // ...then let's make the theme dark
+                        theme = "dark";
+                }
+                // Then save the choice in a cookie
+                document.cookie = "theme=" + theme;
         })
 </script>
 
