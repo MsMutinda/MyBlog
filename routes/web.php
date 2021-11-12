@@ -84,5 +84,5 @@ Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])-
 // Blog category filter
 Route::get('/categories/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
 
-// User roles
-// Route::get('roles', [App\Http\Controllers\PermissionController::class, 'Permission']);
+// Mailing
+Route::get('send-mail', );

@@ -56,6 +56,14 @@ class BlogController extends Controller
             $save_blog->content = $request->content;
 
             $save_blog->save();
+
+            // Send mail once blog gets saved
+            $maildetails = [
+                'title' => $save_blog->author.' has added a new blog - '.$save_blog->title.'.',
+                'body' => 'Please head over to review the blog for publishing by clicking this link: https://alinkhere.com , or use the button below'
+            ];
+            \Mail::to('aluvia.guran@gmail.com')->send(new \App\Mail\EditorMail($maildetails));
+
             return redirect()->back()->with('success', 'Blog saved successfully');
             
         }
@@ -242,6 +250,15 @@ class BlogController extends Controller
             if($request->type=='publish') {
                 $res1 = DB::statement("UPDATE blogs SET status='published' WHERE id=$request->blog");
                 $msg = 'Blog published!';
+
+                // Send mail here
+                $blog_title = Blog::where('id', $request->blog)->pluck('title');
+                $maildetails = [
+                    'title' => 'Your new blog - '.substr($blog_title, 2, -2).' has been published.',
+                    'body' => 'Feel free to share a link to the blog and make it popular among your readers. Head over to: https://alinkhere.com to check it out, or use the button below'
+                    ];
+                \Mail::to('aluvia.guran@gmail.com')->send(new \App\Mail\EditorMail($maildetails));
+
                 return response()->json([
                     'publish'=>true,
                     'publishing_msg'=>$msg
@@ -251,6 +268,15 @@ class BlogController extends Controller
             else {
                 $res2 = DB::statement("UPDATE blogs SET status='suspended' WHERE id=$request->blog");
                 $msg = 'Blog suspended!';
+
+                // Send mail here
+                $blog_title = Blog::where('id', $request->blog)->pluck('title');
+                $maildetails = [
+                    'title' => 'Your new blog - '.substr($blog_title, 2, -2).' has been suspended.',
+                    'body' => 'To follow up and get more information, head over to: https://alinkhere.com, or use the button below'
+                    ];
+                \Mail::to('aluvia.guran@gmail.com')->send(new \App\Mail\EditorMail($maildetails));
+
                 return response()->json([
                     'suspend'=>true,
                     'suspending_msg'=>$msg
