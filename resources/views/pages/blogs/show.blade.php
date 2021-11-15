@@ -80,7 +80,7 @@
                         </li>
                         <li title="Add comment" id="comment-icon" class="d-inline font-weight-bold">
                             <a href="#comments"><i class="fa fa-comments text-secondary p-1" style="cursor: pointer; font-size: 2.3em;"></i></a>
-                            <span class="comment-count">  </span>
+                            <span class="comment-count"> {{ count($blog->comments) }} </span>
                         </li>
                         <li title="Bookmark blog" class="d-inline font-weight-bold">
                             <i class="fa fa-bookmark text-dark p-1 ml-1" style="cursor: pointer; font-size: 2.3em;"></i>
