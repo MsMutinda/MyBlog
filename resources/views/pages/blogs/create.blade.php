@@ -20,6 +20,7 @@
                         <label for="category"> Category <span class="text-danger">*</span></label>
                         <select class='form-control shadow' name="category">
                             <option value="--Select Category" selected disabled>Select category</option>
+                            @php $categories = \App\Models\Category::all(); @endphp
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach

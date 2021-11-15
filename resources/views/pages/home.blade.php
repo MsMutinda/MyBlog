@@ -4,8 +4,12 @@
 
     <main role="main" class="home">
         
-                
-    <div class="notification-top-bar"> <p data-toggle="modal" data-target="#createBlogModal"> Want to contribute an article to our blog? Click <small> <span> here </span></small> </p></div>
+        @if(Session::has('success'))
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <p>{{ Session::get('success') }}</p>
+            </div>
+        @endif
         <div class="row">
             <div class="about col-lg-9 col-sm-9"> 
                 <h2> TRENDING BLOGS </h2>
@@ -123,8 +127,6 @@
 
         <!-- Newsletter Modal here -->
 
-        <!-- Create blog modal -->
-        @include('pages.blogs.create')
 
     </main>
 

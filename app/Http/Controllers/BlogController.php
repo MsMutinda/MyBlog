@@ -62,7 +62,7 @@ class BlogController extends Controller
                 'title' => $save_blog->author.' has added a new blog - '.$save_blog->title.'.',
                 'body' => 'Please head over to review the blog for publishing by clicking this link: https://alinkhere.com , or use the button below'
             ];
-            \Mail::to('aluvia.guran@gmail.com')->send(new \App\Mail\EditorMail($maildetails));
+            \Mail::to('aluvia.guran@gmail.com')->queue(new \App\Mail\EditorMail($maildetails));
 
             return redirect()->back()->with('success', 'Blog saved successfully');
             
@@ -155,7 +155,7 @@ class BlogController extends Controller
         if($request->user()->hasRole('manager'))
         {
             $blog = Blog::whereId($id)->delete();
-            return redirect()->route('home')->with('success', 'Blog deleted successfully!');
+            return redirect()->route('home')->with('success', 'Blog archived successfully');
         }
     }
 
@@ -182,7 +182,7 @@ class BlogController extends Controller
         if ($request->user()->can('restore-archivedBlogs')) 
         {
             $archive = Blog::onlyTrashed()->find($id)->restore();
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Blog restored successfully!');
         }
     }
 
@@ -192,12 +192,12 @@ class BlogController extends Controller
         if ($request->user()->can('like-blog')) {
 
             $data=new \App\Models\LikeDislike;
-            $data->user_id=$request->user()->id;
-            $data->blog_id=$request->post;
+            $data->user_id = $request->user()->id;
+            $data->blog_id = $request->post;
         
             if($request->type=='like') {
-                $likeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
-                $userdislike = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
+                $likeexists = DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+                $userdislike = DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
 
                 if($likeexists) { 
                     // if same user has liked same blog before, reset the user's likes record for that blog
@@ -242,22 +242,26 @@ class BlogController extends Controller
         }
     }
 
-    // approving blogs for publishing
+
     public function publish_blog(Request $request) {
         if ($request->user()->can('publish-blog')) {
 
-            // approve comment
+            // publish blog
             if($request->type=='publish') {
-                $res1 = DB::statement("UPDATE blogs SET status='published' WHERE id=$request->blog");
+                $editor = $request->user()->fname.' '.$request->user()->lname;
+                // $res1 = DB::statement("UPDATE blogs SET status='published' AND edited_by=$editor WHERE id=$request->blog");
+                Blog::where('id', $request->blog)->update([
+                                                        'status' => 'published',
+                                                        'edited_by' => $editor
+                                                    ]);
                 $msg = 'Blog published!';
-
                 // Send mail here
                 $blog_title = Blog::where('id', $request->blog)->pluck('title');
                 $maildetails = [
-                    'title' => 'Your new blog - '.substr($blog_title, 2, -2).' has been published.',
+                    'title' => 'Your new blog - '.substr($blog_title, 2, -2).' has been published!',
                     'body' => 'Feel free to share a link to the blog and make it popular among your readers. Head over to: https://alinkhere.com to check it out, or use the button below'
                     ];
-                \Mail::to('aluvia.guran@gmail.com')->send(new \App\Mail\EditorMail($maildetails));
+                \Mail::to('aluvia.guran@gmail.com')->queue(new \App\Mail\AuthorMail($maildetails));
 
                 return response()->json([
                     'publish'=>true,
@@ -268,14 +272,13 @@ class BlogController extends Controller
             else {
                 $res2 = DB::statement("UPDATE blogs SET status='suspended' WHERE id=$request->blog");
                 $msg = 'Blog suspended!';
-
                 // Send mail here
                 $blog_title = Blog::where('id', $request->blog)->pluck('title');
                 $maildetails = [
                     'title' => 'Your new blog - '.substr($blog_title, 2, -2).' has been suspended.',
                     'body' => 'To follow up and get more information, head over to: https://alinkhere.com, or use the button below'
                     ];
-                \Mail::to('aluvia.guran@gmail.com')->send(new \App\Mail\EditorMail($maildetails));
+                \Mail::to('aluvia.guran@gmail.com')->queue(new \App\Mail\AuthorMail($maildetails));
 
                 return response()->json([
                     'suspend'=>true,

@@ -5,7 +5,7 @@
 
 @component('mail::button', ['url' => "https://alinkhere.com"])
 
-Review
+Check it out
 @endcomponent
 
 Thanks,<br>

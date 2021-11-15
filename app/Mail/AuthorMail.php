@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SubscriberMail extends Mailable
+class AuthorMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $maildetails;
@@ -30,6 +30,6 @@ class SubscriberMail extends Mailable
     public function build()
     {
         return $this->subject('Congratulations! Your blog has been published!')
-                    ->markdown('mails.subscriber');
+                    ->markdown('mails.author');
     }
 }

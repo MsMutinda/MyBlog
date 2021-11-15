@@ -10,6 +10,13 @@
                 </div>
             </div>
 
+            @if(Session::has('error'))
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <p>{{ Session::get('error') }}</p>
+                </div>
+            @endif
+
             <div class="row">
                 @if(count($archived) > 0)
                 <table class="table table-hover" id="archives" style="width: 90vw;">

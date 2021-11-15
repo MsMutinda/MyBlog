@@ -78,7 +78,7 @@ Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])-
 
 // Route::match(['get', 'post'], 'save-subscriber', ['uses' => '\App\Http\Controllers\HomeController@saveSubscriber', 'as' => 'save-subscriber']);
 
-// Route::post('save-subscriber', [App\Http\Controllers\HomeController::class, 'saveSubscriber'])->name('save-subscriber');
+Route::post('save-subscriber', [App\Http\Controllers\HomeController::class, 'saveSubscriber'])->name('save-subscriber');
 
 
 // Blog category filter

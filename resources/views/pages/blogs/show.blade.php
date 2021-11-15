@@ -3,15 +3,14 @@
 @section('content')
 
     <main role="main" class="show-blog">
-        @if(Session::has('success'))
-        <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <p>{{ Session::get('success') }}</p>
-        </div>
-        @endif
-
         <div class="row">
             <div class="col-lg-10 col-sm-10">
+                @if(Session::has('success'))
+                    <div class="alert alert-info">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <p>{{ Session::get('success') }}</p>
+                    </div>
+                @endif
                 <h1><strong> {{ $blog->title }} </strong> </h1>
                 <hr>
                 <div class="card-body">

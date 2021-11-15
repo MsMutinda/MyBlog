@@ -23,6 +23,7 @@ class CreateBlogsTable extends Migration
             $table->string('author');
             $table->string('content');
             $table->string('status')->default('pending review');
+            $table->string('edited_by')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

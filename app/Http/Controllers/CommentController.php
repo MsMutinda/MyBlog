@@ -31,7 +31,8 @@ class CommentController extends Controller
             $id = $request->blog_id;
             $blog = Blog::where('id', $id)->first();
 
-            return view('pages.blogs.show', compact('blog'))->with('success', 'Comment saved, pending approval');
+            // return view('pages.blogs.show', compact('blog'))->with('success', 'Comment saved, pending approval');
+            return back();
         }
     }
 

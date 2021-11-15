@@ -43,8 +43,9 @@
                     <li class="nav__item"><a href="{{ route('register')}}">Register/ </a>
                     <a href="{{ route('login') }}"> Login </a></li>
                     <li class="nav__item"> 
-                        <ul class="float-right"> 
-                            <li> <a href=""> Subscribe to my newsletter </a> </li>
+                        <ul class="float-right">
+                            <!-- <li data-toggle="modal" data-target="newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li> -->
+                            <li style="cursor: pointer;"> Subscribe to my newsletter </li>
                             <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-off || fa fa-toggle-on"></i> </li>
                         </ul>
                     </li>
@@ -62,11 +63,12 @@
                             @if(Auth::user()->can('view-archivedBlogs')) <option value="{{ route('viewBlogArchives') }}"> View Archived Blogs </option> @endif
                         </select>
                     </li>
-                    <li class="nav__item"><a href="">Sign out </a></li>
+                    <li class="nav__item"><a href="{{ route('logout') }}">Sign out </a></li>
                     <li class="nav__item"> 
-                        <ul class="float-right"> 
-                            <li> <a href=""> Subscribe to my newsletter </a> </li>
-                            <li class="btn-toggle onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> Dark theme <i class="fa fa-toggle-on || fa fa-toggle-off"> </i> </li>
+                        <ul class="float-right">
+                            <!-- <li data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li> -->
+                            <li style="cursor: pointer;"> Subscribe to my newsletter </li>
+                            <li class="btn-toggle onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> Dark theme <i class="fa fa-toggle-off || fa fa-toggle-on"> </i> </li>
                         </ul>
                     </li>
                 </ul>
@@ -84,6 +86,10 @@
 
     
     <div class="container-fluid">
+        <!-- Create blog modal -->
+        @include('pages.blogs.create')
+        <div class="notification-top-bar"> <p data-toggle="modal" data-target="#createBlogModal"> Want to contribute an article to our blog? Click <small> <span> here </span></small> </p></div>
+
         @yield('content')
     </div>
 

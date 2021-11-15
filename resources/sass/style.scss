@@ -54,6 +54,7 @@ nav a.float-left {
 
 nav a.float-left:hover {
     text-decoration: underline;
+    color: #000;
 }
 
 .nav__menucontainer {
@@ -600,7 +601,7 @@ div.author-details > div.float-left > img {
 
 // Archived blogs page
 .archived-blogs {
-    margin-top: 80px;
+    margin-top: 100px;
     padding: 50px;
     margin-left: 20px;
     min-height: 300px;
@@ -636,6 +637,12 @@ small {
     padding: 10px 30px 25px 50px;
     margin:  130px 35% 50px 25%;
 }
+
+#newsletterModal form.form-group label {
+    color: #000;
+    cursor: pointer;
+}
+
 
 
 /* Dark Mode styles */
