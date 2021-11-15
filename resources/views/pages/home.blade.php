@@ -10,6 +10,14 @@
                 <p>{{ Session::get('success') }}</p>
             </div>
         @endif
+
+        @if(Session::has('error'))
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <p>{{ Session::get('error') }}</p>
+            </div>
+        @endif
+        
         <div class="row">
             <div class="about col-lg-9 col-sm-9"> 
                 <h2> TRENDING BLOGS </h2>
@@ -56,7 +64,7 @@
                         @if(\App\Models\Blog::count() > 0)
                             @foreach($blogs as $blog)
                                 
-                                @php $blog_id = $blog->id; @endphp
+                                <!-- @php $blog_id = $blog->id; @endphp -->
 
                                 <div class="col-lg-7 col-sm-7">
                                     <div class='card'>

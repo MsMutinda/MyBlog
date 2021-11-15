@@ -20,6 +20,9 @@
 <!-- Sweet alert -->
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 
+<!-- Newsletter form -->
+@include('pages.blogs.newsletterform')
+
 <!-- <body class="light-theme || dark-theme"> -->
 <body class="<?php echo $themeClass; ?>">
     <nav class='navbar fixed-top'>    
@@ -41,11 +44,11 @@
                         </select>
                     </li>
                     <li class="nav__item"><a href="{{ route('register')}}">Register/ </a>
-                    <a href="{{ route('login') }}"> Login </a></li>
+                                            <a href="{{ route('login') }}"> Login </a></li>
+                    @include('pages.blogs.newsletterform')
                     <li class="nav__item"> 
                         <ul class="float-right">
-                            <!-- <li data-toggle="modal" data-target="newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li> -->
-                            <li style="cursor: pointer;"> Subscribe to my newsletter </li>
+                            <li data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li>
                             <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-off || fa fa-toggle-on"></i> </li>
                         </ul>
                     </li>
@@ -66,9 +69,8 @@
                     <li class="nav__item"><a href="{{ route('logout') }}">Sign out </a></li>
                     <li class="nav__item"> 
                         <ul class="float-right">
-                            <!-- <li data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li> -->
-                            <li style="cursor: pointer;"> Subscribe to my newsletter </li>
-                            <li class="btn-toggle onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> Dark theme <i class="fa fa-toggle-off || fa fa-toggle-on"> </i> </li>
+                            <li data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li>
+                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> Dark theme <i class="fa fa-toggle-on || fa fa-toggle-off"> </i> </li>
                         </ul>
                     </li>
                 </ul>

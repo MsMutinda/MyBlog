@@ -24,6 +24,11 @@ main {
     margin-top: 160px;
 }
 
+.alert {
+
+
+}
+
 .home {
     padding: 0px 30px 25px 50px;
 }
@@ -577,12 +582,12 @@ footer > div > ul > li > a:hover {
 
 .show-blog > .row > .col-lg-2 {
     right: 100px;
-    bottom: 300px;
+    bottom: 150px;
 }
 
 .show-blog > .row > .col-lg-2 > ul {
     position: sticky;
-    top: 330px;
+    top: 460px;
     left: 1100px;
     display: grid;
     grid-template-columns: auto auto;

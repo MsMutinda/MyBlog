@@ -73,27 +73,10 @@ class HomeController extends Controller
             $subscriber->name = $request->name;
             $subscriber->email = $request->email;
             $subscriber->save();
-    
-            $id = $request->blog;
-            $blog = Blog::where('id', $id)->first();
-    
-            $categories = Category::all();
-            $blog_category = Blog::where('id', $id)->get('category');
-            $relatedblogs = Blog::where('category', $blog_category)->where('id', '!=', $id)->get();
-    
-            return view('pages.blogs.show')->with(['blog'=>$blog, 'categories'=>$categories]);
         }
 
-        // $id = $request->blog;
-        // $blog = Blog::where('id', $id)->first();
+        return back()->with('error', 'The email you added already exists');
 
-        // $categories = Category::all();
-        // $blog_category = Blog::where('id', $id)->get('category');
-        // $relatedblogs = Blog::where('category', $blog_category)->where('id', '!=', $id)->get();
-
-        // call the show() method
-        // return redirect()->route('view-blog', ['id'=>$id])->with(['blog'=>$blog, 'categories'=>$categories]);
-        return view('pages.blogs.show')->with(['blog'=>$blog, 'categories'=>$categories])->with('error', 'The email you added already exists');
     }
 
 }
