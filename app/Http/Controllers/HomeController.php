@@ -75,7 +75,7 @@ class HomeController extends Controller
             $subscriber->save();
         }
 
-        return back()->with('error', 'The email you added already exists');
+        return back()->with('error', 'The email you added already exists!');
 
     }
 
