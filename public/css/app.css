@@ -10308,7 +10308,7 @@ body {
   overflow-x: hidden !important;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
-  background: #fff;
+  background: #efefef;
 }
 
 main {
@@ -10345,12 +10345,13 @@ nav a.float-left {
   margin-left: 40px;
   font-size: 3.2rem;
   font-weight: 900;
-  color: #fff;
+  color: #efefef;
 }
 
-nav a.float-left:hover {
+nav a.float-left:hover,
+.nav__item > .float-right > li:hover {
   text-decoration: underline;
-  color: #ddd;
+  color: #121212;
 }
 
 .nav__menucontainer {
@@ -10402,7 +10403,7 @@ nav a.float-left:hover {
 
 .nav__item > .float-right > li {
   margin-right: 2.7rem;
-  color: #fff;
+  color: #efefef;
 }
 
 .nav__item > .float-right > li > i {
@@ -10414,7 +10415,7 @@ nav a.float-left:hover {
 }
 
 .nav__item {
-  color: #fff;
+  color: #efefef;
 }
 
 .nav__item a:hover {
@@ -10431,12 +10432,12 @@ nav a.float-left:hover {
 
 .nav__link:hover,
 .nav__link:focus-visible {
-  color: #fff;
+  color: #efefef;
   text-decoration: underline;
 }
 
 nav a {
-  color: #fff;
+  color: #efefef;
 }
 
 nav ul li {
@@ -10459,12 +10460,13 @@ nav ul li {
   font-weight: 600;
   border-radius: 3px;
   cursor: pointer;
-  color: #fff;
+  color: #efefef;
 }
 
 .nav-select:hover {
   font-weight: 700;
   text-decoration: underline;
+  color: #121212;
 }
 
 .nav-select option {
@@ -10570,7 +10572,7 @@ div.row > div.tags {
 }
 
 .write {
-  color: #fff;
+  color: #efefef;
   background: #1d68a5;
   padding: 8px;
   border-radius: 15px;
@@ -10719,7 +10721,7 @@ button {
 .card-body .btn2 {
   border-radius: 20px;
   background-color: #f27a1f;
-  color: #fff;
+  color: #efefef;
   font-size: 13px;
 }
 
@@ -10992,7 +10994,7 @@ body.dark-theme nav ul li.btn-toggle:hover {
 }
 
 body.dark-theme .home .row .col-lg-3 h5.write {
-  background: #fff;
+  background: #efefef;
   color: #121212;
 }
 
@@ -11012,7 +11014,7 @@ body.dark-theme .latestheader h2,
 body.dark-theme .like-count,
 body.dark-theme .dislike-count,
 body.dark-theme .comment-count {
-  color: #fff;
+  color: #efefef;
 }
 
 body.dark-theme .notification-top-bar {
@@ -11039,7 +11041,7 @@ body.dark-theme .tags ul li {
 }
 
 body.dark-theme .show-blog .row .col-lg-10 .card-body:nth-child(2) .card-text p {
-  color: #fff !important;
+  color: #efefef !important;
 }
 
 body.dark-theme .show-blog .col-lg-10 .card-body .comment-count.btn {
@@ -11047,7 +11049,7 @@ body.dark-theme .show-blog .col-lg-10 .card-body .comment-count.btn {
 }
 
 body.dark-theme .display-comment {
-  color: #fff;
+  color: #efefef;
 }
 
 body.dark-theme .modal form label {
@@ -11061,7 +11063,7 @@ body.dark-theme label select,
 body.dark-theme #all-blogs_info,
 body.dark-theme #all-blogs_previous,
 body.dark-theme #all-blogs_next {
-  color: #fff;
+  color: #efefef;
 }
 
 body.dark-theme table thead tbody {
@@ -11074,7 +11076,7 @@ body.dark-theme .table-hover > tbody > tr:hover {
 
 body.dark-theme .archived-blogs,
 body.dark-theme #archives_info {
-  color: #fff;
+  color: #efefef;
 }
 
 /* Responsiveness */
@@ -11174,7 +11176,7 @@ body.dark-theme #archives_info {
   nav {
     color: #000;
     max-width: 520px !important;
-    background: #fff;
+    background: #efefef;
   }
 
   .navbar > a {
