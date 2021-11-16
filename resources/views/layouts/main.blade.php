@@ -49,7 +49,7 @@
                     <li class="nav__item"> 
                         <ul class="float-right">
                             <li data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li>
-                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-off || fa fa-toggle-on"></i> </li>
+                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-on || fa fa-toggle-off"></i> </li>
                         </ul>
                     </li>
                 </ul>

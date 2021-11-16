@@ -23,12 +23,12 @@ class Comment extends Model
 
     // Likes
     public function likes(){
-        return $this->hasMany('App\Models\CommentLike', 'parent_comment_id')->sum('likes');
+        return $this->hasMany('App\Models\CommentLike', 'comment_id')->sum('likes');
     }
 
     // Dislikes
     public function dislikes(){
-        return $this->hasMany('App\Models\CommentLike','parent_comment_id')->sum('dislikes');
+        return $this->hasMany('App\Models\CommentLike','comment_id')->sum('dislikes');
     }
 }
 

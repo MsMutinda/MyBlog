@@ -32,7 +32,7 @@ class CommentController extends Controller
             $blog = Blog::where('id', $id)->first();
 
             // return view('pages.blogs.show', compact('blog'))->with('success', 'Comment saved, pending approval');
-            return back();
+            return back()->with('success', 'Comment saved, pending approval');
         }
     }
 
@@ -89,35 +89,41 @@ class CommentController extends Controller
 
     // Save Like Or dislike
     public function like_comment(Request $request) {
-        if ($request->user()->can('like-comment')) {
 
-            $comment_like = new CommentLike;
-        
-            $comment_like->user_id = $request->user;
+        if($request->user()->can('like-comment')) {
+
+            $comment_like = new \App\Models\CommentLike;
+            $comment_like->user_id = $request->user()->id;
             $comment_like->blog_id = $request->blog;
-            $comment_like->parent_comment_id = $request->comment;
-            $comment_like->reply_id = $request->reply;
+            $comment_like->parent_comment_id = $request->parent;
+            $comment_like->comment_id = $request->comment;
 
-            if($request->type=='commentLike') {
-                // check for already liked blog
-                $liked = CommentLike::where('user_id', $request->user)
-                                    ->where('blog_id', $request->blog)
-                                    ->where('parent_comment_id', $request->comment)
-                                    ->where('reply_id', $request->reply)
-                                    ->where('likes', 1)
-                                    ->where('dislikes', 0)
-                                    ->get();
-                if($liked){
-                    DB::statement("UPDATE comment_likes SET likes=0, dislikes=1 where user_id=$request->user AND blog_id=$request->blog AND parent_comment_id=$request->comment AND reply_id=$request->reply AND likes=1 AND dislikes=0"); 
-                }
-                // dd('record doesn\'t exist');
-                DB::statement("INSERT INTO comment_likes (user_id,blog_id,parent_comment_id, reply_id, likes, dislikes) VALUES ($request->user,$request->blog,$request->comment,$request->reply,1,0)");
-                // $comment_like->likes=1;
-                // $comment_like->dislikes=0;
+            // check for already liked blog
+            $liked = DB::select("SELECT * from comment_likes where blog_id=$comment_like->blog_id AND
+                                parent_comment_id = $comment_like->parent_comment_id AND
+                                comment_id = $comment_like->comment_id AND
+                                user_id = $comment_like->user_id AND
+                                likes = 1 AND
+                                dislikes = 0");
+
+            if($liked) {
+                DB::delete("DELETE from comment_likes where blog_id=$comment_like->blog_id AND
+                                parent_comment_id = $comment_like->parent_comment_id AND
+                                comment_id = $comment_like->comment_id AND
+                                user_id = $comment_like->user_id AND
+                                likes = 1 AND
+                            dislikes = 0");
+                $comment_like->dislikes = 1;
             }
-            // $comment_like->save();
-            return back();
 
+            else { $comment_like->likes = 1; }
+
+            $comment_like->save();
+
+            return response()->json([
+                'liked' => true
+            ]);
         }
+
     }
 }

@@ -46,15 +46,12 @@ class BlogController extends Controller
 
             // Store the record, using the new file hashname which will be it's new filename identity.
             $save_blog = new Blog();
-
             $save_blog->user_id = session()->getId();
-            
             $save_blog->category = $request->category;
             $save_blog->image_path = $path;
             $save_blog->title = $request->title;
             $save_blog->author = Auth::user()->fname.' '.Auth::user()->lname;
             $save_blog->content = $request->content;
-
             $save_blog->save();
 
             // Send mail once blog gets saved

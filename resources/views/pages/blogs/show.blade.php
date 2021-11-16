@@ -72,7 +72,7 @@
                     <ul>
                         <li title="Like blog" id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="d-inline font-weight-bold">
                             <i class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
-                            <span class="like-count">{{ $blog->likes() }}</span>
+                            <span class="like-count"> {{ $blog->likes() }} </span>
                         </li>
                         <li title="Dislike blog" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="d-inline font-weight-bold">
                             <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>

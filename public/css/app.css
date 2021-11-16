@@ -10345,11 +10345,12 @@ nav a.float-left {
   margin-left: 40px;
   font-size: 3.2rem;
   font-weight: 900;
+  color: #fff;
 }
 
 nav a.float-left:hover {
   text-decoration: underline;
-  color: #000;
+  color: #ddd;
 }
 
 .nav__menucontainer {
@@ -10401,7 +10402,7 @@ nav a.float-left:hover {
 
 .nav__item > .float-right > li {
   margin-right: 2.7rem;
-  color: #000;
+  color: #fff;
 }
 
 .nav__item > .float-right > li > i {
@@ -10410,6 +10411,10 @@ nav a.float-left:hover {
   position: relative;
   top: 3px;
   cursor: pointer;
+}
+
+.nav__item {
+  color: #fff;
 }
 
 .nav__item a:hover {
@@ -10431,7 +10436,7 @@ nav a.float-left:hover {
 }
 
 nav a {
-  color: #000;
+  color: #fff;
 }
 
 nav ul li {
@@ -10454,6 +10459,7 @@ nav ul li {
   font-weight: 600;
   border-radius: 3px;
   cursor: pointer;
+  color: #fff;
 }
 
 .nav-select:hover {
@@ -10603,12 +10609,13 @@ div.row > div.tags {
 .latestheader > h2 {
   font-weight: bolder;
   margin-left: 20px;
-  color: #323232;
+  color: #4a4a4a;
 }
 
 .about > h2 {
   font-weight: bolder;
   margin-left: 48px;
+  color: #4a4a4a;
 }
 
 .latest > .row > .col-lg-9 {
@@ -10721,7 +10728,7 @@ button {
 }
 
 .card-body > .card-title {
-  color: #4e4c4c;
+  color: #5691d1;
   padding: 0;
   margin: 0;
 }
@@ -10862,12 +10869,12 @@ footer > div > ul > li > a:hover {
 
 .show-blog > .row > .col-lg-2 {
   right: 100px;
-  bottom: 150px;
+  bottom: 300px;
 }
 
 .show-blog > .row > .col-lg-2 > ul {
   position: sticky;
-  top: 460px;
+  top: 400px;
   left: 1100px;
   display: grid;
   grid-template-columns: auto auto;
@@ -10943,7 +10950,7 @@ body.dark-theme nav {
 }
 
 body.dark-theme > nav > a {
-  color: #f57e20;
+  color: #ddd;
   letter-spacing: 1.8px;
   line-height: 1.6;
   box-sizing: border-box;
@@ -10957,11 +10964,15 @@ body.dark-theme .notification-top-bar {
   z-index: 1;
 }
 
+body.dark-theme .show-blog .card-text p {
+  color: #ddd !important;
+}
+
 body.dark-theme nav ul li a,
 body.dark-theme nav select,
+body.dark-theme .nav__item .float-right li,
 body.dark-theme nav ul li.btn-toggle,
 body.dark-theme .about p,
-body.dark-theme .card .card-body .card-text,
 body.dark-theme .card .card-body small span,
 body.dark-theme .footer1 .col-lg-4 p,
 body.dark-theme .footer1 .col-lg-4 p a,

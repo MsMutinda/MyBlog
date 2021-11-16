@@ -17,7 +17,6 @@
 
 
 <!-- dark mode switch &&  storing user's website theme preference -->
-
 <script>
         const btn = document.querySelector('.btn-toggle');
         const icon = document.querySelector('#toggle-icon');

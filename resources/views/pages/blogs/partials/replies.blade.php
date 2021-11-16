@@ -4,9 +4,6 @@
             margin-left: 30px;
             font-size: 13px;
         }
-        #like-btn:hover {
-            cursor: pointer;
-        }
     </style>
 
 
@@ -17,11 +14,11 @@
         <p class="btn btn-sm" style="font-size: 0.8em; color: #fff;" id="reply-btn">Reply</p>
         @auth
             <small>
-                <span id="likeReply" data-type="commentLike" data-post="{{ $comment->parent_id}}" data-id="{{ $comment->id }}" data-blog="{{ $blog_id }}" class="mr-2 d-inline font-weight-bold">
-                    <i style="font-size: 1.5em; position: relative; bottom: 5px;" class="fa fa-heart-o pl-3" id="like"></i>
-                    <span class="like-count">
-                        {{ $comment->likes() }}
-                    </span>
+                <span class="mr-2 d-inline font-weight-bold">
+                    <i data-parent="{{ $comment->parent_id}}" data-comment="{{ $comment->id }}" data-blog="{{ $blog_id }}" 
+                    style="font-size: 1.5em; position: relative; bottom: 5px; padding-left: 20px; cursor: pointer;" 
+                    class="fa fa-heart-o" id="like" onclick="saveCommentLike()"></i>
+                    <span class="comment-likes"> {{ $comment->likes() }} </span>
                 </span>
             </small>
         @endauth        
@@ -44,30 +41,33 @@
 
 @endforeach
 
-<script type='text/javascript'>
-        // Save Like Or Dislike
-    $(document).on('click','#likeReply',function() {
-        var _blog=$(this).data('blog');
-        var _comment=$(this).data('post');
-        var _reply=$(this).data('id');
-        var _type=$(this).data('type');
-        var _user="{{ Auth::user()->id }}";                     
-
+<script type="text/javascript">
+    // Save comment/reply Like Or Dislike
+    function saveCommentLike() 
+    {
+        var _blog = document.getElementById('like').getAttribute('data-blog');
+        var _parent = document.getElementById('like').getAttribute('data-parent');
+        var _comment = document.getElementById('like').getAttribute('data-comment');
         // Run Ajax
         $.ajax({
-            url:"{{ url('like-comment') }}",
-            type:"post",
-            dataType:'json',
-            data:{
-                blog:_blog,
-                comment:_comment,
-                reply:_reply,
-                type:_type,
-                user:_user,
+            url: "{{ url('like-comment') }}",
+            type: "post",
+            dataType: 'json',
+            data: {
+                blog: _blog,
+                parent: _parent,
+                comment: _comment,
                 _token:"{{ csrf_token() }}"
             },
+            success:function(response){
+                    if(response.liked == true){
+                        var _prevCount = parseInt($(".comment-likes").text());
+                        _prevCount++;
+                        parseInt($(".comment-likes").text(_prevCount));
+                    }
+                }
         });
-    });
+    }   
     </script>
 
     <script type="text/javascript">
@@ -76,13 +76,5 @@
             $('#reply-input').prop("hidden", false);
             $("#submit-btn").show();
             $("#reply-btn").hide();
-        });
-
-        //  like a reply/comment
-        $("#like-btn1").on("click", function() 
-        { 
-            // $(this).css("background", "red");
-            $("#like-btn1").hide();
-            $("#like-btn2").show();
         });
     </script>

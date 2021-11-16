@@ -17,10 +17,11 @@ class CreateCommentLikesTable extends Migration
             $table->id();
             $table->integer('blog_id');
             $table->integer('parent_comment_id');
-            $table->integer('reply_id');
+            $table->integer('comment_id');
             $table->integer('user_id');
             $table->smallInteger('likes')->default(0);
-            $table->smallInteger('dislikes')->default(0);            $table->timestamps();
+            $table->smallInteger('dislikes')->default(0);            
+            $table->timestamps();
         });
     }
 
