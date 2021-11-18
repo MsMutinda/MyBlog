@@ -69,7 +69,7 @@
                                 <div class="col-lg-7 col-sm-7">
                                     <div class='card'>
                                         <div class="card-body">
-                                            <h4 class="card-title mb-2"><strong> {{ $blog->title }} </strong></h4>
+                                            <h4 class="card-title mb-2"> {{ $blog->title }} </h4>
                                                 @php 
                                                     $category = \App\Models\Blog::where('id', $blog->id)->pluck('category');
                                                     $categoryname = \App\Models\Category::where('id', $category)->pluck('name');

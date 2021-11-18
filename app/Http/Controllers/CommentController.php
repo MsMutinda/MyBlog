@@ -93,36 +93,34 @@ class CommentController extends Controller
         if($request->user()->can('like-comment')) {
 
             $comment_like = new \App\Models\CommentLike;
-            $comment_like->user_id = $request->user()->id;
-            $comment_like->blog_id = $request->blog;
             $comment_like->parent_comment_id = $request->parent;
             $comment_like->comment_id = $request->comment;
+            $comment_like->user_id = $request->user()->id;
 
             // check for already liked blog
-            $liked = DB::select("SELECT * from comment_likes where blog_id=$comment_like->blog_id AND
-                                parent_comment_id = $comment_like->parent_comment_id AND
-                                comment_id = $comment_like->comment_id AND
-                                user_id = $comment_like->user_id AND
-                                likes = 1 AND
-                                dislikes = 0");
-
-            if($liked) {
-                DB::delete("DELETE from comment_likes where blog_id=$comment_like->blog_id AND
-                                parent_comment_id = $comment_like->parent_comment_id AND
-                                comment_id = $comment_like->comment_id AND
-                                user_id = $comment_like->user_id AND
-                                likes = 1 AND
-                            dislikes = 0");
-                $comment_like->dislikes = 1;
+            $liked = DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
+                                                ->where('comment_id', $comment_like->comment_id)
+                                                ->where('user_id', $comment_like->user_id)
+                                                ->where('likes', 1)
+                                                ->first();
+            if($liked == null) {
+                $comment_like->likes = 1; 
+            }
+            else { 
+                $comment_like->likes = 0; 
+                // DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
+                //                                 ->where('comment_id', $comment_like->comment_id)
+                //                                 ->where('user_id', $comment_like->user_id)
+                //                                 ->update(['likes'=>0]);
             }
 
-            else { $comment_like->likes = 1; }
-
             $comment_like->save();
-
+            $number_of_likes = CommentLike::where('comment_id', $comment_like->comment_id)->count('likes');
             return response()->json([
-                'liked' => true
+                'liked' => true,
+                'number_of_likes' => $number_of_likes
             ]);
+
         }
 
     }
