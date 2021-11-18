@@ -162,9 +162,9 @@
                     if(res.bool==true){
                         vm.removeClass('disabled').addClass('active');
                         vm.removeAttr('id');
-                        var _prevCount=$("."+_type+"-count").text();
+                        var _prevCount = parseInt($("."+_type+"-count").text());
                         _prevCount++;
-                        $("."+_type+"-count").text(_prevCount);
+                        parseInt($("."+_type+"-count").text(_prevCount));
                     }
                 }   
             });
