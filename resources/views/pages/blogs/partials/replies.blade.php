@@ -14,9 +14,9 @@
         <p class="btn btn-sm" style="font-size: 0.8em; color: #fff;" id="reply-btn">Reply</p>
         @auth
             <small>
-                <span class="mr-2 d-inline font-weight-bold" >
-                    <i data-parent="{{ $comment->parent_id }}" data-comment="{{ $comment->id }}" style="font-size: 1.5em; position: relative; bottom: 5px; padding-left: 20px; cursor: pointer;"
-                    class="like-comment fa fa-heart-o" id="like_{{ $comment->parent_id }}_{{ $comment->id }}" ></i>
+                <span class="mr-2 d-inline font-weight-bold">
+                    <i style="font-size: 1.5em; position: relative; bottom: 5px; padding-left: 20px; cursor: pointer;"
+                    class="like-comment fa fa-heart-o" id="like_{{ $comment->parent_id }}_{{ $comment->id }}"></i>
                     <span class="comment-like_{{ $comment->parent_id }}_{{ $comment->id }}"> {{ $comment->likes() }} </span>
                 </span>
             </small>
@@ -42,33 +42,32 @@
 
 <script type="text/javascript">
     // Save comment/reply Like Or Dislike
-        $(".like-comment").click(function(){
-            var id = this.id;
-            var _parent = document.getElementById(id).getAttribute('data-parent');
-            var _comment = document.getElementById(id).getAttribute('data-comment');
+            $(".like-comment").unbind('click').click(function(){
+                var id = this.id;
+                var split_id = id.split('_');
+                var _parent = split_id[1];
+                var _comment = split_id[2];
 
-            $.ajax({
-                url: "{{ url('like-comment') }}",
-                type: "post",
-                dataType: 'json',
-                data: {
-                    parent: _parent,
-                    comment: _comment,
-                    _token:"{{ csrf_token() }}"
-                },
-                success:function(response){
+                $.ajax({
+                    url: "{{ url('like-comment') }}",
+                    type: "post",
+                    dataType: 'json',
+                    data: {
+                        parent: _parent,
+                        comment: _comment,
+                        _token:"{{ csrf_token() }}"
+                    },
+                    success:function(response){
                         if(response.liked == true) {
                             $(".comment-"+id).text(response.number_of_likes);
                         }
-                }
+                    }
+                });
             });
-
-        });
     </script>
 
     <script type="text/javascript">
-        $("#reply-btn").on("click", function() 
-        { 
+        $("#reply-btn").on("click", function() { 
             $('#reply-input').prop("hidden", false);
             $("#submit-btn").show();
             $("#reply-btn").hide();

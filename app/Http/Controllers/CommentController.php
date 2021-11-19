@@ -107,11 +107,11 @@ class CommentController extends Controller
                 $comment_like->likes = 1; 
             }
             else { 
-                $comment_like->likes = 0; 
-                // DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
-                //                                 ->where('comment_id', $comment_like->comment_id)
-                //                                 ->where('user_id', $comment_like->user_id)
-                //                                 ->update(['likes'=>0]);
+                DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
+                                                ->where('comment_id', $comment_like->comment_id)
+                                                ->where('user_id', $comment_like->user_id)
+                                                ->delete();
+                $comment_like->likes = 0;
             }
 
             $comment_like->save();
