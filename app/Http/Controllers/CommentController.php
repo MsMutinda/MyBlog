@@ -58,8 +58,9 @@ class CommentController extends Controller
         }
     }
 
-    public function approve_comment(Request $request) {
-        if ($request->user()->can('approve-comment')) {
+    public function approve_comment(Request $request) 
+    {
+        if ($request->user()->hasRole('manager')) {
 
             // approve comment
             if($request->type=='approve') {
@@ -88,40 +89,36 @@ class CommentController extends Controller
     }
 
     // Save Like Or dislike
-    public function like_comment(Request $request) {
+    public function like_comment(Request $request) 
+    {
+        $comment_like = new \App\Models\CommentLike;
+        $comment_like->parent_comment_id = $request->parent;
+        $comment_like->comment_id = $request->comment;
+        $comment_like->user_id = $request->user()->id;
 
-        if($request->user()->can('like-comment')) {
-
-            $comment_like = new \App\Models\CommentLike;
-            $comment_like->parent_comment_id = $request->parent;
-            $comment_like->comment_id = $request->comment;
-            $comment_like->user_id = $request->user()->id;
-
-            // check for already liked blog
-            $liked = DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
-                                                ->where('comment_id', $comment_like->comment_id)
-                                                ->where('user_id', $comment_like->user_id)
-                                                ->where('likes', 1)
-                                                ->first();
-            if($liked == null) {
-                $comment_like->likes = 1; 
-            }
-            else { 
-                DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
-                                                ->where('comment_id', $comment_like->comment_id)
-                                                ->where('user_id', $comment_like->user_id)
-                                                ->delete();
-                // $comment_like->likes = 0;
-            }
-
-            $comment_like->save();
-            $number_of_likes = CommentLike::where('comment_id', $comment_like->comment_id)->count('likes');
-            return response()->json([
-                'liked' => true,
-                'number_of_likes' => $number_of_likes
-            ]);
-
+        // check for already liked blog
+        $liked = DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
+                                            ->where('comment_id', $comment_like->comment_id)
+                                            ->where('user_id', $comment_like->user_id)
+                                            ->where('likes', 1)
+                                            ->first();
+        if($liked == null) {
+            $comment_like->likes = 1; 
         }
+        else { 
+            DB::table('comment_likes')->where('parent_comment_id', $comment_like->parent_comment_id)
+                                            ->where('comment_id', $comment_like->comment_id)
+                                            ->where('user_id', $comment_like->user_id)
+                                            ->delete();
+            // $comment_like->likes = 0;
+        }
+
+        $comment_like->save();
+        $number_of_likes = CommentLike::where('comment_id', $comment_like->comment_id)->count('likes');
+        return response()->json([
+            'liked' => true,
+            'number_of_likes' => $number_of_likes
+        ]);
 
     }
 }

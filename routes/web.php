@@ -17,8 +17,14 @@ use App\Http\Controllers\IndexController;
 
 Auth::routes();
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => 'web'], function () 
+{
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::post('save-subscriber', [App\Http\Controllers\HomeController::class, 'saveSubscriber'])->name('save-subscriber');
+
+    // Blog category filter
+    Route::get('/categories/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
 });
 
 
@@ -33,6 +39,20 @@ Route::middleware('auth')->group(function()
     Route::put('/profile/update', [App\Http\Controllers\ProfileController::class, 'updateProfile'])->name('update-profile');
 
     Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])->name('logout');
+
+    Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
+
+    // Add Comments/Replies
+    Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
+    Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
+
+    // Like Or Dislike Blog
+    Route::post('save-likedislike', [App\Http\Controllers\BlogController::class, 'save_likedislike']);
+
+    // Like Or Dislike Comment/Reply
+    Route::post('like-comment', [App\Http\Controllers\CommentController::class, 'like_comment']);
+
+
 });
 
 
@@ -43,7 +63,6 @@ Route::middleware('auth', 'role')->group(function()
 
     // Route::match(['get', 'post'], '/blog/{id}', ['uses' => '\App\Http\Controllers\HomeController@show', 'as' => 'view-blog']);
 
-    Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
 
     Route::get('/blog/{id}/comments', [App\Http\Controllers\BlogController::class, 'showComments'])->name('view-blogComments');
 
@@ -59,30 +78,12 @@ Route::middleware('auth', 'role')->group(function()
 
     Route::post('publish-blog', [App\Http\Controllers\BlogController::class, 'publish_blog'])->name('publish-blog');
 
-    // Comments & Replies
-    Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
-
     Route::post('approve-comment', [App\Http\Controllers\CommentController::class, 'approve_comment'])->name('approve-comment');
 
-    Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
+    Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])->name('viewAllBlogs');
 
-    // Like Or Dislike Blog
-    Route::post('save-likedislike', [App\Http\Controllers\BlogController::class, 'save_likedislike']);
-
-    // Like Or Dislike Comment/Reply
-    Route::post('like-comment', [App\Http\Controllers\CommentController::class, 'like_comment']);
 });
 
 
-Route::get('/blogs/all', [App\Http\Controllers\BlogController::class, 'index'])->name('viewAllBlogs');
-
 // Route::match(['get', 'post'], 'save-subscriber', ['uses' => '\App\Http\Controllers\HomeController@saveSubscriber', 'as' => 'save-subscriber']);
 
-Route::post('save-subscriber', [App\Http\Controllers\HomeController::class, 'saveSubscriber'])->name('save-subscriber');
-
-
-// Blog category filter
-Route::get('/categories/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
-
-// Mailing
-Route::get('send-mail', );

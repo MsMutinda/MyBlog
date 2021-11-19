@@ -12,16 +12,21 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Comment;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Jobs\SendEditorMail;
+use App\Jobs\SendAuthorMail;
 
 
 class BlogController extends Controller
 {
-    public function index() {
-        // fetch all blogs
-        $all = Blog::all();
-        // blog categories
-        $categories = Category::all();
-        return view('pages.blogs.all')->with(['all'=>$all, 'categories'=>$categories]);
+    public function index(Request $request) {
+
+        if($request->user()->hasRole('manager', 'editor', 'contributor')) 
+        {
+            $all = Blog::all();
+            $categories = Category::all();
+            return view('pages.blogs.all')->with(['all'=>$all, 'categories'=>$categories]);
+        }
+
     }
 
     /**
@@ -32,8 +37,8 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->user()->can('store-blog')) {
-
+        if($request->user()->hasRole('contributor')) 
+        {
             $request->validate([
                 'image' => 'mimes:jpeg,jpg,png|dimensions:width=400,height=267' // Only allow .jpg, .bmp and .png file types, and with specified dimensions.
             ]);
@@ -59,7 +64,7 @@ class BlogController extends Controller
                 'title' => $save_blog->author.' has added a new blog - '.$save_blog->title.'.',
                 'body' => 'Please head over to review the blog for publishing by clicking this link: https://alinkhere.com , or use the button below'
             ];
-            \Mail::to('aluvia.guran@gmail.com')->queue(new \App\Mail\EditorMail($maildetails));
+            dispatch(new SendEditorMail($maildetails));
 
             return redirect()->back()->with('success', 'Blog saved successfully');
             
@@ -82,7 +87,7 @@ class BlogController extends Controller
     // View blog comments
     public function showComments(Request $request, $id) 
     {
-        if ($request->user()->can('view-blogComments')) 
+        if($request->user()->hasRole('manager'))
         {
             $blog = Blog::where('id', $id)->get();
             $comments = Comment::where('commentable_id', $id)->get();
@@ -98,7 +103,8 @@ class BlogController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        if ($request->user()->can('edit-blog')) {
+        if($request->user()->hasRole('editor', 'contributor')) 
+        {
             return view('pages.blogs.edit');
         }
     }
@@ -112,8 +118,8 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($request->user()->can('update-blog')) {
-
+        if($request->user()->hasRole('editor', 'contributor'))
+        {
             $request->validate([
                 'image' => 'mimes:jpeg,jpg,png' // Only allow .jpg, .bmp and .png file types.
             ]);
@@ -147,19 +153,17 @@ class BlogController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        // if ($request->user()->can('archive-blog')) 
-        
         if($request->user()->hasRole('manager'))
         {
             $blog = Blog::whereId($id)->delete();
-            return redirect()->route('home')->with('success', 'Blog archived successfully');
+            return back()->with('success', 'Blog archived successfully');
         }
     }
 
     //show archived blogs
     public function showArchived(Request $request) 
     {
-        if ($request->user()->can('view-archivedBlogs')) 
+        if($request->user()->hasRole('manager'))
         {
             $archived = Blog::onlyTrashed()->get();
             $numArchived = $archived->count();
@@ -176,7 +180,7 @@ class BlogController extends Controller
      */
     public function restore(Request $request, $id)
     {
-        if ($request->user()->can('restore-archivedBlogs')) 
+        if($request->user()->hasRole('manager'))
         {
             $archive = Blog::onlyTrashed()->find($id)->restore();
             return redirect()->back()->with('success', 'Blog restored successfully!');
@@ -185,64 +189,63 @@ class BlogController extends Controller
 
 
     // Save Like Or dislike
-    public function save_likedislike(Request $request) {
-        if ($request->user()->can('like-blog')) {
+    public function save_likedislike(Request $request) 
+    {
+        $data=new \App\Models\LikeDislike;
+        $data->user_id = $request->user()->id;
+        $data->blog_id = $request->post;
+    
+        if($request->type=='like') {
+            $likeexists = DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+            $userdislike = DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
 
-            $data=new \App\Models\LikeDislike;
-            $data->user_id = $request->user()->id;
-            $data->blog_id = $request->post;
-        
-            if($request->type=='like') {
-                $likeexists = DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
-                $userdislike = DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
-
-                if($likeexists) { 
-                    // if same user has liked same blog before, reset the user's likes record for that blog
-                    \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
-                    $data->likes=1;
-                }
-                
-                elseif($userdislike) {
-                    // prevent user from liking and disliking same blog
-                    \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
-                    $data->likes=1;
-                }
-
-                // add like if no like/dislike exists for same user
-                else { $data->likes=1; }
+            if($likeexists) { 
+                // if same user has liked same blog before, reset the user's likes record for that blog
+                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+                $data->likes=1;
+            }
+            
+            elseif($userdislike) {
+                // prevent user from liking and disliking same blog
+                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
+                $data->likes=1;
             }
 
-            else {
-                $dislikeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
-                $userlike = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
-
-                if($dislikeexists) {
-                    \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
-                    $data->dislikes=1;
-                }
-                
-                elseif($userlike) {
-                    // prevent user from liking and disliking same blog
-                    \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
-                    $data->dislikes=1;
-                }
-
-                else{ $data->dislikes=1; }
-            }
-
-            $data->save();
-
-            return response()->json([
-                'bool'=>true
-            ]);
-
+            // add like if no like/dislike exists for same user
+            else { $data->likes=1; }
         }
+
+        else {
+            $dislikeexists = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
+            $userlike = \DB::select("SELECT * from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+
+            if($dislikeexists) {
+                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
+                $data->dislikes=1;
+            }
+            
+            elseif($userlike) {
+                // prevent user from liking and disliking same blog
+                \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
+                $data->dislikes=1;
+            }
+
+            else{ $data->dislikes=1; }
+        }
+
+        $data->save();
+
+        return response()->json([
+            'bool'=>true
+        ]);
+
     }
 
 
-    public function publish_blog(Request $request) {
-        if ($request->user()->can('publish-blog')) {
-
+    public function publish_blog(Request $request) 
+    {
+        if($request->user()->hasRole('editor'))
+        {
             // publish blog
             if($request->type=='publish') {
                 $editor = $request->user()->fname.' '.$request->user()->lname;
@@ -252,13 +255,14 @@ class BlogController extends Controller
                                                         'edited_by' => $editor
                                                     ]);
                 $msg = 'Blog published!';
+
                 // Send mail here
                 $blog_title = Blog::where('id', $request->blog)->pluck('title');
                 $maildetails = [
                     'title' => 'Your new blog - '.substr($blog_title, 2, -2).' has been published!',
                     'body' => 'Feel free to share a link to the blog and make it popular among your readers. Head over to: https://alinkhere.com to check it out, or use the button below'
                     ];
-                \Mail::to('aluvia.guran@gmail.com')->queue(new \App\Mail\AuthorMail($maildetails));
+                dispatch(new SendAuthorMail($maildetails));
 
                 return response()->json([
                     'publish'=>true,

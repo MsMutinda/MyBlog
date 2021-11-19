@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class AuthorMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $maildetails;
+    protected $maildetails;
 
     /**
      * Create a new message instance.
@@ -30,6 +30,7 @@ class AuthorMail extends Mailable
     public function build()
     {
         return $this->subject('Congratulations! Your blog has been published!')
-                    ->markdown('mails.author');
+                    ->markdown('mails.author')
+                    ->with("maildetails", $this->maildetails);
     }
 }
