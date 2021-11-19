@@ -111,7 +111,7 @@ class CommentController extends Controller
                                                 ->where('comment_id', $comment_like->comment_id)
                                                 ->where('user_id', $comment_like->user_id)
                                                 ->delete();
-                $comment_like->likes = 0;
+                // $comment_like->likes = 0;
             }
 
             $comment_like->save();
