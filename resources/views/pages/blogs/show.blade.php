@@ -136,6 +136,8 @@
             </div>
 
         </div>
+
+        @include('pages.blogs.newsletterform')
             
     </main>
 
@@ -180,5 +182,20 @@
         });
     </script>
 
+    <!-- newsletter modal display - once per user session -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var newsletterShown = $.cookie('newsletterShown');
+            if (!newsletterShown) {
+                    setTimeout(function() {
+                        $('#newsletterModal').modal();
+                    }, 20000);
+                    $.cookie('newsletterShown', 1);
+            }
+            else {
+                $("#newsletterModal").hide();
+            }
+        });
+    </script>
 
 @endsection

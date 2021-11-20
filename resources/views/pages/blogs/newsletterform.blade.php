@@ -24,8 +24,8 @@
             </div>
             
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success" name="submit" form="newsletter-form">Save changes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"> No thanks </button>
+                <button type="submit" class="btn btn-success" name="submit" form="newsletter-form"> Sign me up! </button>
             </div>
         </div>
     </div>

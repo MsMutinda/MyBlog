@@ -69,8 +69,8 @@
                     <li class="nav__item"><a href="{{ route('logout') }}">Sign out </a></li>
                     <li class="nav__item"> 
                         <ul class="float-right">
-                            <li data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li>
-                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> Dark theme <i class="fa fa-toggle-on || fa fa-toggle-off"> </i> </li>
+                            <li class="mb-1" data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li>
+                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle light/dark mode"> Switch theme <i class="fa fa-toggle-on || fa fa-toggle-off"> </i> </li>
                         </ul>
                     </li>
                 </ul>

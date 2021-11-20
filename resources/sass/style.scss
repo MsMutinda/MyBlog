@@ -401,7 +401,7 @@ form .container {
 }
 
 .button,
-.btn {
+.btn:not(.modal-footer > button.btn, .tags > ul > li.btn) {
     background-color: #2b6797;
     border-radius: 5px;
 }
@@ -815,4 +815,114 @@ body.dark-theme .table-hover > tbody > tr:hover{
 body.dark-theme .archived-blogs,
 body.dark-theme #archives_info {
     color: #efefef;
+}
+
+
+
+// Responsiveness
+@media only screen and (min-width: 280px) and (max-width: 599px) 
+{
+    .navbar > a {
+        position: relative;
+        right: 30px;
+    }
+
+    .nav__hamburger {
+        /* making the hamburger menu icon visible on smaller screen sizes */
+        display: flex;
+        opacity: 1;
+    }
+
+    .nav__menu {
+        /* move menu offscreen */
+        opacity: 0;
+        position: fixed;
+        visibility: none;
+        top: -1000px;
+        display: flex;
+        flex-direction: column;
+        color: #25310c;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.19);
+        border: 2px solid rgba(255, 255, 255, 0.2); /* part of glass morphism effect */
+        border-radius: 2rem 0 2rem 2rem;
+        background: rgba(255, 255, 255, 1);
+    }
+
+    /* ucomment line below to show nav list on hover. */
+    /*   .nav__listcontainer:hover .nav__menu, */
+    .nav__listcontainer:focus .nav__menu,
+    .nav__listcontainer:focus-within .nav__menu {
+        position: absolute;
+        visibility: visible;
+        opacity: 1;
+        top: 2rem;
+        right: 1.5rem;
+    }
+
+    /*   if the browser supports backdrop-filter property, 
+    then add it (for the glass morphism effect) */
+    @supports (backdrop-filter: blur(10px)) {
+        /* uncomment the line below to activate on hover. */
+        /*     .nav__listcontainer:hover .nav__menu, */
+        .nav__listcontainer:focus .nav__menu,
+        .nav__listcontainer:focus-within .nav__menu {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+    }
+
+    .nav__item {
+        margin-right: 0;
+        padding: 0.5rem 1rem;
+        font-size: 12px;
+    }
+
+    li.nav__item a,
+    li.nav__item .nav-select,
+    li.nav__item ul.float-right li
+    {
+        color: #121212;
+    }
+
+    .nav__link:hover,
+    .nav__link:focus {
+        opacity: 0.8;
+        color: #121212;
+    }
+
+    .nav__listcontainer:focus .nav__hamburger,
+    .nav__listcontainer:focus-within .nav__hamburger {
+        opacity: 0;
+        z-index: -1;
+    }
+
+    .nav__listcontainer:focus + .nav__hamburgerclose,
+    .nav__listcontainer:focus-within + .nav__hamburgerclose {
+        display: flex;
+        opacity: 1;
+        z-index: 1;
+    }
+
+    li.nav__item > ul.float-right > li {
+        position: relative;
+        right: 130px;
+    }
+
+    li.nav__item > ul.float-right > li > i {
+        display: none;
+    }
+
+    #hamburger {
+        margin-bottom: 20px;
+        font-size: 16px;
+        margin-right: 20px;
+        position: relative;
+        top: 15px;
+    }
+
+    #hamburger:hover {
+        text-decoration: underline;
+        color: #000;
+    }
+
 }
