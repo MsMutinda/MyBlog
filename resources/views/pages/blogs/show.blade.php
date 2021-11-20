@@ -136,10 +136,13 @@
             </div>
 
         </div>
-
-        @include('pages.blogs.newsletterform')
             
     </main>
+
+
+    @include('pages.blogs.newsletterform')
+
+    
 
     <script type='text/javascript'>
         // Save Like Or Dislike
@@ -188,8 +191,19 @@
             var newsletterShown = $.cookie('newsletterShown');
             if (!newsletterShown) {
                     setTimeout(function() {
-                        $('#newsletterModal').modal();
-                    }, 20000);
+                        document.querySelector('body').style.overflow = 'hidden';
+                        document.querySelector('.show-blog .row .col-lg-2').style.visibility = 'hidden';
+                        document.querySelector('.show-blog').style.cssText = `
+                                    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+                                    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+                                    height: 65vh;
+                            `;
+                        const oldfooter = document.querySelector(".footer1");
+                        const replacement = document.createElement('div');
+                        replacement.innerHTML = '<h4 style="position: absolute; left: 80px; font-weight: 700;" data-toggle="modal" data-target="#newsletterModal"> To continue reading, click <span style="cursor: pointer; text-decoration: underline;"> here </span> </h4>';
+                        oldfooter.parentNode.replaceChild(replacement, oldfooter);
+                        // $('#newsletterModal').modal();
+                    }, 2000);
                     $.cookie('newsletterShown', 1);
             }
             else {

@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newsletterModalLabel"> Get alerts for newly published blogs </h5>
+                <h5 class="modal-title" id="newsletterModalLabel"> Subscribe to get access to exclusive blog posts </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
