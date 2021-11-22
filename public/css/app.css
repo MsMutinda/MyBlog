@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
 @charset "UTF-8";
 td.dt-control {
   background: url("https://www.datatables.net/examples/resources/details_open.png") no-repeat center center;
@@ -10489,8 +10492,8 @@ main.profile-page {
   height: 45px;
   line-height: 40px;
   width: 100%;
-  background: #faf7f7;
   text-align: center;
+  background: #faf7f7;
   color: #000;
   font-family: sans-serif;
   font-weight: lighter;
@@ -10513,18 +10516,46 @@ main.profile-page {
   font-size: 14px;
 }
 
+.container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+  padding: 0;
+}
+
 .featured {
-  padding: 0px 100px;
+  padding: 20px 65px;
+  width: 100vw;
 }
 
 .featured hr {
-  width: 65%;
+  width: 68%;
   position: relative;
-  right: 185px;
+  right: 175px;
 }
 
-.featured p {
-  border-radius: 50px;
+.featuredheader {
+  margin-bottom: 10px;
+  color: #4a4a4a;
+}
+
+.featured img {
+  width: 100%;
+  height: 80%;
+}
+
+.featured .col-lg-4, .featured .col-lg-8 {
+  padding: 0;
+}
+
+.featured .col-lg-8 {
+  padding: 0px 15px;
+}
+
+.featured h2.card-title {
+  margin-bottom: 15px;
+}
+
+.featured .card .card-text p {
+  font-size: 16px;
+  margin-bottom: 25px;
 }
 
 .latestheader > hr {
@@ -10538,8 +10569,8 @@ main.profile-page {
   color: #4a4a4a;
 }
 
-.card-body {
-  margin: 5px;
+.latest {
+  padding: 0px 100px;
 }
 
 .latest > .row > .col-lg-9 > .row > .col-lg-7 > .card > .card-body > small > span > p {
@@ -10560,7 +10591,7 @@ main.profile-page {
   height: 180px;
   width: 90%;
   border-radius: 7px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .latest > .row > .col-lg-3 {
@@ -10601,11 +10632,7 @@ form .container {
 
 .button,
 .btn:not(.modal-footer > button.btn) {
-  background-color: #2b6797;
-  border-radius: 5px;
-}
-
-button {
+  background-color: #3490dc;
   border-radius: 5px;
 }
 
@@ -10921,8 +10948,6 @@ body.dark-theme .show-blog .row .col-lg-10 .card-body h5,
 body.dark-theme .footer1 .links ul p,
 body.dark-theme .show-blog .related-blogs .row .col-lg-12 h2,
 body.dark-theme .featuredheader h2,
-body.dark-theme .featured ul,
-body.dark-theme .featured ul li a,
 body.dark-theme .latestheader h2,
 body.dark-theme .like-count,
 body.dark-theme .dislike-count,

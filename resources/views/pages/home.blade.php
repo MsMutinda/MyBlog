@@ -19,12 +19,12 @@
         @endif
         
         <div class="featured">
-            <div class="row featuredheader"> <h2> FEATURED </h2> </div>
+            <!-- <div class="row featuredheader"> <h2> FEATURED BLOG</h2> </div> -->
             <div class="row">
                 <div class="col-lg-4 col-sm-4"> 
                     <img
                         src = "{{ asset('storage/'.substr($latestblog->image_path, 7)) }}"
-                        title = "{{ $latestblog->title }} image"
+                        title = "{{ $latestblog->title }}"
                         alt = "{{ $latestblog->title }} img"
                     />
                 </div>
@@ -32,47 +32,24 @@
                 <div class="col-lg-8 col-sm-8">
                     <div class='card'>
                         <div class="card-body">
-                            <h4 class="card-title mb-2"> <a href="{{ route('view-blog', $latestblog->id) }}"> {{ $latestblog->title }} </a> </h4>
-                                @php 
-                                    $category = \App\Models\Blog::where('id', $latestblog->id)->pluck('category');
-                                    $categoryname = \App\Models\Category::where('id', $category)->pluck('name');
-                                @endphp
-                            <small>
-                                <span> {{ $latestblog->created_at->format('M d, Y') }} &nbsp; {{ $latestblog->created_at->format('H:i A') }}  &nbsp; · &nbsp; 
-                                    @php
-                                        $blog_content = \App\Models\Blog::where('id', $latestblog->id)->get('content');
-                                        $wpm = 200;
-                                        $wordCount = str_word_count(strip_tags($blog_content));
-                                        $minute_count = (int) floor($wordCount / $wpm); 
-                                        $seconds_count = (int) floor($wordCount % $wpm / ($wpm / 60));                                            
-                                        $minutes = ($minute_count === 0) ? $seconds_count : $minute_count;
-                                        if ($minute_count === 0) {
-                                            echo $seconds_count.'-sec';
-                                        }
-                                        else {
-                                            echo $minute_count.'-min';
-                                        }
-                                    @endphp
-                                    read &nbsp; · &nbsp;  <p class="btn btn-sm"> {{ substr($categoryname, 2, -2) }} </p> </span>
-                            </small>
+                            <h2 class="card-title"> <a href="{{ route('view-blog', $latestblog->id) }}"> {{ $latestblog->title }} </a> </h2>
                         </div>
 
                         <div class="card-body">
                             <div class='card-text'>
-                                <p> {{ substr(strip_tags($latestblog->content), 0, 600).'...' }} </p>
+                                <p class="text-justify"> {{ substr(strip_tags($latestblog->content), 0, 630).'...' }} </p>
                             </div>
-                            <p> <a style="color: #fff;" href="{{ route('view-blog', $latestblog->id) }}"> <b> READ MORE </b> </a> </p>    
+                            <p> <a href="{{ route('view-blog', $latestblog->id) }}"> <b> READ MORE <i class="fa fa-angle-double-right pl-1" style="font-size: 17px;"></i> </b> </a> </p>    
                         </div>
                     </div>
                 </div>
-            
-        <hr />
+            </div>
         </div>
-
 
         <div class="latest">
             <div class="row"> 
                 <div class="latestheader col-lg-9 col-sm-9"> 
+                    <!-- <hr /> -->
                     <h2>Latest blogs </h2>
                     <hr />
                     @if(Session::has('Error'))
@@ -90,7 +67,7 @@
                                 <div class="col-lg-7 col-sm-7">
                                     <div class='card'>
                                         <div class="card-body">
-                                            <h4 class="card-title mb-2"> <a href="{{ route('view-blog', $blog->id) }}"> {{ $blog->title }} </a> </h4>
+                                            <h4 class="card-title mb-1"> <a href="{{ route('view-blog', $blog->id) }}"> {{ $blog->title }} </a> </h4>
                                                 @php 
                                                     $category = \App\Models\Blog::where('id', $blog->id)->pluck('category');
                                                     $categoryname = \App\Models\Category::where('id', $category)->pluck('name');
@@ -119,7 +96,7 @@
                                             <div class='card-text'>
                                                 <p> {{ substr(strip_tags($blog->content), 0, 190).'...' }} </p>
                                             </div>
-                                            <p class="btn btn-sm" style="color: #fff;"> <a style="color: #fff;" href="{{ route('view-blog', $blog->id) }}"> <b> Read blog </b> </a> </p>    
+                                            <p class="btn btn-sm"> <a style="color: #fff;" href="{{ route('view-blog', $blog->id) }}"> Read blog </a> </p>    
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +104,7 @@
                                 <div class="col-lg-5 col-sm-5 float-right">
                                     <img
                                         src="{{ asset('storage/'.substr($blog->image_path, 7)) }}"
-                                        title="{{ $blog->title }} image"
+                                        title="{{ $blog->title }}"
                                         alt="{{ $blog->title }} img"
                                     />
                                 </div>
