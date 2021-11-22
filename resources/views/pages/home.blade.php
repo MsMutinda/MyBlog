@@ -69,7 +69,7 @@
                                 <div class="col-lg-7 col-sm-7">
                                     <div class='card'>
                                         <div class="card-body">
-                                            <h4 class="card-title mb-2"> {{ $blog->title }} </h4>
+                                            <h4 class="card-title mb-2"> <a href="{{ route('view-blog', $blog->id) }}"> {{ $blog->title }} </a> </h4>
                                                 @php 
                                                     $category = \App\Models\Blog::where('id', $blog->id)->pluck('category');
                                                     $categoryname = \App\Models\Category::where('id', $category)->pluck('name');
@@ -98,8 +98,6 @@
                                             <div class='card-text'>
                                                 <p> {{ substr(strip_tags($blog->content), 0, 190).'...' }} </p>
                                             </div>
-                                            <!-- Newsletter modal button trigger -->
-                                            <!-- <p class="btn btn-sm" data-toggle="modal" data-target="#newsletterModal" style="color: #fff;"> <b> Read blog </b> </p>     -->
                                             <p class="btn btn-sm" style="color: #fff;"> <a style="color: #fff;" href="{{ route('view-blog', $blog->id) }}"> <b> Read blog </b> </a> </p>    
                                         </div>
                                     </div>
