@@ -1,6 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
-@import url(https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);
 @charset "UTF-8";
 td.dt-control {
   background: url("https://www.datatables.net/examples/resources/details_open.png") no-repeat center center;
@@ -10306,21 +10304,17 @@ h3 {
 
 body {
   overflow-x: hidden !important;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   background: #fff;
 }
 
 main {
-  margin-top: 160px;
+  margin-top: 140px;
 }
 
 .alert {
   height: 50px;
-}
-
-.home {
-  padding: 0px 30px 25px 35px;
 }
 
 a {
@@ -10340,10 +10334,14 @@ nav {
   border-bottom: 0.1px solid #ddd;
 }
 
+.navbar {
+  padding: 0;
+}
+
 nav a.float-left {
   font-family: "Dancing Script";
   margin-left: 40px;
-  font-size: 3.2rem;
+  font-size: 2.7rem;
   font-weight: 900;
   color: #efefef;
 }
@@ -10486,7 +10484,7 @@ main.profile-page {
 .notification-top-bar {
   z-index: 1;
   position: fixed;
-  top: 94px;
+  top: 70px;
   left: 0;
   height: 45px;
   line-height: 40px;
@@ -10515,91 +10513,18 @@ main.profile-page {
   font-size: 14px;
 }
 
-.about {
-  margin-bottom: 50px;
+.featured {
+  padding: 0px 100px;
 }
 
-.about .row {
-  width: 90%;
-  position: relative;
-  left: 60px;
-}
-
-.about ul {
-  padding: 10px 30px;
-  margin-bottom: 0;
-}
-
-.about ul li {
-  padding: 5px;
-}
-
-.about ul li a {
-  color: #121212;
-}
-
-.about ul li a:hover {
-  color: #1d68a7;
-  font-weight: 700;
-}
-
-.home > .row > hr {
+.featured hr {
   width: 65%;
   position: relative;
   right: 185px;
 }
 
-div.row > div.tags {
-  padding-left: 50px;
-}
-
-.tags ul {
-  padding: 0;
-  justify-content: space-between;
-  margin-top: 15px;
-}
-
-.tags ul li {
-  background: #e7e6e6;
-  color: #8a8a8a;
-  padding: 4px 7px;
-  margin-right: 5px;
-}
-
-.tags ul li.btn {
-  border-radius: 30px;
-  margin-bottom: 10px;
-}
-
-.write {
-  color: #efefef;
-  background: #1d68a5;
-  padding: 8px;
-  border-radius: 15px;
-  width: 39%;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.write:hover {
-  text-decoration: underline;
-  font-weight: 700;
-}
-
-.home > .row > .col-lg-3 > h5:nth-child(2) {
-  margin-top: 30px;
-  margin-left: 5px;
-  text-decoration: underline;
-  font-weight: 700;
-  color: #8a8a8a;
-}
-
-.home > .row > .col-lg-3 > ul > li > a {
-  list-style: none;
-  padding: 6px;
-  font-size: 12px;
-  text-align: left;
-  color: #8a8a8a;
+.featured p {
+  border-radius: 50px;
 }
 
 .latestheader > hr {
@@ -10609,19 +10534,8 @@ div.row > div.tags {
 }
 
 .latestheader > h2 {
-  font-weight: bolder;
   margin-left: 20px;
   color: #4a4a4a;
-}
-
-.about > h2 {
-  font-weight: bolder;
-  margin-left: 48px;
-  color: #4a4a4a;
-}
-
-.latest > .row > .col-lg-9 {
-  padding: 0px 40px;
 }
 
 .card-body {
@@ -10655,7 +10569,6 @@ div.row > div.tags {
   padding-left: 50px;
 }
 
-h5.tags,
 .latest > .row > .col-lg-3 > h5 {
   margin-left: 5px;
   text-decoration: underline;
@@ -10687,7 +10600,7 @@ form .container {
 }
 
 .button,
-.btn:not(.modal-footer > button.btn, .tags > ul > li.btn) {
+.btn:not(.modal-footer > button.btn) {
   background-color: #2b6797;
   border-radius: 5px;
 }
@@ -10974,7 +10887,7 @@ body.dark-theme nav ul li a,
 body.dark-theme nav select,
 body.dark-theme .nav__item .float-right li,
 body.dark-theme nav ul li.btn-toggle,
-body.dark-theme .about p,
+body.dark-theme .featured p,
 body.dark-theme .card .card-body small span,
 body.dark-theme .footer1 .col-lg-4 p,
 body.dark-theme .footer1 .col-lg-4 p a,
@@ -11007,9 +10920,9 @@ body.dark-theme .show-blog .row .col-lg-10 h1,
 body.dark-theme .show-blog .row .col-lg-10 .card-body h5,
 body.dark-theme .footer1 .links ul p,
 body.dark-theme .show-blog .related-blogs .row .col-lg-12 h2,
-body.dark-theme .about h2,
-body.dark-theme .about ul,
-body.dark-theme .about ul li a,
+body.dark-theme .featuredheader h2,
+body.dark-theme .featured ul,
+body.dark-theme .featured ul li a,
 body.dark-theme .latestheader h2,
 body.dark-theme .like-count,
 body.dark-theme .dislike-count,

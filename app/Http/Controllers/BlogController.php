@@ -234,6 +234,7 @@ class BlogController extends Controller
         }
 
         $data->save();
+        $number_of_likes = CommentLike::where('comment_id', $comment_like->comment_id)->count('likes');
 
         return response()->json([
             'bool'=>true

@@ -188,8 +188,8 @@
     <!-- newsletter modal display - once per user session -->
     <script type="text/javascript">
         $(document).ready(function() {
-            var newsletterShown = $.cookie('newsletterShown');
-            if (!newsletterShown) {
+            // var newsletterShown = $.cookie('newsletterShown');
+            // if (!newsletterShown) {
                     setTimeout(function() {
                         document.querySelector('body').style.cssText = `overflow-y: hidden;`;
                         document.querySelector('.show-blog').style.cssText = `
@@ -202,12 +202,12 @@
                         replacement.innerHTML = '<h4 style="position: absolute; left: 80px; font-weight: 700; padding-top: 30px; padding-bottom: 80px;" data-toggle="modal" data-target="#newsletterModal"> To continue reading this blog, click <span style="cursor: pointer; text-decoration: underline;"> here </span> </h4>';
                         oldfooter.parentNode.replaceChild(replacement, oldfooter);
                         // $('#newsletterModal').modal();
-                    }, 500);
+                    }, 300);
                     $.cookie('newsletterShown', 1);
-            }
-            else {
-                $("#newsletterModal").hide();
-            }
+            // }
+            // else {
+            //     $("#newsletterModal").hide();
+            // }
         });
     </script>
 

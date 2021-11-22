@@ -23,16 +23,16 @@ class HomeController extends Controller
             return 'No blogs have been published yet'.'<br>'.'Click here to contribute';
         }
 
+        // latest blog
+        $latestblog = Blog::orderBy('created_at', 'DESC')->take(1)->first();
+
         // fetch only published blogs
         $blogs = Blog::where('status', 'published')->take(5)->get();
-
-        // 4 random blogs as trending
-        $latestblogs = Blog::inRandomOrder()->limit(4)->get();
 
         // fetch blog categories
         $categories = Category::all();
 
-        return view('pages.home')->with(['blogs' => $blogs, 'latestblogs' => $latestblogs, 'categories' => $categories]);
+        return view('pages.home')->with(['blogs' => $blogs, 'latestblog' => $latestblog, 'categories' => $categories]);
     }
 
     /**

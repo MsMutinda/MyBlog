@@ -18,32 +18,53 @@
             </div>
         @endif
         
-        <div class="row">
-            <div class="about col-lg-9 col-sm-9"> 
-                <h2> TRENDING BLOGS </h2>
-                <div class="row">
-                    <ul class="repeating-counter-rule">
-                        @foreach($latestblogs as $latestblog)
-                            <li> <a href=""> {{ $latestblog->title }} </a> </li>
-                        @endforeach
-                    </ul>
+        <div class="featured">
+            <div class="row featuredheader"> <h2> FEATURED </h2> </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-4"> 
+                    <img
+                        src = "{{ asset('storage/'.substr($latestblog->image_path, 7)) }}"
+                        title = "{{ $latestblog->title }} image"
+                        alt = "{{ $latestblog->title }} img"
+                    />
                 </div>
-                
-            </div>
 
-            <div class="tags col-lg-3 col-sm-3">
-                <!-- <h5 class="write" data-toggle="modal" data-target="#createBlogModal"> <i class="mr-1 fa fa-pencil"></i> Contribute</h5> -->
-                <h5 class="tags"> Tags </h5>
-                <ul>
-                    <li class="btn btn-sm">Design</li>
-                    <li class="btn btn-sm">Tech</li>
-                    <li class="btn btn-sm">Frontend</li>
-                    <li class="btn btn-sm">Backend</li>
-                    <li class="btn btn-sm">DBMS</li>
-                    <li class="btn btn-sm">Professionalism</li>
-                    <li class="btn btn-sm">Frameworks</li>
-                </ul>
-            </div>
+                <div class="col-lg-8 col-sm-8">
+                    <div class='card'>
+                        <div class="card-body">
+                            <h4 class="card-title mb-2"> <a href="{{ route('view-blog', $latestblog->id) }}"> {{ $latestblog->title }} </a> </h4>
+                                @php 
+                                    $category = \App\Models\Blog::where('id', $latestblog->id)->pluck('category');
+                                    $categoryname = \App\Models\Category::where('id', $category)->pluck('name');
+                                @endphp
+                            <small>
+                                <span> {{ $latestblog->created_at->format('M d, Y') }} &nbsp; {{ $latestblog->created_at->format('H:i A') }}  &nbsp; · &nbsp; 
+                                    @php
+                                        $blog_content = \App\Models\Blog::where('id', $latestblog->id)->get('content');
+                                        $wpm = 200;
+                                        $wordCount = str_word_count(strip_tags($blog_content));
+                                        $minute_count = (int) floor($wordCount / $wpm); 
+                                        $seconds_count = (int) floor($wordCount % $wpm / ($wpm / 60));                                            
+                                        $minutes = ($minute_count === 0) ? $seconds_count : $minute_count;
+                                        if ($minute_count === 0) {
+                                            echo $seconds_count.'-sec';
+                                        }
+                                        else {
+                                            echo $minute_count.'-min';
+                                        }
+                                    @endphp
+                                    read &nbsp; · &nbsp;  <p class="btn btn-sm"> {{ substr($categoryname, 2, -2) }} </p> </span>
+                            </small>
+                        </div>
+
+                        <div class="card-body">
+                            <div class='card-text'>
+                                <p> {{ substr(strip_tags($latestblog->content), 0, 600).'...' }} </p>
+                            </div>
+                            <p> <a style="color: #fff;" href="{{ route('view-blog', $latestblog->id) }}"> <b> READ MORE </b> </a> </p>    
+                        </div>
+                    </div>
+                </div>
             
         <hr />
         </div>

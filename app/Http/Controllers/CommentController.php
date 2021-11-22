@@ -19,19 +19,13 @@ class CommentController extends Controller
         if ($request->user()->can('add-comment')) {
 
             $comment = new Comment;
-
             $comment->comment = $request->comment;
-
             $comment->user()->associate($request->user());
-
             $blog = Blog::find($request->blog_id);
-
             $blog->comments()->save($comment);   
-            
             $id = $request->blog_id;
             $blog = Blog::where('id', $id)->first();
 
-            // return view('pages.blogs.show', compact('blog'))->with('success', 'Comment saved, pending approval');
             return back()->with('success', 'Comment saved, pending approval');
         }
     }
@@ -42,15 +36,10 @@ class CommentController extends Controller
         if ($request->user()->can('add-reply')) {
 
             $reply = new Comment();
-
             $reply->comment = $request->get('comment');
-
             $reply->user()->associate($request->user());
-
             $reply->parent_id = $request->get('comment_id');
-
             $blog = Blog::find($request->get('blog_id'));
-
             $blog->comments()->save($reply);
 
             return back();
