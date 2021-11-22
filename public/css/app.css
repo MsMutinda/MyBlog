@@ -10310,10 +10310,11 @@ body {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   background: #fff;
+  font-weight: 400;
 }
 
 main {
-  margin-top: 140px;
+  margin-top: 116px;
 }
 
 .alert {
@@ -10322,6 +10323,7 @@ main {
 
 a {
   text-decoration: none;
+  color: #2b6797;
 }
 
 nav {
@@ -10493,7 +10495,8 @@ main.profile-page {
   line-height: 40px;
   width: 100%;
   text-align: center;
-  background: #faf7f7;
+  background: #fff;
+  border-bottom: 1px solid #e0e6eb;
   color: #000;
   font-family: sans-serif;
   font-weight: lighter;
@@ -10521,8 +10524,9 @@ main.profile-page {
 }
 
 .featured {
-  padding: 20px 65px;
+  padding: 30px 55px;
   width: 100vw;
+  background-color: rgba(19, 73, 117, 0.06);
 }
 
 .featured hr {
@@ -10537,8 +10541,8 @@ main.profile-page {
 }
 
 .featured img {
+  margin: 10px;
   width: 100%;
-  height: 80%;
 }
 
 .featured .col-lg-4, .featured .col-lg-8 {
@@ -10551,11 +10555,27 @@ main.profile-page {
 
 .featured h2.card-title {
   margin-bottom: 15px;
+  font-weight: 400;
 }
 
 .featured .card .card-text p {
   font-size: 16px;
   margin-bottom: 25px;
+  margin-top: 15px;
+}
+
+.white-bg {
+  background: #fff;
+}
+
+.featured .card {
+  background: none;
+  padding-top: 20px;
+}
+
+.featured span.btn {
+  border-radius: 30px;
+  background: #f0ebeb;
 }
 
 .latestheader > hr {
@@ -10570,7 +10590,7 @@ main.profile-page {
 }
 
 .latest {
-  padding: 0px 100px;
+  padding: 20px 100px 0px 100px;
 }
 
 .latest > .row > .col-lg-9 > .row > .col-lg-7 > .card > .card-body > small > span > p {
@@ -10631,8 +10651,8 @@ form .container {
 }
 
 .button,
-.btn:not(.modal-footer > button.btn) {
-  background-color: #3490dc;
+.btn:not(.modal-footer > button.btn, .featured span.btn) {
+  background-color: #2b6797;
   border-radius: 5px;
 }
 
@@ -10670,14 +10690,16 @@ form .container {
 }
 
 .card-body > .card-title {
-  color: #5691d1;
+  color: #2b6797;
   padding: 0;
   margin: 0;
+  font-size: 1.3rem;
+  font-weight: 400;
 }
 
 .card-text {
   color: #8a8a8a;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .readMore a {
@@ -10688,6 +10710,10 @@ form .container {
 
 .readMore a:hover {
   text-decoration: underline;
+}
+
+.topheader {
+  margin-top: 120px;
 }
 
 /* Footer */

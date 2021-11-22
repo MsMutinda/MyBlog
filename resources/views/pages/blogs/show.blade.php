@@ -188,26 +188,29 @@
     <!-- newsletter modal display - once per user session -->
     <script type="text/javascript">
         $(document).ready(function() {
-            var newsletterShown = $.cookie('newsletterShown');
-            if (!newsletterShown) {
-                    setTimeout(function() {
-                        document.querySelector('body').style.cssText = `overflow-y: hidden;`;
-                        document.querySelector('.show-blog').style.cssText = `
-                                    -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
-                                    mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
-                                    height: 58vh;
-                            `;
-                        const oldfooter = document.querySelector(".footer1");
-                        const replacement = document.createElement('div');
-                        replacement.innerHTML = '<h4 style="position: absolute; left: 80px; font-weight: 700; padding-top: 30px; padding-bottom: 80px;" data-toggle="modal" data-target="#newsletterModal"> To continue reading this blog, click <span style="cursor: pointer; text-decoration: underline;"> here </span> </h4>';
-                        oldfooter.parentNode.replaceChild(replacement, oldfooter);
-                        // $('#newsletterModal').modal();
-                    }, 300);
-                    $.cookie('newsletterShown', 1);
-            }
-            else {
-                $("#newsletterModal").hide();
-            }
+            // if(Auth::user()->hasRole('guest')) {
+                if ((localStorage.pageViews = (+localStorage.pageViews || 0) + 1) > 3) {
+                    // var newsletterShown = $.cookie('newsletterShown');
+                    // if (!newsletterShown) {
+                            setTimeout(function() {
+                                document.querySelector('.show-blog').style.cssText = `
+                                            -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+                                            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+                                            height: 58vh;
+                                    `;
+                                const footer = document.querySelector('.footer1');
+                                const newel = document.createElement('div');
+                                newel.innerHTML = '<h4 style="color: #3490dc; position: relative; left: 60px; font-weight: 700; padding-top: 10px; padding-bottom: 50px;" data-toggle="modal" data-target="#newsletterModal"> To continue reading this blog, click <span style="cursor: pointer; text-decoration: underline;"> here </span> </h4>';
+                                footer.insertBefore(newel, footer);
+                                // $('#newsletterModal').modal();
+                            }, 300);
+                            $.cookie('newsletterShown', 1);
+                    // }
+                    // else {
+                    //     $("#newsletterModal").hide();
+                    // }
+                }
+            // }
         });
     </script>
 

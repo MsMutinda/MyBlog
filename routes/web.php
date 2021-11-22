@@ -27,6 +27,8 @@ Route::group(['middleware' => 'web'], function ()
     Route::get('/categories/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
 });
 
+Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
+
 
 // Authenticated users only
 Route::middleware('auth')->group(function() 
@@ -40,7 +42,7 @@ Route::middleware('auth')->group(function()
 
     Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])->name('logout');
 
-    Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
+    // Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
 
     // Add Comments/Replies
     Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');

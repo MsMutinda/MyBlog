@@ -19,8 +19,7 @@
         @endif
         
         <div class="featured">
-            <!-- <div class="row featuredheader"> <h2> FEATURED BLOG</h2> </div> -->
-            <div class="row">
+            <div class="row white-bg">
                 <div class="col-lg-4 col-sm-4"> 
                     <img
                         src = "{{ asset('storage/'.substr($latestblog->image_path, 7)) }}"
@@ -33,6 +32,30 @@
                     <div class='card'>
                         <div class="card-body">
                             <h2 class="card-title"> <a href="{{ route('view-blog', $latestblog->id) }}"> {{ $latestblog->title }} </a> </h2>
+                            @php 
+                                $category = \App\Models\Blog::where('id', $latestblog->id)->pluck('category');
+                                $categoryname = \App\Models\Category::where('id', $category)->pluck('name');
+                            @endphp
+                            <small>
+                                <span> {{ $latestblog->created_at->format('M d, Y') }} &nbsp; {{ $latestblog->created_at->format('H:i A') }}  &nbsp; · &nbsp; 
+                                    @php
+                                        $blog_content = \App\Models\Blog::where('id', $latestblog->id)->get('content');
+                                        $wpm = 200;
+                                        $wordCount = str_word_count(strip_tags($blog_content));
+                                        $minute_count = (int) floor($wordCount / $wpm); 
+                                        $seconds_count = (int) floor($wordCount % $wpm / ($wpm / 60));                                            
+                                        $minutes = ($minute_count === 0) ? $seconds_count : $minute_count;
+                                        if ($minute_count === 0) {
+                                            echo $seconds_count.'-sec';
+                                        }
+                                        else {
+                                            echo $minute_count.'-min';
+                                        }
+                                    @endphp
+                                    read &nbsp; · &nbsp; 
+                                </span>
+                                <span class="btn btn-sm"> {{ substr($categoryname, 2, -2) }}  </span>
+                            </small>
                         </div>
 
                         <div class="card-body">
