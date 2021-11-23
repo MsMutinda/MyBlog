@@ -14,10 +14,10 @@
 
 body {
     overflow-x: hidden !important;
-    font-family: 'Montserrat', sans-serif;
     box-sizing: border-box;
     background: #fff;
     font-weight: 400;
+    font-family: "Montserrat", sans-serif !important;
 }
 
 main:not(main.home) {
@@ -268,7 +268,7 @@ nav ul li {
 
 .latest {
     padding-top: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .latestheader > hr {
@@ -300,7 +300,6 @@ nav ul li {
     height: 180px;
     width: 90%;
     border-radius: 7px;
-    margin-top: 10px;
 }
 
 form .container {
@@ -353,7 +352,6 @@ form .container {
     margin: 0;
     font-size: 1.3rem;
     font-weight: 400;
-    // text-transform: uppercase;
 }
 
 .card-text {
@@ -402,8 +400,8 @@ footer > div > ul > li > a:hover {
 }
 
 .footer1 {
-    background: #fdfff5;
-    padding: 30px 0px 30px 10px;
+    // background: #134975;
+    padding: 10px 0px 15px 10px;
     border-top: 0.5px solid rgb(230, 221, 221);
 }
 
@@ -465,12 +463,11 @@ footer > div > ul > li > a:hover {
 // View blog styles
 .show-blog {
     margin-bottom: 20px;
+    padding-top: 15px;
 }
 
-.show-blog h1 {
+.show-blog h3 {
     color: #094270;
-    font-size: 3rem;
-    padding: 0px 0px 5px 0px;
 }
 
 .show-blog > .row > .col-lg-10 > hr {
@@ -489,42 +486,60 @@ footer > div > ul > li > a:hover {
     color: #111111;
 }
 
+.show-blog > .row > .col-lg-10 > .card-body > .card-text p,
+.show-blog .card-text span {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.show-blog > .row > .col-lg-2 {
+    left: 50px;
+    bottom: 220px;
+    padding: 0;
+}
+
 .show-blog > .row > .col-lg-2 > ul {
     position: sticky;
-    top: 400px;
+    top: 300px;
     left: 1100px;
     display: grid;
     grid-template-columns: auto auto;
     row-gap: 35px;
-    column-gap: 15px;
+    column-gap: 20px;
 }
 
 div.author-details > div.float-left > img {
     border-radius: 50%;
 }
 
+.related-blogs .card-title {
+    margin-top: 15px;
+}
 
 
 
 //category filter
 .categories .topheader {
-    position: relative;
-    left: 40px;
+    padding: 10px;
 }
 
 .categories .topheader hr {
     color: #e9e0e0;
-    position: relative;
-    right: 38px;
 }
 
-.categories .col-lg-7, .categories .col-lg-5 {
+.categories .col-lg-8, .categories .col-lg-4 {
     margin-bottom: 10px;
+    padding: 0;
 }
 
-.categories .col-lg-5 img {
-    width: 80%;
-    border-radius: 30px;
+.categories .col-lg-4 img {
+    width: 90%;
+    border-radius: 5px;
+}
+
+.categories .card {
+    padding-top: 5px;
 }
 
 .categories .card span {
@@ -540,19 +555,13 @@ div.author-details > div.float-left > img {
 
 // Archived blogs page
 .archived-blogs, .all-blogs {
-    margin-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    min-height: 400px;
 }
 
 .archived-blogs h2 {
     font-weight: bolder; 
-    margin-bottom: 20px;
-}
-
-
-// All blogs page
-.all-blogs {
-    margin-top: 90px;
-    min-height: 300px;
 }
 
 
@@ -560,6 +569,10 @@ div.author-details > div.float-left > img {
 small {
     color: #8a8a8a;
     font-size: 11px;
+}
+
+th, td {
+    padding: 10px;
 }
 
 
@@ -613,7 +626,8 @@ body.dark-theme .notification-top-bar {
     z-index: 1;
 }
 
-body.dark-theme .show-blog .card-text p { 
+body.dark-theme .show-blog .card-text p,
+body.dark-theme .show-blog .card-text span { 
     color: #ddd !important; 
 }
 

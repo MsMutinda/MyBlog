@@ -27,7 +27,7 @@ class HomeController extends Controller
         $featuredblog = Blog::orderBy('created_at', 'DESC')->take(1)->first();
 
         // fetch only published blogs
-        $blogs = Blog::where('status', 'published')->take(5)->get();
+        $blogs = Blog::where('status', 'published')->take(4)->get();
 
         // fetch blog categories
         $categories = Category::all();

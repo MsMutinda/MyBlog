@@ -4,15 +4,21 @@
 
     <main role="main" class="show-blog">
         <div class="row">
-            <div class="col-lg-10 col-sm-10">
+            <div class="col-lg-10 col-sm-10 padding-top-10">
                 @if(Session::has('success'))
                     <div class="alert alert-info">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <p>{{ Session::get('success') }}</p>
                     </div>
                 @endif
+                @if(Session::has('error'))
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <p>{{ Session::get('error') }}</p>
+                    </div>
+                @endif
 
-                <h1><strong> {{ $blog->title }} </strong> </h1>
+                <h3>{{ $blog->title }}</h3>
                 <hr>
                 <div class="card-body">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSRsfOcYt3SR9V9alSN7mg-z2Q_STmrA94q4YJ44JsT62ykMKgahBOIi-7--RiFrY-0N0&usqp=CAU" alt="" align="left" width="90px" height="90px">
@@ -68,25 +74,23 @@
             </div>
 
             <div class="col-lg-2 col-sm-2">
-                <!-- @auth -->
-                    <ul>
-                        <li title="Like blog" id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="d-inline font-weight-bold">
-                            <i class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
-                            <span class="like-count"> {{ $blog->likes() }} </span>
-                        </li>
-                        <li title="Dislike blog" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="d-inline font-weight-bold">
-                            <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
-                            <span class="dislike-count">{{ $blog->dislikes() }}</span>
-                        </li>
-                        <li title="Add comment" id="comment-icon" class="d-inline font-weight-bold">
-                            <a href="#comments"><i class="fa fa-comments text-secondary p-1" style="cursor: pointer; font-size: 2.3em;"></i></a>
-                            <span class="comment-count"> {{ count($blog->comments) }} </span>
-                        </li>
-                        <li title="Bookmark blog" class="d-inline font-weight-bold">
-                            <i class="fa fa-bookmark text-dark p-1 ml-1" style="cursor: pointer; font-size: 2.3em;"></i>
-                        </li>
-                    </ul>
-                <!-- @endauth -->
+                <ul>
+                    <li title="Like blog" id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="d-inline font-weight-bold">
+                        <i class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
+                        <span class="like-count"> {{ $blog->likes() }} </span>
+                    </li>
+                    <li title="Dislike blog" id="saveLikeDislike" data-type="dislike" data-post="{{ $blog->id}}" class="d-inline font-weight-bold">
+                        <i class="fa fa-thumbs-down text-danger p-1" style="cursor: pointer; font-size: 2.3em; transform: scaleX(-1);" id="thumbs-down"></i>
+                        <span class="dislike-count">{{ $blog->dislikes() }}</span>
+                    </li>
+                    <li title="Add comment" id="comment-icon" class="d-inline font-weight-bold">
+                        <a href="#comments"><i class="fa fa-comments text-secondary p-1" style="cursor: pointer; font-size: 2.3em;"></i></a>
+                        <span class="comment-count"> {{ count($blog->comments) }} </span>
+                    </li>
+                    <li title="Bookmark blog" class="d-inline font-weight-bold">
+                        <i class="fa fa-bookmark text-dark p-1 ml-1" style="cursor: pointer; font-size: 2.3em;"></i>
+                    </li>
+                </ul>
             </div>
 
         </div>
@@ -99,7 +103,7 @@
         <div class="related-blogs">
             <div class="row"> 
                 <div class="col-lg-12 col-sm-12"> 
-                    <h2 style="font-weight: bolder;"> Related blogs </h2>
+                    <h2 style="font-weight: bolder; margin-top: 20px;"> Related blogs </h2>
                 </div>
             </div>
 
@@ -114,12 +118,6 @@
                             alt="{{ $r->title }} img"
                         />
                         <div class="card-body">
-                            <p class="btn btn2 px-4">
-                                @php 
-                                    $blogCategory = \App\Models\Category::where('id' , '=', $r->category)->pluck('name');
-                                    echo substr($blogCategory, 2, -2);
-                                @endphp
-                            </p>
                             <h5 class="card-title"><strong> {{ $r->title }} </strong></h5>
                             <div class='card-text mt-2'>
                                 <p> {{ substr(strip_tags($r->content), 0, 190).'...' }} </p>
@@ -131,7 +129,7 @@
                     
                     @endforeach
                 @else
-                    @php echo "<h5 style='color: #8a8a8a;'>"."No related blogs yet."."</h5>" @endphp
+                    @php echo "<h5 style='color: #8a8a8a; margin-left: 16px;'>"."No related blogs yet."."</h5>" @endphp
                 @endif
             </div>
 
@@ -193,13 +191,15 @@
                 if (!newsletterShown) {
                         setTimeout(function() {
                             document.querySelector('.show-blog').style.cssText = `
-                                        -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
-                                        mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+                                        -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+                                        mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
                                         height: 58vh;
                                         overflow: hidden;
                                 `;
-                            const footer = document.querySelector('.footer1');
-                            footer.insertAdjacentHTML('beforebegin', '<h4 style="color: #3490dc; margin-left: 60px; font-weight: 700; padding-top: 10px; padding-bottom: 50px;" data-toggle="modal" data-target="#newsletterModal"> To continue reading this blog, click <span style="cursor: pointer; text-decoration: underline;"> here </span> </h4>');                            
+                            const footer = document.querySelector(".footer1");
+                            const newel = document.createElement('div');
+                            newel.innerHTML = '<h4 style="margin-left: 198px; color: #2b6797; font-weight: 700; padding-top: 20px; padding-bottom: 50px;" data-toggle="modal" data-target="#newsletterModal"> To continue reading this blog, click <span style="cursor: pointer; text-decoration: underline;"> here </span> </h4>';
+                            footer.parentNode.insertBefore(newel, footer);
                             // $('#newsletterModal').modal();
                         }, 300);
                         $.cookie('newsletterShown', 1);

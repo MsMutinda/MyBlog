@@ -5,7 +5,7 @@
     <main role="main" class="home">
         
         @if(Session::has('success'))
-            <div class="alert alert-info">
+            <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <p>{{ Session::get('success') }}</p>
             </div>
@@ -63,7 +63,7 @@
 
                                         <div class="card-body">
                                             <div class='card-text'>
-                                                <p> {{ substr(strip_tags($blog->content), 0, 190).'...' }} </p>
+                                                <p> {{ substr(strip_tags($blog->content), 0, 288).'...' }} </p>
                                             </div>
                                             <p class="btn btn-sm"> <a style="color: #fff;" href="{{ route('view-blog', $blog->id) }}"> Read blog </a> </p>    
                                         </div>
@@ -79,7 +79,7 @@
                                 </div>
                             @endforeach
                         @else
-                            @php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" @endphp
+                            @php echo "<h5 class='ml-4 mt-4' style='color: #8a8a8a;'>"."No blogs here yet."."</h5>" @endphp
                         @endif
                     </div>
                 </div>

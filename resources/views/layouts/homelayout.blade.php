@@ -44,7 +44,8 @@
                         </select>
                     </li>
                     <li class="nav__item"><a href="{{ route('register')}}">Register/ </a>
-                                            <a href="{{ route('login') }}"> Login </a></li>
+                                            <a href="{{ route('login') }}"> Login </a>
+                    </li>
                     @include('pages.blogs.newsletterform')
                     <li class="nav__item"> 
                         <ul class="float-right">
@@ -136,7 +137,7 @@
 
                                 <div class="card-body">
                                     <div class='card-text'>
-                                        <p class="text-justify"> {{ substr(strip_tags($featuredblog->content), 0, 300).'...' }} </p>
+                                        <p class="text-justify"> {{ substr(strip_tags($featuredblog->content), 0, 600).'...' }} </p>
                                     </div>
                                     <p> <a href="{{ route('view-blog', $featuredblog->id) }}"> <b> READ MORE <i class="fa fa-angle-double-right pl-1" style="font-size: 17px;"></i> </b> </a> </p>    
                                 </div>

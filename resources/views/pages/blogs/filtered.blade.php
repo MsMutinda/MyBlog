@@ -4,17 +4,22 @@
 
     <main role="main" class="categories">
         <div class="row">
-            <div class="topheader col-lg-12 col-sm-12">
-                <h3> Articles on {{ substr($categoryname, 2, -2) }} </h3>
-                <p>Get more insights on your technology journey</p>
+            <div class="topheader">
+                <h3 style="color: #2b6797;"> Get more insights on {{ substr($categoryname, 2, -2) }} </h3>
                 <hr />
             </div>
         </div>
         <div class="row">
             @if(count($filtered) > 0)
                 @foreach($filtered as $f)
-                    <!-- @php $blog_id = $f->id; @endphp -->
-                    <div class="col-lg-7 col-sm-7">
+                    <div class="col-lg-4 col-sm-4">
+                        <img
+                            src="{{ asset('storage/'.substr($f->image_path, 7)) }}"
+                            title="{{ $f->title }}"
+                            alt="{{ $f->title }} img"
+                        />
+                    </div>
+                    <div class="col-lg-8 col-sm-8">
                         <div class='card'>
                             <div class="card-body">
                                 <h4 class="card-title mb-1"> <a href="{{ route('view-blog', $f->id) }}"> {{ $f->title }} </a> </h4>
@@ -41,23 +46,17 @@
 
                             <div class="card-body">
                                 <div class='card-text'>
-                                    <p> {{ substr(strip_tags($f->content), 0, 390).'...' }} </p>
+                                    <p> {{ substr(strip_tags($f->content), 0, 288).'...' }} </p>
                                 </div>
                                 <p class="btn btn-sm"> <a style="color: #fff;" href="{{ route('view-blog', $f->id) }}"> Read blog </a> </p>    
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-5 col-sm-5">
-                        <img
-                            src="{{ asset('storage/'.substr($f->image_path, 7)) }}"
-                            title="{{ $f->title }}"
-                            alt="{{ $f->title }} img"
-                        />
-                    </div>
+                    
                 @endforeach
             @else
-                @php echo "<h4 class='ml-4 mt-4' style='color: red; font-family: cursive;'>"."No blogs here yet."."</h4>" @endphp
+                @php echo "<h5 class='ml-1' style='color: #8a8a8a;'>"."No blogs here yet."."</h5>" @endphp
             @endif
         </div>
     </main>
