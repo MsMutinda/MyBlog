@@ -28,6 +28,7 @@
     <nav class='navbar fixed-top'>    
         <a href="/" class='float-left'>
             Blogger.com
+            <!-- <img src="{{ asset('storage/logo.png') }}" alt="logo" width="120px" height="120px"> -->
         </a>
 
         <div class="nav__menucontainer">
