@@ -155,10 +155,6 @@ nav ul li {
     font-weight: 600;
 }
 
-.nav-select.guest {
-    width: 150px;
-}
-
 .nav-select {
     /* -webkit-appearance: none; 
     appearance: none; */
@@ -348,11 +344,8 @@ main.profile-page {
 }
 
 .latest > .row > .col-lg-3 > ul > li > a {
-    list-style: none;
-    // display: inline;
     padding: 6px;
     font-size: 12px;
-    text-align: left;
     color: #8a8a8a;
 }
 

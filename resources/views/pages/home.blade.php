@@ -138,7 +138,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-sm-3">
+                <div class="col-lg-3 col-sm-3" hidden-xs>
                     <h5> Read about: </h5>
                     <ul>
                         @foreach($categories as $category)
