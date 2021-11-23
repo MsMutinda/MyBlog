@@ -39,7 +39,7 @@
                         <select class="nav-select guest" onchange="location = this.value;"> 
                             <option value="Blog Categories"> Blog Categories </option>
                                 @foreach($categories as $category)
-                                    <option id="category" value="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}"> <a href="{{ url('/blogs/'.$category->id.'/'.Str::slug($category->name)) }}" class="nav__link" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{ $category->name }} </a></option>
+                                    <option id="category" value="{{ url('/categories/'.$category->id.'/'.Str::slug($category->name)) }}"> <a href="{{ url('/categories/'.$category->id.'/'.Str::slug($category->name)) }}" class="nav__link" onclick="submitter({{ $category->id, $category->name }})" value="{{ $category->id }}"> {{ $category->name }} </a></option>
                                 @endforeach
                         </select>
                     </li>
@@ -49,7 +49,7 @@
                     <li class="nav__item"> 
                         <ul class="float-right">
                             <li data-toggle="modal" data-target="#newsletterModal" style="cursor: pointer;"> Subscribe to my newsletter </li>
-                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Dark theme <i id="toggle-icon" class="fa fa-toggle-on || fa fa-toggle-off"></i> </li>
+                            <li class="btn-toggle" onclick="toggleTheme()" style="cursor: pointer;" title="Toggle dark/light mode"> Change theme <i id="toggle-icon" class="fa fa-toggle-off || fa fa-toggle-on"></i> </li>
                         </ul>
                     </li>
                 </ul>
@@ -61,7 +61,7 @@
                     <li class="nav__item">
                         <select class="nav-select" onchange="location = this.value;"> 
                             <option value="">Blogs </option>
-                            @if(Auth::user()->can('save-blog')) <option value="{{ route('create-blog') }}" > Create blog </option> @endif  
+                            @if(Auth::user()->can('store-blog')) <option value="{{ route('save-blog') }}" > Create blog </option> @endif  
                             <option value="{{ route('viewAllBlogs') }}"> View All Blogs </option>
                             @if(Auth::user()->can('view-archivedBlogs')) <option value="{{ route('viewBlogArchives') }}"> View Archived Blogs </option> @endif
                         </select>

@@ -235,7 +235,7 @@ main.profile-page {
 }
 
 .featured {
-    padding: 30px 55px;
+    padding: 25px 50px;
     width: 100vw;
     background-color: rgba(19, 73, 117, 0.06);
 }
@@ -425,10 +425,6 @@ form .container {
 }
 
 
-.topheader {
-    margin-top: 120px;
-}
-
 
 /* Footer */
 footer {
@@ -575,9 +571,45 @@ div.author-details > div.float-left > img {
 }
 
 
+//category filter
+.categories .row:nth-child(2){
+    padding: 5px 100px;
+}
+
+.categories .topheader {
+    padding: 10px;
+    position: relative;
+    left: 40px;
+}
+
+.categories .topheader hr {
+    color: #e9e0e0;
+    position: relative;
+    right: 38px;
+}
+
+.categories .col-lg-7, .categories .col-lg-5 {
+    margin-bottom: 10px;
+}
+
+.categories .col-lg-5 img {
+    width: 80%;
+    border-radius: 30px;
+}
+
+.categories .card span {
+    padding: 10px 0px;
+}
+
+.categories .card .card-text p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    margin-top: 15px;
+}
+
+
 // Archived blogs page
-.archived-blogs {
-    margin-top: 100px;
+.archived-blogs, .all-blogs {
     padding: 50px;
     margin-left: 20px;
     min-height: 300px;
@@ -595,7 +627,6 @@ div.author-details > div.float-left > img {
 
 // All blogs page
 .all-blogs {
-    padding: 0px 50px 30px 50px;
     margin-top: 90px;
     min-height: 300px;
 }

@@ -131,17 +131,15 @@ class BlogController extends Controller
             $validator = Validator::make($request->all(), [
                 'title'  => 'required|string|max:255',
                 'category' => 'required|string|max:255',
-                'content' => 'required|string|max:255',
             ]);
 
         Blog::whereId($id)->update([
                 'title'    => $request->title,
                 'category'   => $request->category,
-                'content'  => $request->content,
                 'image_path'   => $path
             ]);
 
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Blog edited successfully');
         }
     }
         

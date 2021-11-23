@@ -150,11 +150,6 @@
             </div>
         </div>
 
-
-
-        <!-- Newsletter Modal here -->
-
-
     </main>
 
 

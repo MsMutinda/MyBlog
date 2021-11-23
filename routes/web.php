@@ -25,9 +25,9 @@ Route::group(['middleware' => 'web'], function ()
 
     // Blog category filter
     Route::get('/categories/{id}/{name}',[App\Http\Controllers\HomeController::class, 'filterByCategory']);
-});
 
-Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
+    Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
+});
 
 
 // Authenticated users only
