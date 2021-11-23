@@ -68,7 +68,7 @@
             </div>
 
             <div class="col-lg-2 col-sm-2">
-                @auth
+                <!-- @auth -->
                     <ul>
                         <li title="Like blog" id="saveLikeDislike" data-type="like" data-post="{{ $blog->id}}" class="d-inline font-weight-bold">
                             <i class="fa fa-thumbs-up text-info p-1" style="cursor: pointer; font-size: 2.3em;" id="thumbs-up"></i>
@@ -86,7 +86,7 @@
                             <i class="fa fa-bookmark text-dark p-1 ml-1" style="cursor: pointer; font-size: 2.3em;"></i>
                         </li>
                     </ul>
-                @endauth
+                <!-- @endauth -->
             </div>
 
         </div>
@@ -131,7 +131,7 @@
                     
                     @endforeach
                 @else
-                    @php echo "<h5 class='mt-3' style='color: #8a8a8a;'>"."No related blogs yet."."</h5>" @endphp
+                    @php echo "<h5 style='color: #8a8a8a;'>"."No related blogs yet."."</h5>" @endphp
                 @endif
             </div>
 

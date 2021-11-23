@@ -87,11 +87,68 @@
     </nav>
 
     
-    <div class="container">
-        <!-- Create blog modal -->
-        @include('pages.blogs.create')
-        <div class="notification-top-bar"> <p data-toggle="modal" data-target="#createBlogModal"> Want to contribute an article to our blog? Click <small> <span> here </span></small> </p></div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Create blog modal -->
+            @include('pages.blogs.create')
+            <div class="notification-top-bar"> <p data-toggle="modal" data-target="#createBlogModal"> Want to contribute an article to our blog? Click <small> <span> here </span></small> </p></div>
 
+            <div class="blue-bg">
+                <div class="featured">
+                    <div class="row white-bg">
+                        <div class="col-lg-4 col-sm-4"> 
+                            <img
+                                src = "{{ asset('storage/'.substr($featuredblog->image_path, 7)) }}"
+                                title = "{{ $featuredblog->title }}"
+                                alt = "{{ $featuredblog->title }} img"
+                            />
+                        </div>
+
+                        <div class="col-lg-8 col-sm-8">
+                            <div class='card'>
+                                <div class="card-body">
+                                    <h2 class="card-title"> <a href="{{ route('view-blog', $featuredblog->id) }}"> {{ $featuredblog->title }} </a> </h2>
+                                    @php 
+                                        $category = \App\Models\Blog::where('id', $featuredblog->id)->pluck('category');
+                                        $categoryname = \App\Models\Category::where('id', $category)->pluck('name');
+                                    @endphp
+                                    <small>
+                                        <span> {{ $featuredblog->created_at->format('M d, Y') }} &nbsp; {{ $featuredblog->created_at->format('H:i A') }}  &nbsp; · &nbsp; 
+                                            @php
+                                                $blog_content = \App\Models\Blog::where('id', $featuredblog->id)->get('content');
+                                                $wpm = 200;
+                                                $wordCount = str_word_count(strip_tags($blog_content));
+                                                $minute_count = (int) floor($wordCount / $wpm); 
+                                                $seconds_count = (int) floor($wordCount % $wpm / ($wpm / 60));                                            
+                                                $minutes = ($minute_count === 0) ? $seconds_count : $minute_count;
+                                                if ($minute_count === 0) {
+                                                    echo $seconds_count.'-sec';
+                                                }
+                                                else {
+                                                    echo $minute_count.'-min';
+                                                }
+                                            @endphp
+                                            read &nbsp; · &nbsp; 
+                                        </span>
+                                        <span class="btn btn-sm"> {{ substr($categoryname, 2, -2) }}  </span>
+                                    </small>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class='card-text'>
+                                        <p class="text-justify"> {{ substr(strip_tags($featuredblog->content), 0, 300).'...' }} </p>
+                                    </div>
+                                    <p> <a href="{{ route('view-blog', $featuredblog->id) }}"> <b> READ MORE <i class="fa fa-angle-double-right pl-1" style="font-size: 17px;"></i> </b> </a> </p>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
         @yield('content')
     </div>
 
@@ -139,7 +196,5 @@
     <!--scripts here-->
     @include('includes.scripts')
     
-    <!-- Footer -->
-    <!-- @include('includes.footer') -->
 </body>
 <html>

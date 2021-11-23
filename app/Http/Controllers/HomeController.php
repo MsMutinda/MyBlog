@@ -24,7 +24,7 @@ class HomeController extends Controller
         }
 
         // latest blog
-        $latestblog = Blog::orderBy('created_at', 'DESC')->take(1)->first();
+        $featuredblog = Blog::orderBy('created_at', 'DESC')->take(1)->first();
 
         // fetch only published blogs
         $blogs = Blog::where('status', 'published')->take(5)->get();
@@ -32,7 +32,7 @@ class HomeController extends Controller
         // fetch blog categories
         $categories = Category::all();
 
-        return view('pages.home')->with(['blogs' => $blogs, 'latestblog' => $latestblog, 'categories' => $categories]);
+        return view('pages.home')->with(['blogs' => $blogs, 'featuredblog' => $featuredblog, 'categories' => $categories]);
     }
 
     /**

@@ -10313,7 +10313,7 @@ body {
   font-weight: 400;
 }
 
-main {
+main:not(main.home) {
   margin-top: 116px;
 }
 
@@ -10335,7 +10335,6 @@ nav {
   color: #efefef;
   background: #2b6797;
   z-index: 5;
-  padding-bottom: 40px;
   border-bottom: 0.1px solid #ddd;
 }
 
@@ -10410,7 +10409,6 @@ nav a.float-left:hover,
 }
 
 .nav__item > .float-right > li > i {
-  padding-left: 10px;
   font-size: 26px;
   position: relative;
   top: 3px;
@@ -10473,11 +10471,6 @@ nav ul li {
   font-size: 14px;
 }
 
-main.profile-page {
-  padding: 20px;
-  margin: 115px 0px 40px 0px;
-}
-
 .profile-page > div.ml-2 > div.row > div > button {
   background: #f27a1f;
 }
@@ -10504,7 +10497,6 @@ main.profile-page {
 }
 
 .notification-top-bar p {
-  padding: 0;
   margin: 0 auto;
 }
 
@@ -10515,20 +10507,17 @@ main.profile-page {
   font-size: 14px;
 }
 
-.container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
-  padding: 0;
-}
-
-.featured {
-  padding: 25px 50px;
-  width: 100vw;
+.container-fluid > .row, .container-sm > .row, .container-md > .row, .container-lg > .row, .container-xl > .row {
   background-color: rgba(19, 73, 117, 0.06);
 }
 
-.featured hr {
-  width: 68%;
-  position: relative;
-  right: 175px;
+.blue-bg {
+  padding: 25px;
+}
+
+.featured {
+  margin-top: 116px;
+  background: #fff;
 }
 
 .featuredheader {
@@ -10541,14 +10530,6 @@ main.profile-page {
   width: 100%;
 }
 
-.featured .col-lg-4, .featured .col-lg-8 {
-  padding: 0;
-}
-
-.featured .col-lg-8 {
-  padding: 0px 15px;
-}
-
 .featured h2.card-title {
   margin-bottom: 15px;
   font-weight: 400;
@@ -10556,22 +10537,23 @@ main.profile-page {
 
 .featured .card .card-text p {
   font-size: 16px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   margin-top: 15px;
-}
-
-.white-bg {
-  background: #fff;
 }
 
 .featured .card {
   background: none;
-  padding-top: 20px;
+  padding-top: 15px;
 }
 
 .featured span.btn {
   border-radius: 30px;
   background: #f0ebeb;
+}
+
+.latest {
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 .latestheader > hr {
@@ -10585,11 +10567,7 @@ main.profile-page {
   color: #4a4a4a;
 }
 
-.latest {
-  padding: 20px 100px 0px 100px;
-}
-
-.latest > .row > .col-lg-9 > .row > .col-lg-7 > .card > .card-body > small > span > p {
+.latest > .row > .latestheader > .row > .col-lg-8 > .card > .card-body > small > span > p {
   background-color: #f0ebeb;
   border-radius: 20px;
   position: relative;
@@ -10598,45 +10576,16 @@ main.profile-page {
   color: #323232;
 }
 
-.latest > .row > .col-lg-9 > .row > .col-lg-7,
-.latest > .row > .col-lg-9 > .row > .col-lg-5 {
+.latest > .row > .latestheader > .row > .col-lg-8,
+.latest > .row > .latestheader > .row > .col-lg-4 {
   margin-top: 20px;
 }
 
-.latest > .row > .col-lg-9 > .row > .col-lg-5 > img {
+.latest > .row > .latestheader > .row > .col-lg-4 > img {
   height: 180px;
   width: 90%;
   border-radius: 7px;
   margin-top: 10px;
-}
-
-.latest > .row > .col-lg-3 {
-  position: relative;
-  top: 95px;
-  padding-left: 50px;
-}
-
-.latest > .row > .col-lg-3 > h5 {
-  margin-left: 5px;
-  text-decoration: underline;
-  font-weight: 700;
-  color: #8a8a8a;
-}
-
-.latest > .row > .col-lg-3 > ul {
-  padding: 0;
-  list-style: none;
-  display: inline-grid;
-  grid-template-columns: auto auto;
-  -moz-column-gap: 10px;
-       column-gap: 10px;
-  line-height: 1.8rem;
-}
-
-.latest > .row > .col-lg-3 > ul > li > a {
-  padding: 6px;
-  font-size: 12px;
-  color: #8a8a8a;
 }
 
 form .container {
@@ -10798,11 +10747,6 @@ footer > div > ul > li > a:hover {
   margin-bottom: 20px;
 }
 
-.show-blog > .row > .col-lg-10,
-.show-blog > .related-blogs {
-  padding: 0px 15% 25px 5%;
-}
-
 .show-blog h1 {
   color: #094270;
   font-size: 3rem;
@@ -10825,11 +10769,6 @@ footer > div > ul > li > a:hover {
   color: #111111;
 }
 
-.show-blog > .row > .col-lg-2 {
-  right: 100px;
-  bottom: 300px;
-}
-
 .show-blog > .row > .col-lg-2 > ul {
   position: sticky;
   top: 400px;
@@ -10845,16 +10784,7 @@ div.author-details > div.float-left > img {
   border-radius: 50%;
 }
 
-.related-blogs > .row > .col-lg-12 {
-  padding: 0;
-}
-
-.categories .row:nth-child(2) {
-  padding: 5px 100px;
-}
-
 .categories .topheader {
-  padding: 10px;
   position: relative;
   left: 40px;
 }
@@ -10885,13 +10815,7 @@ div.author-details > div.float-left > img {
 }
 
 .archived-blogs, .all-blogs {
-  padding: 50px;
   margin-left: 20px;
-  min-height: 300px;
-}
-
-.archived-blogs .col-lg-12 {
-  padding: 0;
 }
 
 .archived-blogs h2 {
@@ -10910,7 +10834,6 @@ small {
 }
 
 .create {
-  padding: 10px 30px 25px 50px;
   margin: 130px 35% 50px 25%;
 }
 
