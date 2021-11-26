@@ -145,6 +145,7 @@
     <script type='text/javascript'>
         // Save Like Or Dislike
         $(document).on('click','#saveLikeDislike',function() {
+            @auth
             var _post=$(this).data('post');
             var _type=$(this).data('type');
             var vm=$(this);
@@ -158,19 +159,22 @@
                     type:_type,
                     _token:"{{ csrf_token() }}"
                 },
-                beforeSend:function(){
-                    vm.addClass('disabled');
-                },
                 success:function(res){
-                    if(res.bool==true){
-                        vm.removeClass('disabled').addClass('active');
-                        vm.removeAttr('id');
-                        var _prevCount = parseInt($("."+_type+"-count").text());
-                        _prevCount++;
-                        parseInt($("."+_type+"-count").text(_prevCount));
+                    if(res.liked == true){
+                        $(".like-count").text(res.blog_likes);
+                        $(".dislike-count").text(res.blog_dislikes);
                     }
-                }   
+                    else {
+                        $(".dislike-count").text(res.blog_dislikes);
+                        $(".like-count").text(res.blog_likes);
+                    }
+                }  
+                
             });
+            @endauth
+            @guest
+                location.href='/login';
+            @endguest
         });
     </script>
 

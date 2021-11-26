@@ -11,6 +11,7 @@ use App\Models\Blog;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\LikeDislike;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Jobs\SendEditorMail;
 use App\Jobs\SendAuthorMail;
@@ -189,7 +190,8 @@ class BlogController extends Controller
     // Save Like Or dislike
     public function save_likedislike(Request $request) 
     {
-        $data=new \App\Models\LikeDislike;
+        
+        $data = new LikeDislike;
         $data->user_id = $request->user()->id;
         $data->blog_id = $request->post;
     
@@ -203,7 +205,7 @@ class BlogController extends Controller
                 $data->likes=1;
             }
             
-            elseif($userdislike) {
+            else if($userdislike) {
                 // prevent user from liking and disliking same blog
                 \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND dislikes=1");
                 $data->likes=1;
@@ -211,6 +213,17 @@ class BlogController extends Controller
 
             // add like if no like/dislike exists for same user
             else { $data->likes=1; }
+
+            $data->save();
+
+            $blog_likes = LikeDislike::where('blog_id', $data->blog_id)->count('likes');
+            $blog_dislikes = LikeDislike::where('blog_id', $data->blog_id)->count('dislikes');
+
+            return response()->json([
+                'liked' => true,
+                'blog_likes' => $blog_likes,
+                'blog_dislikes' => $blog_dislikes
+            ]);
         }
 
         else {
@@ -222,22 +235,29 @@ class BlogController extends Controller
                 $data->dislikes=1;
             }
             
-            elseif($userlike) {
+            else if($userlike) {
                 // prevent user from liking and disliking same blog
                 \DB::delete("DELETE from like_dislikes where user_id=$data->user_id AND blog_id=$data->blog_id AND likes=1");
                 $data->dislikes=1;
             }
 
             else{ $data->dislikes=1; }
+
+            $data->save();
+
+            $blog_dislikes = LikeDislike::where('blog_id', $data->blog_id)->count('dislikes');
+            $blog_likes = LikeDislike::where('blog_id', $data->blog_id)->count('likes');
+
+            return response()->json([
+                'disliked' => true,
+                'blog_dislikes' => $blog_dislikes,
+                'blog_likes' => $blog_likes,
+            ]);
         }
 
-        $data->save();
-        $number_of_likes = CommentLike::where('comment_id', $comment_like->comment_id)->count('likes');
-
         return response()->json([
-            'bool'=>true
+            'success' => false
         ]);
-
     }
 
 

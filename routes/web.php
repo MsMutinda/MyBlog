@@ -42,10 +42,10 @@ Route::middleware('auth')->group(function()
 
     Route::get('/logout', [App\Http\Controllers\ProfileController::class, 'logout'])->name('logout');
 
-    // Route::get('/blog/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('view-blog');
-
-    // Add Comments/Replies
+    // Add Comment
     Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('add-comment');
+
+    //Add Reply
     Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('add-reply');
 
     // Like Or Dislike Blog
@@ -64,7 +64,6 @@ Route::middleware('auth', 'role')->group(function()
     Route::post('/blog/save', [App\Http\Controllers\BlogController::class, 'store'])->name('save-blog');
 
     // Route::match(['get', 'post'], '/blog/{id}', ['uses' => '\App\Http\Controllers\HomeController@show', 'as' => 'view-blog']);
-
 
     Route::get('/blog/{id}/comments', [App\Http\Controllers\BlogController::class, 'showComments'])->name('view-blogComments');
 

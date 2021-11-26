@@ -15,42 +15,33 @@ use DB;
 class CommentController extends Controller
 {
     public function store(Request $request) 
-    {
-        if ($request->user()->can('add-comment')) {
+    {   
+        $comment = new Comment;
+        $comment->comment = $request->comment;
+        $comment->user()->associate($request->user());
+        $blog = Blog::find($request->blog_id);
+        $blog->comments()->save($comment);   
+        $id = $request->blog_id;
+        $blog = Blog::where('id', $id)->first();
 
-            $comment = new Comment;
-            $comment->comment = $request->comment;
-            $comment->user()->associate($request->user());
-            $blog = Blog::find($request->blog_id);
-            $blog->comments()->save($comment);   
-            $id = $request->blog_id;
-            $blog = Blog::where('id', $id)->first();
-
-            return back()->with('success', 'Comment saved, pending approval');
-        }
+        return back()->with('success', 'Comment saved, pending approval');
     }
 
 
     public function replyStore(Request $request)
     {
-        if ($request->user()->can('add-reply')) {
-
-            $reply = new Comment();
-            $reply->comment = $request->get('comment');
-            $reply->user()->associate($request->user());
-            $reply->parent_id = $request->get('comment_id');
-            $blog = Blog::find($request->get('blog_id'));
-            $blog->comments()->save($reply);
-
-            return back();
-
-        }
+        $reply = new Comment();
+        $reply->comment = $request->get('comment');
+        $reply->user()->associate($request->user());
+        $reply->parent_id = $request->get('comment_id');
+        $blog = Blog::find($request->get('blog_id'));
+        $blog->comments()->save($reply);
+        return back();
     }
 
     public function approve_comment(Request $request) 
     {
         if ($request->user()->hasRole('manager')) {
-
             // approve comment
             if($request->type=='approve') {
                 $res1 = DB::statement("UPDATE comments SET approval_status='approved' WHERE id=$request->comment");
@@ -104,6 +95,7 @@ class CommentController extends Controller
 
         $comment_like->save();
         $number_of_likes = CommentLike::where('comment_id', $comment_like->comment_id)->count('likes');
+        
         return response()->json([
             'liked' => true,
             'number_of_likes' => $number_of_likes

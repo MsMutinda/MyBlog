@@ -10314,7 +10314,7 @@ body {
 }
 
 main:not(main.home) {
-  margin-top: 116px;
+  margin-top: 45px;
 }
 
 .alert {
@@ -10330,6 +10330,7 @@ nav {
   display: flex;
   justify-content: space-between;
   position: fixed;
+  top: 40px;
   left: 0;
   right: 0;
   color: #efefef;
@@ -10478,17 +10479,14 @@ nav ul li {
 .notification-top-bar {
   z-index: 1;
   position: fixed;
-  top: 70px;
   left: 0;
-  height: 45px;
+  right: 0;
+  height: 40px;
   line-height: 40px;
   width: 100%;
   text-align: center;
   background: #fff;
-  border-bottom: 1px solid #e0e6eb;
   color: #000;
-  font-family: sans-serif;
-  font-weight: lighter;
   font-size: 14px;
 }
 
@@ -10507,6 +10505,11 @@ nav ul li {
   font-size: 14px;
 }
 
+.card-text div {
+  background: #fff !important;
+  font-family: "Montserrat", sans-serif !important;
+}
+
 .container-fluid > .row, .container-sm > .row, .container-md > .row, .container-lg > .row, .container-xl > .row {
   background-color: rgba(19, 73, 117, 0.06);
 }
@@ -10516,7 +10519,7 @@ nav ul li {
 }
 
 .featured {
-  margin-top: 116px;
+  margin-top: 35px;
   background: #fff;
 }
 
@@ -10683,7 +10686,7 @@ footer > div > ul > li > a:hover {
 }
 
 .footer1 {
-  padding: 10px 0px 15px 10px;
+  padding: 20px 0px 15px 20px;
   border-top: 0.5px solid #e6dddd;
 }
 
@@ -10769,7 +10772,7 @@ footer > div > ul > li > a:hover {
 .show-blog > .row > .col-lg-10 > .card-body > .card-text p,
 .show-blog .card-text span {
   font-size: 16px !important;
-  font-weight: 400 !important;
+  font-weight: 300 !important;
   font-family: "Montserrat", sans-serif !important;
 }
 

@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <table class="table table-hover" id="all-blogs" style="width: 90vw;">
+            <table class="table table-hover" id="all-blogs">
                 <thead>
                     <th>#</td>
                     <th>Comment</th>

@@ -25,7 +25,13 @@
 
 <!-- <body class="light-theme || dark-theme"> -->
 <body class="<?php echo $themeClass; ?>">
-    <nav class='navbar fixed-top'>    
+    
+    <!-- Create blog modal -->
+    @include('pages.blogs.create')
+    <div class="notification-top-bar fixed-top"> <p data-toggle="modal" data-target="#createBlogModal"> Want to contribute an article to our blog? Click <small> <span> here </span></small> </p></div>
+
+    <!-- Navigation section -->
+    <nav class='navbar'>    
         <a href="/" class='float-left'>
             Blogger.com
             <!-- <img src="{{ asset('storage/logo.png') }}" alt="logo" width="120px" height="120px"> -->
@@ -91,10 +97,6 @@
     
     <div class="container-fluid">
         <div class="row">
-            <!-- Create blog modal -->
-            @include('pages.blogs.create')
-            <div class="notification-top-bar"> <p data-toggle="modal" data-target="#createBlogModal"> Want to contribute an article to our blog? Click <small> <span> here </span></small> </p></div>
-
             <div class="blue-bg">
                 <div class="featured">
                     <div class="row white-bg">
